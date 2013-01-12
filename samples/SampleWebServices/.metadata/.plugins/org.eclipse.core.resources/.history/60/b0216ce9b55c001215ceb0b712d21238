@@ -1,0 +1,18 @@
+package bg.unisofia.fmi.ws.multiplicity;
+
+/**
+ * This service simulates a service with low availability rates. To simulate
+ * this we get the current time in milliseconds. If "time % 3 = 0" then an
+ * exception is thrown.
+ * 
+ * @author krasimir.baylov
+ * 
+ */
+public class MultiplicityServiceRandomAvailability implements
+		IMultiplicityService {
+
+	public double multiply(double a, double b) {
+		return 0;
+	}
+
+}

@@ -1,0 +1,10 @@
+package bg.unisofia.fmi.ws.multiplicity;
+
+public class MultiplicityServiceRandomAvailability implements
+		IMultiplicityService {
+
+	public double multiply(double a, double b) {
+		return 0;
+	}
+
+}

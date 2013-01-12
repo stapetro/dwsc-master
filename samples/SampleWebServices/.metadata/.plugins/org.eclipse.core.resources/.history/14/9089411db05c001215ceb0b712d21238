@@ -1,0 +1,11 @@
+package bg.unisofia.fmi.ws.addition;
+
+public class AdditionServiceStandard implements IAdditionService{
+
+	@Override
+	public double add(double a, double b) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+}
