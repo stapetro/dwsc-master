@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<persistence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
+	version="2.0" xmlns="http://java.sun.com/xml/ns/persistence">
+	<persistence-unit name="dwscqosPU" transaction-type="RESOURCE_LOCAL">
+		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+		<class>bg.unisofia.fmi.dwsc.qosmodel.domain.Department</class>
+		<class>bg.unisofia.fmi.dwsc.qosmodel.domain.Employee</class>
+		<!-- shouldn't be valid for java SE per specification, but it works for EclipseLink ... -->
+		<!-- <exclude-unlisted-classes>false</exclude-unlisted-classes> -->
+		<!-- <properties>
+		
+			<property name="javax.persistence.jdbc.driver" value="org.apache.derby.jdbc.EmbeddedDriver" />
+			<property name="javax.persistence.jdbc.url" value="jdbc:derby:simpleDb;create=true" />
+			<property name="javax.persistence.jdbc.user" value="qos-data-model" />
+			<property name="javax.persistence.jdbc.password" value="qos-data-model" />
+
+			EclipseLink should create the database schema automatically
+			<property name="eclipselink.ddl-generation" value="create-tables" />
+			<property name="eclipselink.ddl-generation.output-mode" value="database" />
+			<property name="eclipselink.logging.level" value="SEVERE"/>				
+		</properties> -->
+
+        <properties>
+            <property name="eclipselink.target-database" value="MYSQL"/>
+            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/dwscqos"/>
+            <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
+            <property name="javax.persistence.jdbc.user" value="dwsc"/>
+            <property name="javax.persistence.jdbc.password" value="dwsc"/>
+            <!-- <property name="eclipselink.ddl-generation" value="create-tables"/> -->
+            <property name="eclipselink.ddl-generation" value="drop-and-create-tables"/>
+            <!-- <property name="eclipselink.ddl-generation.output-mode" value="sql-script"/> -->
+            <!-- <property name="eclipselink.ddl-generation.output-mode" value="database" /> -->
+            <property name="eclipselink.ddl-generation.output-mode" value="both"/>
+            <!-- <property name="eclipselink.create-ddl-jdbc-file-name" value="createDDL_ddlGeneration.jdbc"/>
+            <property name="eclipselink.drop-ddl-jdbc-file-name" value="dropDDL_ddlGeneration.jdbc"/> -->
+            <property name="eclipselink.logging.level" value="SEVERE"/>
+        </properties>
+	</persistence-unit>
+</persistence>
