@@ -20,3 +20,6 @@ Category specifying services used for performing the multiply operation. This se
 
 == division ==
 Category specifying services used for performing the divide operation. This service category defines the "public double divide(double a, double b)" operation
+
+== pow ==
+Category specifying service used for performing the pow operation. This service category defines the "public double pow (double a, double b)" operation
