@@ -1,0 +1,13 @@
+INDEX VERSION 1.126
+E:\Lectures\Master ST\Semester 3\DWSC_Project\trunk\samples\SampleWebServices\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2500943515.index
+\PowServices\src
+E:\Lectures\Master ST\Semester 3\DWSC_Project\trunk\samples\SampleWebServices\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3588408258.index
+\PowServices\src
+E:\Lectures\Master ST\Semester 3\DWSC_Project\trunk\samples\SampleWebServices\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2247129237.index
+\AdditionServices\src
+E:\Lectures\Master ST\Semester 3\DWSC_Project\trunk\samples\SampleWebServices\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1434781161.index
+\PowServices\src
+E:\Lectures\Master ST\Semester 3\DWSC_Project\trunk\samples\SampleWebServices\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2752948587.index
+\AdditionServices\src
+E:\Lectures\Master ST\Semester 3\DWSC_Project\trunk\samples\SampleWebServices\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\616035014.index
+\AdditionServices\src
