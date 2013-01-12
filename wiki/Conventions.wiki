@@ -1,0 +1,24 @@
+#summary Naming conventions, formatting and styling
+
+= Introduction =
+
+This wiki provides an overview of the naming conventions, coding standards, formatting, styling applied across the DWSC application.
+
+= Version Control Conventions =
+== Commit message format ==
+_`<US_ID>`_/_`<TA_ID>`	`<msg_title>`_
+
+_`<msg_body>`_
+
+where
+_<US_ID>_ is User story ID
+_<TA_ID>_ is Task ID
+_<msg_title>_ is Commit message title
+_<msg_body>_ is Commit message body (*optional*).
+
+<font color="red">*NOTE*</font>: If it happens to commit something not related to US/Task, commit message title should looks like
+US0000	_`<msg_title>`_
+
+= Java Code conventions =
+  * Use the Eclipse built in formatter and the general code conventions for the Java language (http://www.oracle.com/technetwork/java/codeconv-138413.html)
+  * To apply the formatting use the Ctrl+Shift+F command in Eclipse
