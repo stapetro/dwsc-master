@@ -1,4 +1,0 @@
-INDEX VERSION 1.122+E:\Lectures\Master ST\Semester 3\DWSC_Project\trunk\samples\SampleWebServices\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
-3943593147.index
-358463905.index
-1632805233.index

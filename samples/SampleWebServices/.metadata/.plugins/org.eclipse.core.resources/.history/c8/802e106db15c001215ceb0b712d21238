@@ -1,5 +1,0 @@
-package bg.unisofia.fmi.ws.addition;
-
-public class AdditionServiceRandomAvailable implements IAdditionService{
-
-}
