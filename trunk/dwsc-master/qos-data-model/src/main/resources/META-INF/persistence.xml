@@ -4,8 +4,10 @@
 	version="2.0" xmlns="http://java.sun.com/xml/ns/persistence">
 	<persistence-unit name="dwscqosPU" transaction-type="RESOURCE_LOCAL">
 		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
-		<class>bg.unisofia.fmi.dwsc.qosmodel.domain.Department</class>
-		<class>bg.unisofia.fmi.dwsc.qosmodel.domain.Employee</class>
+		<class>bg.unisofia.fmi.dwsc.qosmodel.domain.Service</class>
+		<class>bg.unisofia.fmi.dwsc.qosmodel.domain.Operation</class>
+		<class>bg.unisofia.fmi.dwsc.qosmodel.domain.OperationInvocations</class>
+		<class>bg.unisofia.fmi.dwsc.qosmodel.domain.User</class>
 		<!-- shouldn't be valid for java SE per specification, but it works for EclipseLink ... -->
 		<!-- <exclude-unlisted-classes>false</exclude-unlisted-classes> -->
 		<!-- <properties>

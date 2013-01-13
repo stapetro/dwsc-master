@@ -1,67 +1,21 @@
 package bg.unisofia.fmi.dwsc.qosmodel.jpa;
 
-import java.util.List;
+import java.util.Collection;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
-import javax.persistence.Persistence;
-
-import bg.unisofia.fmi.dwsc.qosmodel.domain.Department;
-import bg.unisofia.fmi.dwsc.qosmodel.domain.Employee;
+import bg.unisofia.fmi.dwsc.qosmodel.dao.ServiceDAO;
+import bg.unisofia.fmi.dwsc.qosmodel.domain.Service;
 
 public class JpaTest {
 
-	private EntityManager manager;
-
-	public JpaTest(EntityManager manager) {
-		this.manager = manager;
-	}
-	/**
-	 * @param args
-	 */
 	public static void main(String[] args) {
-		EntityManagerFactory factory = Persistence.createEntityManagerFactory("dwscqosPU");
-		EntityManager manager = factory.createEntityManager();
-		JpaTest test = new JpaTest(manager);
-
-		EntityTransaction tx = manager.getTransaction();
-		tx.begin();
-		try {
-			test.createEmployees();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		tx.commit();
-
-		test.listEmployees();
-
-		System.out.println(".. done");
-	}
-
-
-
-
-	private void createEmployees() {
-		int numOfEmployees = manager.createQuery("Select a From Employee a", Employee.class).getResultList().size();
-		if (numOfEmployees == 0) {
-			Department department = new Department("java");
-			manager.persist(department);
-
-			manager.persist(new Employee("Jakab Gipsz",department));
-			manager.persist(new Employee("Captain Nemo",department));
-
+		ServiceDAO serviceDAO = new ServiceDAO();
+		serviceDAO.save("Test Service 1");
+		serviceDAO.save("Test Service 2");
+		Collection<Service> services = serviceDAO.getServices();
+		for (Service s : services) {
+			System.out.println("Service id: '" + s.getId() + "', name: '"
+					+ s.getName() + "'");
+			// serviceDAO.remove(s.getId());
 		}
 	}
-
-
-	private void listEmployees() {
-		List<Employee> resultList = manager.createQuery("Select a From Employee a", Employee.class).getResultList();
-		System.out.println("num of employess:" + resultList.size());
-		for (Employee next : resultList) {
-			System.out.println("next employee: " + next);
-		}
-	}
-
-
 }
