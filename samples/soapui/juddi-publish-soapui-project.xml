@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<con:soapui-project activeEnvironment="Default" name="juddi-publish" resourceRoot="" soapui-version="4.5.1" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="UDDIPublicationServiceSoapBinding" type="wsdl" bindingName="{urn:uddi-org:v3_service}UDDIPublicationServiceSoapBinding" soapVersion="1_1" anonymous="optional" definition="file:/D:/MasterThesis/soapui/juddisample/juddi_publishWSDL.xml" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="file:\D:\MasterThesis\soapui\juddisample\juddi_publishWSDL.xml"><con:part><con:url>file:\D:\MasterThesis\soapui\juddisample\juddi_publishWSDL.xml</con:url><con:content><![CDATA[<wsdl:definitions name="UDDIPublicationService" targetNamespace="urn:uddi-org:v3_service" xmlns:ns1="urn:uddi-org:api_v3" xmlns:ns2="http://schemas.xmlsoap.org/soap/http" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="urn:uddi-org:v3_service" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<con:soapui-project activeEnvironment="Default" name="juddi-publish" resourceRoot="" soapui-version="4.5.1" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="UDDIPublicationServiceSoapBinding" type="wsdl" bindingName="{urn:uddi-org:v3_service}UDDIPublicationServiceSoapBinding" soapVersion="1_1" anonymous="optional" definition="file:/D:/MasterThesis/soapui/juddisample/juddi_publishWSDL.xml" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="file:\D:\MasterThesis\soapui\juddisample\juddi_publishWSDL.xml"><con:part><con:url>file:\D:\MasterThesis\soapui\juddisample\juddi_publishWSDL.xml</con:url><con:content><![CDATA[<wsdl:definitions name="UDDIPublicationService" targetNamespace="urn:uddi-org:v3_service" xmlns:ns1="urn:uddi-org:api_v3" xmlns:ns2="http://schemas.xmlsoap.org/soap/http" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="urn:uddi-org:v3_service" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <wsdl:types>
     <xs:schema elementFormDefault="qualified" targetNamespace="urn:uddi-org:vscache_v3" version="1.0" xmlns:tns="urn:uddi-org:vscache_v3" xmlns:xs="http://www.w3.org/2001/XMLSchema">
       <xs:import namespace="urn:uddi-org:api_v3"/>
@@ -1742,7 +1742,7 @@
       <soap:address location="http://localhost:8081/juddiv3/services/publish"/>
     </wsdl:port>
   </wsdl:service>
-</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:8081/juddiv3/services/publish</con:endpoint></con:endpoints><con:operation isOneWay="false" action="add_publisherAssertions" name="add_publisherAssertions" bindingOperationName="add_publisherAssertions" type="Request-Response" outputName="add_publisherAssertionsResponse" inputName="add_publisherAssertions" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8081/juddiv3/services/publish</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:uddi-org:api_v3" xmlns:xd="http://www.w3.org/2000/09/xmldsig#">
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:8080/juddiv3/services/publish</con:endpoint></con:endpoints><con:operation isOneWay="false" action="add_publisherAssertions" name="add_publisherAssertions" bindingOperationName="add_publisherAssertions" type="Request-Response" outputName="add_publisherAssertionsResponse" inputName="add_publisherAssertions" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1" outgoingWss="" incomingWss=""><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/juddiv3/services/publish</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:uddi-org:api_v3" xmlns:xd="http://www.w3.org/2000/09/xmldsig#">
    <soapenv:Header/>
    <soapenv:Body>
       <urn:add_publisherAssertions>
@@ -1870,7 +1870,7 @@
          </urn:publisherAssertion>
       </urn:add_publisherAssertions>
    </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="add_publisherAssertions"/></con:call></con:operation><con:operation isOneWay="false" action="delete_binding" name="delete_binding" bindingOperationName="delete_binding" type="Request-Response" outputName="delete_bindingResponse" inputName="delete_binding" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8081/juddiv3/services/publish</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:uddi-org:api_v3">
+</soapenv:Envelope>]]></con:request><con:credentials><con:username xsi:nil="true"/><con:password xsi:nil="true"/><con:domain xsi:nil="true"/></con:credentials><con:wsaConfig mustUnderstand="NONE" version="200508" action="add_publisherAssertions"/></con:call></con:operation><con:operation isOneWay="false" action="delete_binding" name="delete_binding" bindingOperationName="delete_binding" type="Request-Response" outputName="delete_bindingResponse" inputName="delete_binding" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1" outgoingWss="" incomingWss=""><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/juddiv3/services/publish</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:uddi-org:api_v3">
    <soapenv:Header/>
    <soapenv:Body>
       <urn:delete_binding>
@@ -1880,17 +1880,17 @@
          <urn:bindingKey>?</urn:bindingKey>
       </urn:delete_binding>
    </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="delete_binding"/></con:call></con:operation><con:operation isOneWay="false" action="delete_business" name="delete_business" bindingOperationName="delete_business" type="Request-Response" outputName="delete_businessResponse" inputName="delete_business" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8081/juddiv3/services/publish</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:uddi-org:api_v3">
+</soapenv:Envelope>]]></con:request><con:credentials><con:username xsi:nil="true"/><con:password xsi:nil="true"/><con:domain xsi:nil="true"/></con:credentials><con:wsaConfig mustUnderstand="NONE" version="200508" action="delete_binding"/></con:call></con:operation><con:operation isOneWay="false" action="delete_business" name="delete_business" bindingOperationName="delete_business" type="Request-Response" outputName="delete_businessResponse" inputName="delete_business" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1" outgoingWss="" incomingWss=""><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/juddiv3/services/publish</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:uddi-org:api_v3">
    <soapenv:Header/>
    <soapenv:Body>
       <urn:delete_business>
          <!--Optional:-->
-         <urn:authInfo>?</urn:authInfo>
+         <urn:authInfo>authtoken:ade65c3e-2c37-44e5-90c1-2d265ad15cdf</urn:authInfo>
          <!--1 or more repetitions:-->
          <urn:businessKey>?</urn:businessKey>
       </urn:delete_business>
    </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="delete_business"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="delete_publisherAssertions" name="delete_publisherAssertions" bindingOperationName="delete_publisherAssertions" type="Request-Response" outputName="delete_publisherAssertionsResponse" inputName="delete_publisherAssertions" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8081/juddiv3/services/publish</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:uddi-org:api_v3" xmlns:xd="http://www.w3.org/2000/09/xmldsig#">
+</soapenv:Envelope>]]></con:request><con:credentials><con:username xsi:nil="true"/><con:password xsi:nil="true"/><con:domain xsi:nil="true"/><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="delete_business"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="delete_publisherAssertions" name="delete_publisherAssertions" bindingOperationName="delete_publisherAssertions" type="Request-Response" outputName="delete_publisherAssertionsResponse" inputName="delete_publisherAssertions" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1" outgoingWss="" incomingWss=""><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/juddiv3/services/publish</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:uddi-org:api_v3" xmlns:xd="http://www.w3.org/2000/09/xmldsig#">
    <soapenv:Header/>
    <soapenv:Body>
       <urn:delete_publisherAssertions>
@@ -2018,17 +2018,27 @@
          </urn:publisherAssertion>
       </urn:delete_publisherAssertions>
    </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="delete_publisherAssertions"/></con:call></con:operation><con:operation isOneWay="false" action="delete_service" name="delete_service" bindingOperationName="delete_service" type="Request-Response" outputName="delete_serviceResponse" inputName="delete_service" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8081/juddiv3/services/publish</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:uddi-org:api_v3">
+</soapenv:Envelope>]]></con:request><con:credentials><con:username xsi:nil="true"/><con:password xsi:nil="true"/><con:domain xsi:nil="true"/></con:credentials><con:wsaConfig mustUnderstand="NONE" version="200508" action="delete_publisherAssertions"/></con:call></con:operation><con:operation isOneWay="false" action="delete_service" name="delete_service" bindingOperationName="delete_service" type="Request-Response" outputName="delete_serviceResponse" inputName="delete_service" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1" outgoingWss="" incomingWss=""><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/juddiv3/services/publish</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:uddi-org:api_v3">
    <soapenv:Header/>
    <soapenv:Body>
       <urn:delete_service>
          <!--Optional:-->
-         <urn:authInfo>?</urn:authInfo>
+         <urn:authInfo>authtoken:ade65c3e-2c37-44e5-90c1-2d265ad15cdf</urn:authInfo>
          <!--1 or more repetitions:-->
-         <urn:serviceKey>?</urn:serviceKey>
+         <urn:serviceKey>uddi:juddi.apache.org:8197220b-8b32-417c-88e8-1ba8179f2c8a</urn:serviceKey>
       </urn:delete_service>
    </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="delete_service"/></con:call></con:operation><con:operation isOneWay="false" action="delete_tModel" name="delete_tModel" bindingOperationName="delete_tModel" type="Request-Response" outputName="delete_tModelResponse" inputName="delete_tModel" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8081/juddiv3/services/publish</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:uddi-org:api_v3">
+</soapenv:Envelope>]]></con:request><con:credentials><con:username xsi:nil="true"/><con:password xsi:nil="true"/><con:domain xsi:nil="true"/><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="delete_service"/><con:wsrmConfig version="1.2"/></con:call><con:call name="Delete Service"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/juddiv3/services/publish</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:uddi-org:api_v3">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <urn:delete_service>
+         <!--Optional:-->
+         <urn:authInfo>authtoken:ade65c3e-2c37-44e5-90c1-2d265ad15cdf</urn:authInfo>
+         <!--1 or more repetitions:-->
+         <urn:serviceKey>uddi:juddi.apache.org:a4148278-62ea-4ac4-8640-bbe6a59e7d04</urn:serviceKey>
+      </urn:delete_service>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:username xsi:nil="true"/><con:password xsi:nil="true"/><con:domain xsi:nil="true"/><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="delete_service"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="delete_tModel" name="delete_tModel" bindingOperationName="delete_tModel" type="Request-Response" outputName="delete_tModelResponse" inputName="delete_tModel" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1" outgoingWss="" incomingWss=""><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/juddiv3/services/publish</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:uddi-org:api_v3">
    <soapenv:Header/>
    <soapenv:Body>
       <urn:delete_tModel>
@@ -2038,7 +2048,7 @@
          <urn:tModelKey>?</urn:tModelKey>
       </urn:delete_tModel>
    </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="delete_tModel"/></con:call></con:operation><con:operation isOneWay="false" action="get_assertionStatusReport" name="get_assertionStatusReport" bindingOperationName="get_assertionStatusReport" type="Request-Response" outputName="get_assertionStatusReportResponse" inputName="get_assertionStatusReport" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8081/juddiv3/services/publish</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:uddi-org:api_v3">
+</soapenv:Envelope>]]></con:request><con:credentials><con:username xsi:nil="true"/><con:password xsi:nil="true"/><con:domain xsi:nil="true"/></con:credentials><con:wsaConfig mustUnderstand="NONE" version="200508" action="delete_tModel"/></con:call></con:operation><con:operation isOneWay="false" action="get_assertionStatusReport" name="get_assertionStatusReport" bindingOperationName="get_assertionStatusReport" type="Request-Response" outputName="get_assertionStatusReportResponse" inputName="get_assertionStatusReport" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1" outgoingWss="" incomingWss=""><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/juddiv3/services/publish</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:uddi-org:api_v3">
    <soapenv:Header/>
    <soapenv:Body>
       <urn:get_assertionStatusReport>
@@ -2048,7 +2058,7 @@
          <urn:completionStatus>?</urn:completionStatus>
       </urn:get_assertionStatusReport>
    </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="get_assertionStatusReport"/></con:call></con:operation><con:operation isOneWay="false" action="get_publisherAssertions" name="get_publisherAssertions" bindingOperationName="get_publisherAssertions" type="Request-Response" outputName="get_publisherAssertionsResponse" inputName="get_publisherAssertions" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8081/juddiv3/services/publish</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:uddi-org:api_v3">
+</soapenv:Envelope>]]></con:request><con:credentials><con:username xsi:nil="true"/><con:password xsi:nil="true"/><con:domain xsi:nil="true"/></con:credentials><con:wsaConfig mustUnderstand="NONE" version="200508" action="get_assertionStatusReport"/></con:call></con:operation><con:operation isOneWay="false" action="get_publisherAssertions" name="get_publisherAssertions" bindingOperationName="get_publisherAssertions" type="Request-Response" outputName="get_publisherAssertionsResponse" inputName="get_publisherAssertions" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1" outgoingWss="" incomingWss=""><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/juddiv3/services/publish</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:uddi-org:api_v3">
    <soapenv:Header/>
    <soapenv:Body>
       <urn:get_publisherAssertions>
@@ -2056,7 +2066,7 @@
          <urn:authInfo>?</urn:authInfo>
       </urn:get_publisherAssertions>
    </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="get_publisherAssertions"/></con:call></con:operation><con:operation isOneWay="false" action="get_registeredInfo" name="get_registeredInfo" bindingOperationName="get_registeredInfo" type="Request-Response" outputName="get_registeredInfoResponse" inputName="get_registeredInfo" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8081/juddiv3/services/publish</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:uddi-org:api_v3">
+</soapenv:Envelope>]]></con:request><con:credentials><con:username xsi:nil="true"/><con:password xsi:nil="true"/><con:domain xsi:nil="true"/></con:credentials><con:wsaConfig mustUnderstand="NONE" version="200508" action="get_publisherAssertions"/></con:call></con:operation><con:operation isOneWay="false" action="get_registeredInfo" name="get_registeredInfo" bindingOperationName="get_registeredInfo" type="Request-Response" outputName="get_registeredInfoResponse" inputName="get_registeredInfo" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1" outgoingWss="" incomingWss=""><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/juddiv3/services/publish</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:uddi-org:api_v3">
    <soapenv:Header/>
    <soapenv:Body>
       <urn:get_registeredInfo infoSelection="?">
@@ -2064,7 +2074,7 @@
          <urn:authInfo>?</urn:authInfo>
       </urn:get_registeredInfo>
    </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="get_registeredInfo"/></con:call></con:operation><con:operation isOneWay="false" action="save_binding" name="save_binding" bindingOperationName="save_binding" type="Request-Response" outputName="save_bindingResponse" inputName="save_binding" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8081/juddiv3/services/publish</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:uddi-org:api_v3" xmlns:xd="http://www.w3.org/2000/09/xmldsig#">
+</soapenv:Envelope>]]></con:request><con:credentials><con:username xsi:nil="true"/><con:password xsi:nil="true"/><con:domain xsi:nil="true"/></con:credentials><con:wsaConfig mustUnderstand="NONE" version="200508" action="get_registeredInfo"/></con:call></con:operation><con:operation isOneWay="false" action="save_binding" name="save_binding" bindingOperationName="save_binding" type="Request-Response" outputName="save_bindingResponse" inputName="save_binding" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1" outgoingWss="" incomingWss=""><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/juddiv3/services/publish</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:uddi-org:api_v3" xmlns:xd="http://www.w3.org/2000/09/xmldsig#">
    <soapenv:Header/>
    <soapenv:Body>
       <urn:save_binding>
@@ -2227,7 +2237,7 @@
          </urn:bindingTemplate>
       </urn:save_binding>
    </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="save_binding"/></con:call></con:operation><con:operation isOneWay="false" action="save_business" name="save_business" bindingOperationName="save_business" type="Request-Response" outputName="save_businessResponse" inputName="save_business" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8081/juddiv3/services/publish</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:uddi-org:api_v3" xmlns:xd="http://www.w3.org/2000/09/xmldsig#">
+</soapenv:Envelope>]]></con:request><con:credentials><con:username xsi:nil="true"/><con:password xsi:nil="true"/><con:domain xsi:nil="true"/></con:credentials><con:wsaConfig mustUnderstand="NONE" version="200508" action="save_binding"/></con:call></con:operation><con:operation isOneWay="false" action="save_business" name="save_business" bindingOperationName="save_business" type="Request-Response" outputName="save_businessResponse" inputName="save_business" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1" outgoingWss="" incomingWss=""><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/juddiv3/services/publish</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:uddi-org:api_v3" xmlns:xd="http://www.w3.org/2000/09/xmldsig#">
    <soapenv:Header/>
    <soapenv:Body>
       <urn:save_business>
@@ -2687,7 +2697,56 @@
          </urn:businessEntity>
       </urn:save_business>
    </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="save_business"/></con:call></con:operation><con:operation isOneWay="false" action="save_service" name="save_service" bindingOperationName="save_service" type="Request-Response" outputName="save_serviceResponse" inputName="save_service" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8081/juddiv3/services/publish</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:uddi-org:api_v3" xmlns:xd="http://www.w3.org/2000/09/xmldsig#">
+</soapenv:Envelope>]]></con:request><con:credentials><con:username xsi:nil="true"/><con:password xsi:nil="true"/><con:domain xsi:nil="true"/><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="save_business"/><con:wsrmConfig version="1.2"/></con:call><con:call name="Save Business"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/juddiv3/services/publish</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:uddi-org:api_v3" xmlns:xd="http://www.w3.org/2000/09/xmldsig#">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <urn:save_business>
+         <!--Optional:-->
+         <urn:authInfo>authtoken:ade65c3e-2c37-44e5-90c1-2d265ad15cdf</urn:authInfo>
+         <!--1 or more repetitions:-->
+         <urn:businessEntity>
+            <!--1 or more repetitions:-->
+            <urn:name>Test Business Provider</urn:name>
+            <!--Zero or more repetitions:-->
+            <urn:description>This is a test business provider for further development of web service composition framework</urn:description>
+            <!--Optional:-->
+            <urn:contacts>
+               <!--1 or more repetitions:-->
+               <urn:contact>
+                  <!--Zero or more repetitions:-->
+                  <urn:description>student who publishes services</urn:description>
+                  <!--1 or more repetitions:-->
+                  <urn:personName>Krasimir Georgiev Baylov</urn:personName>
+                  <!--Zero or more repetitions:-->
+                  <urn:phone useType="mobile">035988943232</urn:phone>
+                  <!--Zero or more repetitions:-->
+                  <urn:email useType="personal">kbailov@gmail.com</urn:email>
+                  <!--Zero or more repetitions:-->
+                  <urn:address>
+                     <!--1 or more repetitions:-->
+                     <urn:addressLine>Bulgaria, Pazardzhik, 82 Stefan Karadzha Str</urn:addressLine>
+                  </urn:address>
+               </urn:contact>
+               <urn:contact>
+                  <!--Zero or more repetitions:-->
+                  <urn:description>student who publishes services</urn:description>
+                  <!--1 or more repetitions:-->
+                  <urn:personName>Stanislav Ivanov Petrov</urn:personName>
+                  <!--Zero or more repetitions:-->
+                  <urn:phone useType="mobile">0359883405557</urn:phone>
+                  <!--Zero or more repetitions:-->
+                  <urn:email useType="personal">stanislav.i.petrov@gmail.com</urn:email>
+                  <!--Zero or more repetitions:-->
+                  <urn:address>
+                     <!--1 or more repetitions:-->
+                     <urn:addressLine>Bulgaria, Pazardzhik</urn:addressLine>
+                  </urn:address>
+               </urn:contact>
+            </urn:contacts>
+         </urn:businessEntity>
+      </urn:save_business>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:username xsi:nil="true"/><con:password xsi:nil="true"/><con:domain xsi:nil="true"/><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="save_business"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="save_service" name="save_service" bindingOperationName="save_service" type="Request-Response" outputName="save_serviceResponse" inputName="save_service" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1" outgoingWss="" incomingWss=""><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/juddiv3/services/publish</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:uddi-org:api_v3" xmlns:xd="http://www.w3.org/2000/09/xmldsig#">
    <soapenv:Header/>
    <soapenv:Body>
       <urn:save_service>
@@ -2984,7 +3043,56 @@
          </urn:businessService>
       </urn:save_service>
    </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="save_service"/></con:call></con:operation><con:operation isOneWay="false" action="save_tModel" name="save_tModel" bindingOperationName="save_tModel" type="Request-Response" outputName="save_tModelResponse" inputName="save_tModel" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8081/juddiv3/services/publish</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:uddi-org:api_v3" xmlns:xd="http://www.w3.org/2000/09/xmldsig#">
+</soapenv:Envelope>]]></con:request><con:credentials><con:username xsi:nil="true"/><con:password xsi:nil="true"/><con:domain xsi:nil="true"/><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="save_service"/><con:wsrmConfig version="1.2"/></con:call><con:call name="Save Service - AdditionServiceStandard"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/juddiv3/services/publish</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:uddi-org:api_v3" xmlns:xd="http://www.w3.org/2000/09/xmldsig#">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <urn:save_service>
+         <!--Optional:-->
+         <urn:authInfo>authtoken:ade65c3e-2c37-44e5-90c1-2d265ad15cdf</urn:authInfo>
+         <!--1 or more repetitions:-->
+         <urn:businessService businessKey="uddi:juddi.apache.org:0b3dafe3-3011-4ff6-8c0d-a9fa28946910">
+            <!--Zero or more repetitions:-->
+            <urn:name>AdditionServiceStandard</urn:name>
+            <!--Zero or more repetitions:-->
+            <urn:description>Addition Service with standard QoS</urn:description>
+            <!--Optional:-->
+            <urn:bindingTemplates>
+               <!--1 or more repetitions:-->
+               <urn:bindingTemplate>
+                  <!--Zero or more repetitions:-->
+                  <urn:description>binding info for the Addition Service Standard</urn:description>
+                  <!--Optional:-->
+                  <urn:accessPoint useType="http">http://localhost:8080/TestServices/services/AdditionServiceStandard.AdditionServiceStandardHttpEndpoint/</urn:accessPoint>
+                  <!--Optional:-->
+                  <urn:tModelInstanceDetails>
+                     <!--1 or more repetitions:-->
+                     <urn:tModelInstanceInfo tModelKey="uddi:juddi.apache.org:f4d839ff-a51e-49a7-bd31-6703354b31c5">
+                        <!--Zero or more repetitions:-->
+                        <urn:description>tModel for Addition Stanrard Service</urn:description>
+                        <!--Optional:-->
+                        <urn:instanceDetails>
+                           <!--Zero or more repetitions:-->
+                           <urn:description>tModel for Addition Stanrard Service</urn:description>
+                           <!--Zero or more repetitions:-->
+                           <urn:overviewDoc>
+                              <!--Zero or more repetitions:-->
+                              <urn:description>WSDL for AdditionSerciveStandard</urn:description>
+                              <!--Optional:-->
+                              <urn:overviewURL useType="wsdlInterface">http://localhost:8080/TestServices/services/AdditionServiceStandard?wsdl</urn:overviewURL>
+                           </urn:overviewDoc>
+                        </urn:instanceDetails>
+                     </urn:tModelInstanceInfo>
+                  </urn:tModelInstanceDetails>
+                  <urn:categoryBag>
+                     <!--Zero or more repetitions:-->
+                     <urn:keyedReference tModelKey="uuid:a035a07c-f362-44dd-8f95-e2b134bf43b4" keyName="addition service" keyValue="addition"/>
+                  </urn:categoryBag>
+               </urn:bindingTemplate>
+            </urn:bindingTemplates>
+         </urn:businessService>
+      </urn:save_service>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:username xsi:nil="true"/><con:password xsi:nil="true"/><con:domain xsi:nil="true"/><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="save_service"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="save_tModel" name="save_tModel" bindingOperationName="save_tModel" type="Request-Response" outputName="save_tModelResponse" inputName="save_tModel" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1" outgoingWss="" incomingWss=""><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/juddiv3/services/publish</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:uddi-org:api_v3" xmlns:xd="http://www.w3.org/2000/09/xmldsig#">
    <soapenv:Header/>
    <soapenv:Body>
       <urn:save_tModel>
@@ -3134,7 +3242,85 @@
          </urn:tModel>
       </urn:save_tModel>
    </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="save_tModel"/></con:call></con:operation><con:operation isOneWay="false" action="set_publisherAssertions" name="set_publisherAssertions" bindingOperationName="set_publisherAssertions" type="Request-Response" outputName="set_publisherAssertionsResponse" inputName="set_publisherAssertions" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8081/juddiv3/services/publish</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:uddi-org:api_v3" xmlns:xd="http://www.w3.org/2000/09/xmldsig#">
+</soapenv:Envelope>]]></con:request><con:credentials><con:username xsi:nil="true"/><con:password xsi:nil="true"/><con:domain xsi:nil="true"/></con:credentials><con:wsaConfig mustUnderstand="NONE" version="200508" action="save_tModel"/></con:call><con:call name="Save AdditionServiceStandard tModel"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/juddiv3/services/publish</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:uddi-org:api_v3" xmlns:xd="http://www.w3.org/2000/09/xmldsig#">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <urn:save_tModel>
+         <!--Optional:-->
+         <urn:authInfo>authtoken:ade65c3e-2c37-44e5-90c1-2d265ad15cdf</urn:authInfo>
+         <!--1 or more repetitions:-->
+         <urn:tModel>
+            <urn:name>AdditionServiceStandardTModel</urn:name>
+            <!--Zero or more repetitions:-->
+            <urn:description>tModel for Addition Stanrard Service</urn:description>
+            <!--Zero or more repetitions:-->
+            <urn:overviewDoc>
+               <!--Zero or more repetitions:-->
+               <urn:description>WSDL for AdditionSerciveStandard</urn:description>
+               <!--Optional:-->
+               <urn:overviewURL useType="wsdlInterface">http://localhost:8080/TestServices/services/AdditionServiceStandard?wsdl</urn:overviewURL>
+            </urn:overviewDoc>
+            <!--Optional:-->
+            <urn:categoryBag>
+               <!--Zero or more repetitions:-->
+               <urn:keyedReference tModelKey="UUID:A035A07C-F362-44dd-8F95-E2B134BF43B4" keyName="addition service" keyValue="addition"/>
+            </urn:categoryBag>
+         </urn:tModel>
+      </urn:save_tModel>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:username xsi:nil="true"/><con:password xsi:nil="true"/><con:domain xsi:nil="true"/><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="save_tModel"/><con:wsrmConfig version="1.2"/></con:call><con:call name="Save AdditionServiceSlow tModel"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/juddiv3/services/publish</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:uddi-org:api_v3" xmlns:xd="http://www.w3.org/2000/09/xmldsig#">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <urn:save_tModel>
+         <!--Optional:-->
+         <urn:authInfo>authtoken:ade65c3e-2c37-44e5-90c1-2d265ad15cdf</urn:authInfo>
+         <!--1 or more repetitions:-->
+         <urn:tModel>
+            <urn:name>AdditionServiceSlowTModel</urn:name>
+            <!--Zero or more repetitions:-->
+            <urn:description>tModel for Addition Slow Service</urn:description>
+            <!--Zero or more repetitions:-->
+            <urn:overviewDoc>
+               <!--Zero or more repetitions:-->
+               <urn:description>WSDL for AdditionSerciveStandard</urn:description>
+               <!--Optional:-->
+               <urn:overviewURL useType="wsdlInterface">http://localhost:8080/TestServices/services/AdditionServiceSlow?wsdl</urn:overviewURL>
+            </urn:overviewDoc>
+            <!--Optional:-->
+            <urn:categoryBag>
+               <!--Zero or more repetitions:-->
+               <urn:keyedReference tModelKey="UUID:A035A07C-F362-44dd-8F95-E2B134BF43B4" keyName="addition service" keyValue="addition"/>
+            </urn:categoryBag>
+         </urn:tModel>
+      </urn:save_tModel>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:username xsi:nil="true"/><con:password xsi:nil="true"/><con:domain xsi:nil="true"/><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="save_tModel"/><con:wsrmConfig version="1.2"/></con:call><con:call name="Save AdditionServiceRandomAvailability tModel"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/juddiv3/services/publish</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:uddi-org:api_v3" xmlns:xd="http://www.w3.org/2000/09/xmldsig#">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <urn:save_tModel>
+         <!--Optional:-->
+         <urn:authInfo>authtoken:ade65c3e-2c37-44e5-90c1-2d265ad15cdf</urn:authInfo>
+         <!--1 or more repetitions:-->
+         <urn:tModel>
+            <urn:name>AdditionServiceRandomAvailabilityTModel</urn:name>
+            <!--Zero or more repetitions:-->
+            <urn:description>tModel for Addition Random Availability Service</urn:description>
+            <!--Zero or more repetitions:-->
+            <urn:overviewDoc>
+               <!--Zero or more repetitions:-->
+               <urn:description>WSDL for AdditionSerciveRandomAvailability</urn:description>
+               <!--Optional:-->
+               <urn:overviewURL useType="wsdlInterface">http://localhost:8080/TestServices/services/AdditionServiceRandomAvailable?wsdl</urn:overviewURL>
+            </urn:overviewDoc>
+            <!--Optional:-->
+            <urn:categoryBag>
+               <!--Zero or more repetitions:-->
+               <urn:keyedReference tModelKey="UUID:A035A07C-F362-44dd-8F95-E2B134BF43B4" keyName="addition service" keyValue="addition"/>
+            </urn:categoryBag>
+         </urn:tModel>
+      </urn:save_tModel>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:username xsi:nil="true"/><con:password xsi:nil="true"/><con:domain xsi:nil="true"/><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="save_tModel"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="set_publisherAssertions" name="set_publisherAssertions" bindingOperationName="set_publisherAssertions" type="Request-Response" outputName="set_publisherAssertionsResponse" inputName="set_publisherAssertions" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1" outgoingWss="" incomingWss=""><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/juddiv3/services/publish</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:uddi-org:api_v3" xmlns:xd="http://www.w3.org/2000/09/xmldsig#">
    <soapenv:Header/>
    <soapenv:Body>
       <urn:set_publisherAssertions>
@@ -3262,4 +3448,4 @@
          </urn:publisherAssertion>
       </urn:set_publisherAssertions>
    </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="set_publisherAssertions"/></con:call></con:operation></con:interface><con:properties/><con:wssContainer/></con:soapui-project>
+</soapenv:Envelope>]]></con:request><con:credentials><con:username xsi:nil="true"/><con:password xsi:nil="true"/><con:domain xsi:nil="true"/></con:credentials><con:wsaConfig mustUnderstand="NONE" version="200508" action="set_publisherAssertions"/></con:call></con:operation></con:interface><con:properties/><con:wssContainer/></con:soapui-project>
