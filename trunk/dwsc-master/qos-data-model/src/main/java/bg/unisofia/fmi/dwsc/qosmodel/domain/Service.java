@@ -16,13 +16,14 @@ import javax.persistence.Table;
 public class Service {
 
 	@Id
-	@SequenceGenerator(name = "SERVICE_SERVICEID_GENERATOR")
+	@SequenceGenerator(name = "SERVICE_SERVICEID_GENERATOR", sequenceName = "SERVICE_ENTITY_SEQ")
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SERVICE_SERVICEID_GENERATOR")
 	private long id;
 	@Basic
 	private String name;
-	@ManyToMany
+	@ManyToMany()
 	private Collection<Operation> operation;
+
 	public long getId() {
 		return id;
 	}
@@ -40,11 +41,11 @@ public class Service {
 	}
 
 	public Collection<Operation> getOperation() {
-	    return operation;
+		return operation;
 	}
 
 	public void setOperation(Collection<Operation> param) {
-	    this.operation = param;
+		this.operation = param;
 	}
 
 }

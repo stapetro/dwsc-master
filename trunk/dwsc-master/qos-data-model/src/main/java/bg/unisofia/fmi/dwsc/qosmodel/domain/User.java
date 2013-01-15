@@ -9,7 +9,7 @@ import java.util.Collection;
 public class User {
 
 	@Id
-	@SequenceGenerator(name = "USER_USERID_GENERATOR")
+	@SequenceGenerator(name = "USER_USERID_GENERATOR", sequenceName = "USER_ENTITY_SEQ")
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "USER_USERID_GENERATOR")
 	private long id;
 	@Basic

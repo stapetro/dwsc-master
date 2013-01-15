@@ -10,7 +10,7 @@ import java.util.Collection;
 public class OperationInvocations {
 
 	@Id
-	@SequenceGenerator(name = "OPERATION_INVOCATIONS_ID_GENERATOR")
+	@SequenceGenerator(name = "OPERATION_INVOCATIONS_ID_GENERATOR", sequenceName = "OP_INV_ENTITY_SEQ")
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "OPERATION_INVOCATIONS_ID_GENERATOR")
 	private long id;
 	@Basic

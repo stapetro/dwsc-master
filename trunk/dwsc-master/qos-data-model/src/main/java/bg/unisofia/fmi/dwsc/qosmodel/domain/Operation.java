@@ -4,12 +4,11 @@ import javax.persistence.*;
 
 import java.util.Collection;
 
-
 @Entity
 public class Operation {
 
 	@Id
-	@SequenceGenerator(name = "OPERATION_OPERATIONID_GENERATOR")
+	@SequenceGenerator(name = "OPERATION_OPERATIONID_GENERATOR", sequenceName = "OPERATION_ENTITY_SEQ")
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "OPERATION_OPERATIONID_GENERATOR")
 	private long id;
 	@Basic
@@ -19,6 +18,7 @@ public class Operation {
 	@OneToMany
 	@JoinColumn(name = "Operation_id", referencedColumnName = "id")
 	private Collection<OperationInvocations> operationInvocations;
+
 	public long getId() {
 		return id;
 	}

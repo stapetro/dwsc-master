@@ -2,6 +2,8 @@ package bg.unisofia.fmi.dwsc.qosmodel.dao;
 
 import java.util.Collection;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
 import javax.persistence.TypedQuery;
 
 import bg.unisofia.fmi.dwsc.qosmodel.domain.Service;
@@ -14,6 +16,10 @@ public class ServiceDAO extends GenericAppManagedDAOImpl<Service> {
 
 	public ServiceDAO() {
 		super();
+	}
+	
+	public ServiceDAO(EntityManager entityMgr) {
+		super(entityMgr);
 	}
 
 	public Service save(Service service) {
@@ -33,6 +39,17 @@ public class ServiceDAO extends GenericAppManagedDAOImpl<Service> {
 		Service webService = new Service();
 		webService.setName(serviceName);
 		return save(webService);
+	}
+
+	public void remove(Collection<Service> services) {
+		if (services != null && services.size() > 0) {
+			EntityTransaction tx = getTransaction();
+			tx.begin();
+			for (Service service : services) {
+				remove(service.getId(), false);
+			}
+			tx.commit();
+		}
 	}
 
 	public Collection<Service> getServices() {
