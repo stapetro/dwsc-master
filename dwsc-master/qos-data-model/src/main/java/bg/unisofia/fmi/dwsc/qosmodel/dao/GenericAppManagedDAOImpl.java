@@ -8,8 +8,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 
-public abstract class GenericAppManagedDAOImpl<T> implements
-		GenericAppManagedDAO<T> {
+public abstract class GenericAppManagedDAOImpl<T> {
 
 	private static final String PERSISTANCE_UNIT_NAME = "dwscqosPU";
 
@@ -22,59 +21,31 @@ public abstract class GenericAppManagedDAOImpl<T> implements
 	private Class<T> type;
 
 	public GenericAppManagedDAOImpl() {
-		Type t = getClass().getGenericSuperclass();
-		ParameterizedType pt = (ParameterizedType) t;
-		this.type = (Class) pt.getActualTypeArguments()[0];
+		initialize();
 		getEntityMgr(PERSISTANCE_UNIT_NAME);
 	}
+	
+	public GenericAppManagedDAOImpl(EntityManager entityMgr) {
+		initialize();
+		this.entityMgr = entityMgr;
+	}
 
-	@Override
+	public EntityManager getEntityMgr() {
+		return this.entityMgr;
+	}
+
 	public T create(final T t) {
-		EntityTransaction tx = this.entityMgr.getTransaction();
-		return create(t, tx);
+		return this.create(t, true);
 	}
 
-	@Override
-	public T create(final T t, EntityTransaction tx) {
-		tx.begin();
-		this.entityMgr.persist(t);
-		tx.commit();
-		return t;
-	}
-
-	@Override
 	public T update(final T t) {
-		EntityTransaction tx = this.entityMgr.getTransaction();
-		return update(t, tx);
+		return this.update(t, true);
 	}
 
-	@Override
-	public T update(final T t, EntityTransaction tx) {
-		tx.begin();
-		T updated = this.entityMgr.merge(t);
-		tx.commit();
-		return updated;
-	}
-
-	@Override
 	public void remove(final Object id) {
-		EntityTransaction tx = this.entityMgr.getTransaction();
-		remove(id, tx);
+		this.remove(id);
 	}
 
-	@Override
-	public void remove(final Object id, EntityTransaction tx) {
-		if (id != null) {
-			T foundT = find(id);
-			if (foundT != null) {
-				tx.begin();
-				this.entityMgr.remove(foundT);
-				tx.commit();
-			}
-		}
-	}
-
-	@Override
 	public T find(final Object id) {
 		if (id != null) {
 			return this.entityMgr.find(type, id);
@@ -82,10 +53,69 @@ public abstract class GenericAppManagedDAOImpl<T> implements
 		return null;
 	}
 
+	public void destroy() {
+		if (this.entityMgr != null) {
+			if (this.entityMgr.isOpen()) {
+				this.entityMgr.close();
+			}
+			this.entityMgr = null;
+		}
+		if (this.entityMgrFactory != null) {
+			if (this.entityMgrFactory.isOpen()) {
+				this.entityMgrFactory.close();
+			}
+			this.entityMgrFactory = null;
+		}
+	}
+
+	// @Override
+	protected T create(final T t, boolean createTransaction) {
+		if (createTransaction) {
+			EntityTransaction tx = getTransaction();
+			tx.begin();
+			this.entityMgr.persist(t);
+			tx.commit();
+		} else {
+			this.entityMgr.persist(t);
+		}
+		return t;
+	}
+
+	// @Override
+	protected T update(final T t, boolean createTransaction) {
+		T updated = null;
+		if (createTransaction) {
+			EntityTransaction tx = getTransaction();
+			tx.begin();
+			updated = this.entityMgr.merge(t);
+			tx.commit();
+		} else {
+			updated = this.entityMgr.merge(t);
+		}
+		return updated;
+	}
+
+	// @Override
+	protected void remove(final Object id, boolean createTransaction) {
+		if (id != null) {
+			T foundT = find(id);
+			if (foundT != null) {
+				if (createTransaction) {
+					EntityTransaction tx = getTransaction();
+					tx.begin();
+					this.entityMgr.remove(foundT);
+					tx.commit();
+				} else {
+					this.entityMgr.remove(foundT);
+				}
+			}
+		}
+	}
+
 	protected EntityTransaction getTransaction() {
 		return this.entityMgr.getTransaction();
 	}
-
+	
 	private EntityManager getEntityMgr(String persistenceUnit) {
 		if (persistenceUnit == null || persistenceUnit.equals("")) {
 			throw new IllegalArgumentException("Persitence unit cannot be NULL");
@@ -98,5 +128,11 @@ public abstract class GenericAppManagedDAOImpl<T> implements
 			this.entityMgr = entityMgrFactory.createEntityManager();
 		}
 		return this.entityMgr;
+	}
+	
+	private void initialize() {
+		Type t = getClass().getGenericSuperclass();
+		ParameterizedType pt = (ParameterizedType) t;
+		this.type = (Class) pt.getActualTypeArguments()[0];
 	}
 }
