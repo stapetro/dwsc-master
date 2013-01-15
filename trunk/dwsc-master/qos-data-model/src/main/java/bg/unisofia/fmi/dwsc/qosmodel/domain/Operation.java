@@ -2,6 +2,7 @@ package bg.unisofia.fmi.dwsc.qosmodel.domain;
 
 import javax.persistence.*;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 @Entity
@@ -13,10 +14,10 @@ public class Operation {
 	private long id;
 	@Basic
 	private String name;
-	@ManyToMany(mappedBy = "operation")
-	private Collection<Service> service;
+	@ManyToMany(mappedBy = "operations")
+	private Collection<Service> services;
 	@OneToMany
-	@JoinColumn(name = "Operation_id", referencedColumnName = "id")
+	@JoinColumn(name = "operation_id", referencedColumnName = "id")
 	private Collection<OperationInvocations> operationInvocations;
 
 	public long getId() {
@@ -36,11 +37,11 @@ public class Operation {
 	}
 
 	public Collection<Service> getService() {
-		return service;
+		return services;
 	}
 
 	public void setService(Collection<Service> param) {
-		this.service = param;
+		this.services = param;
 	}
 
 	public Collection<OperationInvocations> getOperationInvocations() {
@@ -49,6 +50,15 @@ public class Operation {
 
 	public void setOperationInvocations(Collection<OperationInvocations> param) {
 		this.operationInvocations = param;
+	}
+	
+	public void add(Service srv) {
+		if(srv != null) {
+			if(this.services == null) {
+				this.services = new ArrayList<>();
+			}
+			this.services.add(srv);
+		}
 	}
 
 }
