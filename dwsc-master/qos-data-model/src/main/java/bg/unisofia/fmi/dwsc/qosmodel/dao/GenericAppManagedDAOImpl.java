@@ -4,16 +4,16 @@ import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
-import javax.persistence.Persistence;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public abstract class GenericAppManagedDAOImpl<T> {
 
-	private static final String PERSISTANCE_UNIT_NAME = "dwscqosPU";
-
-	private EntityManagerFactory entityMgrFactory;
 	protected EntityManager entityMgr;
+	
+	protected Logger logger;
 
 	/**
 	 * Stores class instance of specified entity type.
@@ -22,7 +22,7 @@ public abstract class GenericAppManagedDAOImpl<T> {
 
 	public GenericAppManagedDAOImpl() {
 		initialize();
-		getEntityMgr(PERSISTANCE_UNIT_NAME);
+		this.entityMgr = ManagedEntityMgrFactory.createEntityManager();
 	}
 	
 	public GenericAppManagedDAOImpl(EntityManager entityMgr) {
@@ -59,12 +59,6 @@ public abstract class GenericAppManagedDAOImpl<T> {
 				this.entityMgr.close();
 			}
 			this.entityMgr = null;
-		}
-		if (this.entityMgrFactory != null) {
-			if (this.entityMgrFactory.isOpen()) {
-				this.entityMgrFactory.close();
-			}
-			this.entityMgrFactory = null;
 		}
 	}
 
@@ -116,21 +110,8 @@ public abstract class GenericAppManagedDAOImpl<T> {
 		return this.entityMgr.getTransaction();
 	}
 	
-	private EntityManager getEntityMgr(String persistenceUnit) {
-		if (persistenceUnit == null || persistenceUnit.equals("")) {
-			throw new IllegalArgumentException("Persitence unit cannot be NULL");
-		}
-		if (this.entityMgrFactory == null) {
-			this.entityMgrFactory = Persistence
-					.createEntityManagerFactory(persistenceUnit);
-		}
-		if (this.entityMgr == null) {
-			this.entityMgr = entityMgrFactory.createEntityManager();
-		}
-		return this.entityMgr;
-	}
-	
 	private void initialize() {
+		this.logger = LoggerFactory.getLogger(this.getClass());
 		Type t = getClass().getGenericSuperclass();
 		ParameterizedType pt = (ParameterizedType) t;
 		this.type = (Class) pt.getActualTypeArguments()[0];
