@@ -11,7 +11,7 @@ import bg.unisofia.fmi.dwsc.qosmodel.domain.Operation;
 import bg.unisofia.fmi.dwsc.qosmodel.domain.Service;
 
 /**
- * Represents DAO for service entities.
+ * Represents DAO for operation entities.
  * 
  */
 public class OperationDAO extends GenericAppManagedDAOImpl<Operation> {
@@ -25,12 +25,7 @@ public class OperationDAO extends GenericAppManagedDAOImpl<Operation> {
 	}
 
 	public Operation save(Operation op) {
-		Operation foundOperation = find(op.getId());
-		if (foundOperation != null) {
-			foundOperation = update(op);
-		} else {
-			foundOperation = create(op);
-		}
+		Operation foundOperation = this.save(op, true);
 		return foundOperation;
 	}
 	
@@ -46,6 +41,23 @@ public class OperationDAO extends GenericAppManagedDAOImpl<Operation> {
 			operation.setService(services);
 		}
 		return save(operation);
+	}
+	
+	public Collection<Operation> save(Collection<Operation> operations) {
+		if (operations != null && operations.size() > 0) {
+			Collection<Operation> newOperations = new ArrayList<>();
+			EntityTransaction tx = getTransaction();
+			tx.begin();
+			for (Operation op : operations) {
+				Operation newOperation = this.save(op, false);
+				if(newOperation != null) {
+					newOperations.add(newOperation);
+				}
+			}
+			tx.commit();
+			return newOperations;
+		}
+		return null;
 	}
 
 	public void remove(Collection<Operation> ops) {
@@ -63,6 +75,27 @@ public class OperationDAO extends GenericAppManagedDAOImpl<Operation> {
 		TypedQuery<Operation> query = this.entityMgr.createQuery(
 				"Select op from Operation op", Operation.class);
 		return query.getResultList();
+	}
+	
+	/**
+	 * 
+	 * @param operation
+	 *            Operation entity to be specified.
+	 * @param createTransaction
+	 *            True - create transaction, false - otherwise.
+	 * @return Saved operation
+	 */
+	private Operation save(Operation operation, boolean createTransaction) {
+		if(operation != null) {
+			Operation foundService = find(operation.getId());
+			if (foundService != null) {
+				foundService = update(operation, createTransaction);
+			} else {
+				foundService = create(operation, createTransaction);
+			}
+			return foundService;
+		}
+		return null;
 	}
 
 }

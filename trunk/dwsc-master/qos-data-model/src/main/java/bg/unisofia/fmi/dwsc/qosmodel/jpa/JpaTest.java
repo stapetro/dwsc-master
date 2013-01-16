@@ -3,13 +3,10 @@ package bg.unisofia.fmi.dwsc.qosmodel.jpa;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import org.slf4j.LoggerFactory;
-
-import ch.qos.logback.classic.Logger;
-
 import bg.unisofia.fmi.dwsc.qosmodel.dao.ManagedEntityMgrFactory;
 import bg.unisofia.fmi.dwsc.qosmodel.dao.OperationDAO;
 import bg.unisofia.fmi.dwsc.qosmodel.dao.ServiceDAO;
+import bg.unisofia.fmi.dwsc.qosmodel.dao.UserDAO;
 import bg.unisofia.fmi.dwsc.qosmodel.domain.Operation;
 import bg.unisofia.fmi.dwsc.qosmodel.domain.Service;
 import bg.unisofia.fmi.dwsc.qosmodel.domain.User;
@@ -18,6 +15,7 @@ public class JpaTest {
 	
 	private ServiceDAO serviceDAO;
 	private OperationDAO operationDAO;
+	private UserDAO userDAO;
 	
 	static {
 		ManagedEntityMgrFactory.initialize();
@@ -27,7 +25,9 @@ public class JpaTest {
 		JpaTest jpaTest = new JpaTest();
 		
 		jpaTest.addServices();
-		jpaTest.listServices();
+//		jpaTest.listServices();
+		
+		jpaTest.addUsers();
 		
 		jpaTest.destroy();
 		ManagedEntityMgrFactory.release();
@@ -35,6 +35,7 @@ public class JpaTest {
 	
 	public JpaTest() {
 		this.serviceDAO = new ServiceDAO();
+		this.userDAO = new UserDAO(this.serviceDAO.getEntityMgr());
 //		this.operationDAO = new OperationDAO(serviceDAO.getEntityMgr());
 	}
 	
@@ -61,10 +62,13 @@ public class JpaTest {
 	
 	public void addUsers() {
 		String[] userNames = {"stanislavp@uni-sofia.bg", "krasimirb@uni-sofia.bg"};
+		Collection<User> users = new ArrayList<>();
 		for(String userName : userNames) {
 			User user = new User();
 			user.setName(userName);
+			users.add(user);
 		}
+		userDAO.save(users);
 	}
 	
 	public void destroy() {
@@ -73,6 +77,9 @@ public class JpaTest {
 		}
 		if(serviceDAO != null) {
 			serviceDAO.destroy();
+		}
+		if(userDAO != null) {
+			userDAO.destroy();
 		}
 	}
 }

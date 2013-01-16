@@ -1,8 +1,15 @@
 package bg.unisofia.fmi.dwsc.qosmodel.domain;
 
-import javax.persistence.*;
-
 import java.util.Collection;
+
+import javax.persistence.Basic;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 
 @Entity
 @Table(name = "User")
@@ -15,8 +22,7 @@ public class User {
 	@Basic
 	private String name;
 	@ManyToMany
-	private Collection<OperationInvocations> operationInvocations;
-
+	private Collection<OperationInvocation> operationInvocation;
 	public long getId() {
 		return id;
 	}
@@ -33,12 +39,12 @@ public class User {
 		return name;
 	}
 
-	public Collection<OperationInvocations> getOperationInvocations() {
-		return operationInvocations;
+	public Collection<OperationInvocation> getOperationInvocation() {
+		return operationInvocation;
 	}
 
-	public void setOperationInvocations(Collection<OperationInvocations> param) {
-		this.operationInvocations = param;
+	public void setOperationInvocation(Collection<OperationInvocation> param) {
+		this.operationInvocation = param;
 	}
 
 }

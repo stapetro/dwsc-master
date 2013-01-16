@@ -17,8 +17,8 @@ public class Operation {
 	@ManyToMany(mappedBy = "operations")
 	private Collection<Service> services;
 	@OneToMany
-	@JoinColumn(name = "operation_id", referencedColumnName = "id")
-	private Collection<OperationInvocations> operationInvocations;
+	@JoinColumn(name = "OPERATION_ID", referencedColumnName = "id")
+	private Collection<OperationInvocation> operationInvocation;
 
 	public long getId() {
 		return id;
@@ -44,12 +44,12 @@ public class Operation {
 		this.services = param;
 	}
 
-	public Collection<OperationInvocations> getOperationInvocations() {
-		return operationInvocations;
+	public Collection<OperationInvocation> getOperationInvocation() {
+		return operationInvocation;
 	}
 
-	public void setOperationInvocations(Collection<OperationInvocations> param) {
-		this.operationInvocations = param;
+	public void setOperationInvocation(Collection<OperationInvocation> param) {
+		this.operationInvocation = param;
 	}
 	
 	public void add(Service srv) {

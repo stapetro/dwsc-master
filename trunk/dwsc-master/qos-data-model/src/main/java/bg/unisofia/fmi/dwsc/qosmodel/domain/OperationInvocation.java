@@ -6,8 +6,8 @@ import java.sql.Timestamp;
 import java.util.Collection;
 
 @Entity
-@Table(name = "OPERATION_INVOCATIONS")
-public class OperationInvocations {
+@Table(name = "operation_invocation")
+public class OperationInvocation {
 
 	@Id
 	@SequenceGenerator(name = "OPERATION_INVOCATIONS_ID_GENERATOR", sequenceName = "OP_INV_ENTITY_SEQ")
@@ -16,7 +16,7 @@ public class OperationInvocations {
 	@Basic
 	@Column(nullable = false)
 	private boolean successful = false;
-	@ManyToMany(mappedBy = "operationInvocations")
+	@ManyToMany(mappedBy = "operationInvocation")
 	private Collection<User> user;
 	@Basic
 	private Timestamp requestReceived;
