@@ -3,7 +3,9 @@ package bg.unisofia.fmi.dwsc.qosmodel.domain;
 import javax.persistence.*;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.Collection;
+import bg.unisofia.fmi.dwsc.qosmodel.domain.Operation;
 
 @Entity
 @Table(name = "operation_invocation")
@@ -17,6 +19,7 @@ public class OperationInvocation {
 	@Column(nullable = false)
 	private boolean successful = false;
 	@ManyToMany(mappedBy = "operationInvocation")
+//	@JoinTable(name = "user_operation_invocation", joinColumns = { @JoinColumn(name = "operationInvocation_ID", nullable = false) }, inverseJoinColumns = { @JoinColumn(name = "user_ID", nullable = false) })
 	private Collection<User> user;
 	@Basic
 	private Timestamp requestReceived;
@@ -26,6 +29,9 @@ public class OperationInvocation {
 	private long reqSoapMsgSize;
 	@Basic
 	private long respSoapMsgSize;
+	@ManyToOne
+	@JoinColumn(nullable = false)
+	private Operation operation;
 
 	public long getId() {
 		return id;
@@ -81,6 +87,23 @@ public class OperationInvocation {
 
 	public long getRespSoapMsgSize() {
 		return respSoapMsgSize;
+	}
+
+	public Operation getOperation() {
+		return operation;
+	}
+
+	public void setOperation(Operation param) {
+		this.operation = param;
+	}
+
+	public void add(User user) {
+		if (user != null) {
+			if (this.user == null) {
+				this.user = new ArrayList<>();
+			}
+			this.user.add(user);
+		}
 	}
 
 }

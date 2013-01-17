@@ -22,22 +22,22 @@
 	</entity>
 
 	<entity>
-		<entity-name>bg.unisofia.fmi.dwsc.qosmodel.domain.User</entity-name>
+		<entity-name>bg.unisofia.fmi.dwsc.qosmodel.domain.OperationInvocation</entity-name>
 		<entity-width>120</entity-width>
-		<entity-height>146</entity-height>
-		<entity-X-Coordinate>70</entity-X-Coordinate>
-		<entity-Y-Coordinate>239</entity-Y-Coordinate>
+		<entity-height>246</entity-height>
+		<entity-X-Coordinate>370</entity-X-Coordinate>
+		<entity-Y-Coordinate>290</entity-Y-Coordinate>
 		<primary-collapsed>false</primary-collapsed>
 		<relation-collapsed>false</relation-collapsed>
 		<basic-collapsed>false</basic-collapsed>
 	</entity>
 
 	<entity>
-		<entity-name>bg.unisofia.fmi.dwsc.qosmodel.domain.OperationInvocation</entity-name>
+		<entity-name>bg.unisofia.fmi.dwsc.qosmodel.domain.User</entity-name>
 		<entity-width>120</entity-width>
-		<entity-height>226</entity-height>
-		<entity-X-Coordinate>370</entity-X-Coordinate>
-		<entity-Y-Coordinate>290</entity-Y-Coordinate>
+		<entity-height>146</entity-height>
+		<entity-X-Coordinate>70</entity-X-Coordinate>
+		<entity-Y-Coordinate>239</entity-Y-Coordinate>
 		<primary-collapsed>false</primary-collapsed>
 		<relation-collapsed>false</relation-collapsed>
 		<basic-collapsed>false</basic-collapsed>

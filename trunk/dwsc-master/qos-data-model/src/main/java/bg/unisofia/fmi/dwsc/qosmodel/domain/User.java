@@ -1,5 +1,6 @@
 package bg.unisofia.fmi.dwsc.qosmodel.domain;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 import javax.persistence.Basic;
@@ -45,6 +46,15 @@ public class User {
 
 	public void setOperationInvocation(Collection<OperationInvocation> param) {
 		this.operationInvocation = param;
+	}
+	
+	public void add(OperationInvocation opInv) {
+		if(opInv != null) {
+			if(this.operationInvocation == null) {
+				this.operationInvocation = new ArrayList<>();
+			}
+			this.operationInvocation.add(opInv);
+		}
 	}
 
 }

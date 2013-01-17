@@ -24,12 +24,8 @@ public class OperationInvocationDAO extends GenericAppManagedDAOImpl<OperationIn
 	}
 
 	public OperationInvocation save(OperationInvocation operationInvocation) {
-		OperationInvocation foundOperationInvocations = this.save(operationInvocation, true);
-		return foundOperationInvocations;
-	}
-
-	public OperationInvocation save(String operationInvocationName) {
-		return null;
+		OperationInvocation foundOperationInvocation = this.save(operationInvocation, true);
+		return foundOperationInvocation;
 	}
 
 	public Collection<OperationInvocation> save(Collection<OperationInvocation> operationInvocations) {
@@ -60,7 +56,7 @@ public class OperationInvocationDAO extends GenericAppManagedDAOImpl<OperationIn
 		}
 	}
 
-	public Collection<OperationInvocation> getOperationInvocationss() {
+	public Collection<OperationInvocation> getOperationInvocations() {
 		TypedQuery<OperationInvocation> query = this.entityMgr.createQuery(
 				"Select operationInvocation from OperationInvocations operationInvocation", OperationInvocation.class);
 		return query.getResultList();
