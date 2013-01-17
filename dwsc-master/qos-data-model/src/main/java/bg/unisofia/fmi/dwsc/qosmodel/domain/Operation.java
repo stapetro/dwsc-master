@@ -1,9 +1,18 @@
 package bg.unisofia.fmi.dwsc.qosmodel.domain;
 
-import javax.persistence.*;
-
 import java.util.ArrayList;
 import java.util.Collection;
+
+import javax.persistence.Basic;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.SequenceGenerator;
+import bg.unisofia.fmi.dwsc.qosmodel.domain.OperationInvocation;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Operation {
@@ -16,8 +25,7 @@ public class Operation {
 	private String name;
 	@ManyToMany(mappedBy = "operations")
 	private Collection<Service> services;
-	@OneToMany
-	@JoinColumn(name = "OPERATION_ID", referencedColumnName = "id")
+	@OneToMany(mappedBy = "operation")
 	private Collection<OperationInvocation> operationInvocation;
 
 	public long getId() {
@@ -44,6 +52,15 @@ public class Operation {
 		this.services = param;
 	}
 
+	public void add(Service srv) {
+		if (srv != null) {
+			if (this.services == null) {
+				this.services = new ArrayList<>();
+			}
+			this.services.add(srv);
+		}
+	}
+
 	public Collection<OperationInvocation> getOperationInvocation() {
 		return operationInvocation;
 	}
@@ -51,13 +68,14 @@ public class Operation {
 	public void setOperationInvocation(Collection<OperationInvocation> param) {
 		this.operationInvocation = param;
 	}
-	
-	public void add(Service srv) {
-		if(srv != null) {
-			if(this.services == null) {
-				this.services = new ArrayList<>();
+
+	public void add(OperationInvocation operationInvocation) {
+		if (operationInvocation != null) {
+			if (this.operationInvocation == null) {
+				this.operationInvocation = new ArrayList<>();
 			}
-			this.services.add(srv);
+			operationInvocation.setOperation(this);
+			this.operationInvocation.add(operationInvocation);
 		}
 	}
 
