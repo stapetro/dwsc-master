@@ -21,7 +21,7 @@ public class AdditionServiceRandomAvailable implements IAdditionService {
 			throw new RuntimeException("The service is not available");
 		}
 
-		return result;
+		return 22;
 	}
 
 }

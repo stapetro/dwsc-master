@@ -16,7 +16,7 @@ public class AdditionServiceSlow implements IAdditionService {
 			// this is a test service
 			e.printStackTrace();
 		}
-		return result;
+		return 1;
 	}
 
 }
