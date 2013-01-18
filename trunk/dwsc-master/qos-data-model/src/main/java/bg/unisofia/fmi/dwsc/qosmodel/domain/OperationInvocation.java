@@ -18,7 +18,7 @@ public class OperationInvocation {
 	@Basic
 	@Column(nullable = false)
 	private boolean successful = false;
-	@ManyToMany(mappedBy = "operationInvocation")
+	@ManyToMany(mappedBy = "operationInvocation", cascade=CascadeType.PERSIST)
 //	@JoinTable(name = "user_operation_invocation", joinColumns = { @JoinColumn(name = "operationInvocation_ID", nullable = false) }, inverseJoinColumns = { @JoinColumn(name = "user_ID", nullable = false) })
 	private Collection<User> user;
 	@Basic
