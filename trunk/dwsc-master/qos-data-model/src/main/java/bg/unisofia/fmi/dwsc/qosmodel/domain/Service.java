@@ -14,6 +14,7 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import net.sf.json.JSONObject;
+import javax.persistence.Column;
 
 @Entity
 @Table(name = "Service")
@@ -27,6 +28,9 @@ public class Service {
 	private String name;
 	@ManyToMany(cascade = CascadeType.PERSIST)
 	private Collection<Operation> operations;
+	@Basic
+	@Column(unique = true, nullable = false)
+	private String serviceKey;
 
 	public long getId() {
 		return id;
@@ -51,16 +55,16 @@ public class Service {
 	public void setOperation(Collection<Operation> param) {
 		this.operations = param;
 	}
-	
+
 	public void add(Operation op) {
-		if(op != null) {
-			if(this.operations == null) {
+		if (op != null) {
+			if (this.operations == null) {
 				this.operations = new ArrayList<>();
 			}
 			this.operations.add(op);
 		}
 	}
-	
+
 	@Override
 	public String toString() {
 		JSONObject json = new JSONObject();
@@ -69,6 +73,14 @@ public class Service {
 		String output = json.toString();
 		json = null;
 		return output;
+	}
+
+	public void setServiceKey(String param) {
+		this.serviceKey = param;
+	}
+
+	public String getServiceKey() {
+		return serviceKey;
 	}
 
 }
