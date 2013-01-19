@@ -7,9 +7,13 @@
   <packaging>pom</packaging>
   <name>DWSC Global</name>
   <description>Stores all DWSC modules </description>
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>    
   <modules>
 	<module>qos-data-model</module>
     <module>yani-bpel-extension</module>
+    <module>qos-data-api</module>
   </modules>
   <build>
   	<plugins>
@@ -52,4 +56,23 @@
 -->
   	</plugins>
   </build>  
+  <dependencies>
+	<dependency>
+		<groupId>ch.qos.logback</groupId>
+		<artifactId>logback-classic</artifactId>
+		<version>1.0.9</version>
+	</dependency>
+	<dependency>
+       <groupId>net.sf.json-lib</groupId>
+       <artifactId>json-lib</artifactId>
+       <version>2.4</version>
+       <classifier>jdk15</classifier>
+  	</dependency>
+	<dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>3.8.1</version>
+      <scope>test</scope>
+    </dependency>	  	
+  </dependencies>
 </project>

@@ -30,10 +30,10 @@
             <property name="javax.persistence.jdbc.user" value="dwsc"/>
             <property name="javax.persistence.jdbc.password" value="dwsc"/>
             <!-- <property name="eclipselink.ddl-generation" value="create-tables"/> -->
-            <property name="eclipselink.ddl-generation" value="drop-and-create-tables"/>
+            <!-- <property name="eclipselink.ddl-generation" value="drop-and-create-tables"/> -->
             <!-- <property name="eclipselink.ddl-generation.output-mode" value="sql-script"/> -->
             <!-- <property name="eclipselink.ddl-generation.output-mode" value="database" /> -->
-            <property name="eclipselink.ddl-generation.output-mode" value="both"/>
+            <!-- <property name="eclipselink.ddl-generation.output-mode" value="both"/> -->
             <!-- <property name="eclipselink.create-ddl-jdbc-file-name" value="createDDL_ddlGeneration.jdbc"/>
             <property name="eclipselink.drop-ddl-jdbc-file-name" value="dropDDL_ddlGeneration.jdbc"/> -->
             <property name="eclipselink.logging.level" value="SEVERE"/>

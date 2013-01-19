@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>bg.uni-sofia.fmi.dwsc</groupId>
+    <artifactId>dwsc-master</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+  </parent>
+  <groupId>bg.uni-sofia.fmi.dwsc</groupId>
+  <artifactId>qos-data-api</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>war</packaging>
+  <name>qos-data-api Maven Webapp</name>
+  <url>http://maven.apache.org</url>
+  <pluginRepositories>
+	<pluginRepository>
+		<id>maven2-repository.dev.java.net</id>
+		<url>http://download.java.net/maven/2/</url>
+  	</pluginRepository>
+  </pluginRepositories>
+  <dependencies>
+    <dependency>
+	   	<groupId>bg.uni-sofia.fmi.dwsc</groupId>
+		<artifactId>qos-data-model</artifactId>
+		<version>0.0.1-SNAPSHOT</version>    
+    </dependency>
+    <dependency>
+    	<groupId>com.sun.xml.ws</groupId>
+    	<artifactId>jaxws-rt</artifactId>
+    	<version>2.2.7</version>
+    	<!-- <scope>provided</scope> -->
+    </dependency>
+    
+    
+  </dependencies>
+  <build>
+	<finalName>qos-data-api</finalName>
+	<plugins>
+	   <plugin>
+	      <groupId>org.apache.tomcat.maven</groupId>
+	      <artifactId>tomcat7-maven-plugin</artifactId>
+	      <version>2.0</version>
+	      <configuration>
+			<server>myserver</server>
+			<url>http://localhost:8080/manager/text</url> 
+			<path>/qosapi</path>
+			<contextReloadable>true</contextReloadable>				
+			<update>true</update>
+	      </configuration>
+	    </plugin>
+		<!-- <plugin>
+	        <groupId>org.codehaus.mojo</groupId>
+	        <artifactId>jaxws-maven-plugin</artifactId>
+          <executions>
+            <execution>
+			 <id>generate-wsdl</id>
+              <phase>process-classes</phase>
+              <goals>
+                <goal>wsgen</goal>
+              </goals>
+              <configuration>
+              <sei>com.example.maven.jaxws.helloservice.Hello
+              </sei>
+              for demo purpose only, the webapp does not
+              need the generated wsdl files
+              <genWsdl>true</genWsdl>           
+              <keep>true</keep>
+              </configuration>
+            </execution>
+          </executions>
+        </plugin>	 -->    
+	</plugins>
+  </build>
+</project>

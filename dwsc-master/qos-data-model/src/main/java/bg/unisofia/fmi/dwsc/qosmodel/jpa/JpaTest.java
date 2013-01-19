@@ -29,12 +29,12 @@ public class JpaTest {
 	public static void main(String[] args) {
 		JpaTest jpaTest = new JpaTest();
 
-//		jpaTest.addServices();
+		jpaTest.addServices();
 		// jpaTest.listServices();
 
-//		jpaTest.addUsers();
+		jpaTest.addUsers();
 		
-//		jpaTest.addOperationInvocations();
+		jpaTest.addOperationInvocations();
 		
 		jpaTest.destroy();
 		ManagedEntityMgrFactory.release();
@@ -54,6 +54,7 @@ public class JpaTest {
 		for (int index = 0; index < serviceNames.length; index = index + 2) {
 			Service service = new Service();
 			service.setName(serviceNames[index]);
+			service.setServiceKey("dummy" + index);
 			Operation operation = new Operation();
 			operation.setName(serviceNames[index + 1]);
 			service.add(operation);
@@ -98,7 +99,8 @@ public class JpaTest {
 						operationInvocation.setOperation(operation);
 						operationInvocationDAO.save(operationInvocation);
 					} else if (operation.getName().equals("multiply")) {
-						User user = usersArr[index%usersArr.length];
+						User user = new User();
+						user.setName("staskata aha");
 						OperationInvocation operationInvocation = createOperationInvocation(
 								456L, 93L, 3897, false, user, cal);
 						operation.add(operationInvocation);

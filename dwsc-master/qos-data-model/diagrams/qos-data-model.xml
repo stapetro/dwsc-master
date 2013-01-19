@@ -2,7 +2,7 @@
 	<entity>
 		<entity-name>bg.unisofia.fmi.dwsc.qosmodel.domain.Service</entity-name>
 		<entity-width>120</entity-width>
-		<entity-height>146</entity-height>
+		<entity-height>166</entity-height>
 		<entity-X-Coordinate>58</entity-X-Coordinate>
 		<entity-Y-Coordinate>40</entity-Y-Coordinate>
 		<primary-collapsed>false</primary-collapsed>
