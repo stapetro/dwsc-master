@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>bg.uni-sofia.fmi.dwsc</groupId>
+    <artifactId>dwsc-master</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+  </parent>
+  <artifactId>qosmonitor</artifactId>
+  <name>Service QoS Monitoring module</name>
+  <description>Axis2 module that collects service QoS raw data </description>
+	<dependencies>
+        <dependency>
+            <groupId>org.apache.axis2</groupId>
+            <artifactId>axis2-kernel</artifactId>
+            <version>1.6.2</version>
+        </dependency>
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.16</version>
+			<scope>provided</scope>
+		</dependency>
+<!--         <dependency>
+            <groupId>org.apache.axis2</groupId>
+            <artifactId>axis2-soapmonitor-servlet</artifactId>
+            <version>${project.version}</version>
+        </dependency> -->
+    </dependencies>
+	<url>http://axis.apache.org/axis2/java/core/</url>    
+    <build>
+        <plugins>
+<!--             <plugin>
+                <artifactId>maven-remote-resources-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>process</goal>
+                        </goals>
+                        <configuration>
+                            <resourceBundles>
+                                <resourceBundle>org.apache.axis2:axis2-resource-bundle:${project.version}</resourceBundle>
+                            </resourceBundles>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin> -->
+            <plugin>
+                <groupId>org.apache.axis2</groupId>
+                <artifactId>axis2-mar-maven-plugin</artifactId>
+                <extensions>true</extensions>
+                <configuration>
+                    <includeDependencies>false</includeDependencies>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>  
+</project>
