@@ -6,10 +6,10 @@ public class WebService {
 
 	private String endPoint;
 	private String category;
-	private Map<QualityAttributesEnum, String> qos;
+	private Map<QualityAttributeEnum, String> qos;
 
 	public WebService(String endPoint, String category,
-			Map<QualityAttributesEnum, String> qosMap) {
+			Map<QualityAttributeEnum, String> qosMap) {
 		this.endPoint = endPoint;
 		this.category = category;
 		this.qos = qosMap;
@@ -31,11 +31,11 @@ public class WebService {
 		this.category = category;
 	}
 
-	public Map<QualityAttributesEnum, String> getQos() {
+	public Map<QualityAttributeEnum, String> getQos() {
 		return qos;
 	}
 
-	public void setQos(Map<QualityAttributesEnum, String> qos) {
+	public void setQos(Map<QualityAttributeEnum, String> qos) {
 		this.qos = qos;
 	}
 }
