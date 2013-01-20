@@ -3,19 +3,19 @@ package bg.unisofia.fmi.dwsc.yani.model;
 import java.util.Map;
 
 public class QualityProfile {
-	private Map<QualityAttributesEnum, String> qualityProfile;
+	private Map<QualityAttributeEnum, String> qualityRequirements;
 
-	public QualityProfile(Map<QualityAttributesEnum, String> qualityProfile) {
-		this.qualityProfile = qualityProfile;
+	public QualityProfile(Map<QualityAttributeEnum, String> qualityRequirements) {
+		this.qualityRequirements = qualityRequirements;
 	}
 
-	public Map<QualityAttributesEnum, String> getQualityProfile() {
-		return qualityProfile;
+	public Map<QualityAttributeEnum, String> getQualityRequirements() {
+		return qualityRequirements;
 	}
 
-	public void setQualityProfile(
-			Map<QualityAttributesEnum, String> qualityProfile) {
-		this.qualityProfile = qualityProfile;
+	public void setQualityRequirements(
+			Map<QualityAttributeEnum, String> qualityRequirements) {
+		this.qualityRequirements = qualityRequirements;
 	}
 
 }
