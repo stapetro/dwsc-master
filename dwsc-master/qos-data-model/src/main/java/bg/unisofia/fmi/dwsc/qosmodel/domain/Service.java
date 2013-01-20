@@ -69,6 +69,7 @@ public class Service {
 	public String toString() {
 		JSONObject json = new JSONObject();
 		json.put("serviceId", getId());
+		json.put("serviceKey", getServiceKey());
 		json.put("name", getName());
 		String output = json.toString();
 		json = null;
