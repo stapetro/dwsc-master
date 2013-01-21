@@ -1,6 +1,8 @@
 package bg.unisofia.fmi.dwsc.qosmonitoring;
 
 import java.io.ByteArrayOutputStream;
+import java.sql.Timestamp;
+import java.util.Calendar;
 
 import javax.xml.stream.XMLStreamReader;
 import javax.xml.transform.Transformer;
@@ -12,6 +14,7 @@ import javax.xml.transform.stream.StreamResult;
 
 import org.apache.axiom.soap.SOAPEnvelope;
 import org.apache.axis2.AxisFault;
+import org.apache.axis2.addressing.EndpointReference;
 import org.apache.axis2.context.MessageContext;
 import org.apache.axis2.context.OperationContext;
 import org.apache.axis2.context.ServiceContext;
@@ -48,11 +51,18 @@ public class QosMonitoringHandler extends AbstractHandler {
 		} catch (TransformerConfigurationException e1) {
 			logger.error("Error transforming", e1);
 		}
+		int flow = msgContext.getFLOW();
+		EndpointReference from = msgContext.getFrom();
+		String fromAddr = (from != null) ? from.getAddress() : "UNKNOWN";
 		ServiceContext srvContext = msgContext.getServiceContext();
 		OperationContext opContext = msgContext.getOperationContext();
-		logger.info("Soap msg size '" + bytes + "' bytes for srv '"
-				+ srvContext.getName() + "' opName '"
-				+ opContext.getOperationName() + "'");
+		Calendar cal = Calendar.getInstance();
+		Timestamp nowTS = new Timestamp(cal.getTimeInMillis());
+		logger.info(String
+				.format("%s SOAP msg size '%d' bytes for srv '%s', operation '%s' from '%s', timestamp '%s'",
+						((flow == MessageContext.IN_FLOW) ? "Request"
+								: "Response"), bytes, srvContext.getName(),
+						opContext.getOperationName(), fromAddr, nowTS));
 		return InvocationResponse.CONTINUE;
 	}
 
