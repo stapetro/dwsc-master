@@ -16,6 +16,7 @@ The wiki's goal is to provide detailed description for all environments.
 	* [http://dev.mysql.com/downloads/workbench/ MySQL Workbench 5.2.45 CE]
 	* [http://squirrel-sql.sourceforge.net/ SQuirrel SQL Client 3.4.0]
 	* [http://www.soapui.org/ soapUI 4.5.1]
+	* [http://axis.apache.org/axis2/java/core/download.cgi Axis2 1.6.2]	
 
 == Eclipse ==	
 	* [http://www.eclipse.org/downloads/ Eclipse Juno (4.2) SR1]
