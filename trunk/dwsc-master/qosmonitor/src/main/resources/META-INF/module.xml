@@ -1,24 +1,24 @@
 <module name="qosmonitor" class="bg.unisofia.fmi.dwsc.qosmonitoring.QoSMontirongModule">
     <InFlow>
-        <handler name="InFlowSOAPMonitorHandler" class="bg.unisofia.fmi.dwsc.qosmonitoring.QosMonitoringHandler">
+        <handler name="FlowQosMonitorHandler" class="bg.unisofia.fmi.dwsc.qosmonitoring.QosMonitoringHandler">
             <order phase="qosmonitorPhase"/>
         </handler>
     </InFlow>
 
     <OutFlow>
-        <handler name="InFlowSOAPMonitorHandler" class="bg.unisofia.fmi.dwsc.qosmonitoring.QosMonitoringHandler">
+        <handler name="FlowQosMonitorHandler" class="bg.unisofia.fmi.dwsc.qosmonitoring.QosMonitoringHandler">
             <order phase="qosmonitorPhase"/>
         </handler>
     </OutFlow>
 
     <OutFaultFlow>
-        <handler name="InFlowSOAPMonitorHandler" class="bg.unisofia.fmi.dwsc.qosmonitoring.QosMonitoringHandler">
+        <handler name="FaultQosMonitorHandler" class="bg.unisofia.fmi.dwsc.qosmonitoring.FaultQosMonitoringHandler">
             <order phase="qosmonitorPhase"/>
         </handler>
     </OutFaultFlow>
 
     <InFaultFlow>
-        <handler name="InFlowSOAPMonitorHandler" class="bg.unisofia.fmi.dwsc.qosmonitoring.QosMonitoringHandler">
+        <handler name="FaultQosMonitorHandler" class="bg.unisofia.fmi.dwsc.qosmonitoring.FaultQosMonitoringHandler">
             <order phase="qosmonitorPhase"/>
         </handler>
     </InFaultFlow>
