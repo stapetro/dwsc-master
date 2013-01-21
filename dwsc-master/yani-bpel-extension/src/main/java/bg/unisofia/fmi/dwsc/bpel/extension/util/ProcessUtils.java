@@ -10,6 +10,7 @@ import org.apache.ode.bpel.o.OProcess;
 import org.apache.ode.bpel.runtime.BpelRuntimeContext;
 import org.apache.ode.bpel.runtime.PartnerLinkInstance;
 import org.apache.ode.bpel.runtime.extension.ExtensionContext;
+import org.apache.ode.utils.DOMUtils;
 import org.w3c.dom.Element;
 
 import bg.unisofia.fmi.dwsc.yani.model.PartnerLinkDefinition;
@@ -24,13 +25,26 @@ public class ProcessUtils {
 			ExtensionContext context) throws FaultException {
 		OProcess processModel = context.getProcessModel();
 		BpelRuntimeContext bpelContext = context.getInternalInstance();
+
 		Set<OPartnerLink> partnerLinksSet = processModel.getAllPartnerLinks();
 		Iterator<OPartnerLink> it = partnerLinksSet.iterator();
 
+		// TODO update the hard coded partner link name
 		PartnerLinkInstance plInstance = context
 				.getPartnerLinkInstance("AdditionPL");
-		System.out.println("pl instance -----> " + plInstance.toString());
 
+		// Element plEPRElement =
+		// bpelContext.fetchMyRoleEndpointReferenceData(plInstance);
+		Element plEPRElement = bpelContext
+				.fetchPartnerRoleEndpointReferenceData(plInstance);
+		System.out.println("pl instance -----> "
+				+ DOMUtils.domToString(plEPRElement));
+		
+		String newEndpointAddress = "http://localhost:8080/TestServices/services/AdditionServiceStandard.AdditionServiceStandardHttpSoap12Endpoint/";
+		EPRManipulator eprManipulator = new EPRManipulator();
+		Element newEprElement = eprManipulator.updateEPR(plEPRElement, newEndpointAddress);
+		bpelContext.writeEndpointReference(plInstance, newEprElement);
+		
 		// while(it.hasNext()){
 		// OPartnerLink pl = it.next();
 		//
