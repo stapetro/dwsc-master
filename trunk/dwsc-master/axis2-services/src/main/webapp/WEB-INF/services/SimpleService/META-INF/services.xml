@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<serviceGroup>
+
+  <service name="SimpleService">
+<!--    <parameter name="ServiceObjectSupplier" locked="false">org.apache.axis2.extensions.spring.receivers.SpringServletContextObjectSupplier</parameter>-->
+<!--    <parameter name="SpringBeanName" locked="false">myService</parameter>   -->
+ <parameter name="ServiceClass">bg.unisofia.fmi.ws.SimpleService</parameter>-
+     <operation name="helloService">
+      <messageReceiver class="org.apache.axis2.rpc.receivers.RPCMessageReceiver"/>
+    </operation>
+<!--    <module ref="counterModule"/>  -->
+  </service>
+
+
+ 
+</serviceGroup>

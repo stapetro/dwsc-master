@@ -36,20 +36,8 @@
   </dependencies>
   <build>
 	<finalName>qos-data-api</finalName>
-	<plugins>
-	   <plugin>
-	      <groupId>org.apache.tomcat.maven</groupId>
-	      <artifactId>tomcat7-maven-plugin</artifactId>
-	      <version>2.0</version>
-	      <configuration>
-			<server>myserver</server>
-			<url>http://localhost:8080/manager/text</url> 
-			<path>/qosapi</path>
-			<contextReloadable>true</contextReloadable>				
-			<update>true</update>
-	      </configuration>
-	    </plugin>
-		<!-- <plugin>
+	<!--<plugins>
+		 <plugin>
 	        <groupId>org.codehaus.mojo</groupId>
 	        <artifactId>jaxws-maven-plugin</artifactId>
           <executions>
@@ -69,7 +57,7 @@
               </configuration>
             </execution>
           </executions>
-        </plugin>	 -->    
-	</plugins>
+        </plugin>
+	</plugins>-->
   </build>
 </project>
