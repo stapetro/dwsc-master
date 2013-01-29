@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>bg.uni-sofia.fmi.dwsc.axis2</groupId>
+    <artifactId>axis2-master</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+  </parent>
+  <artifactId>axis2-services</artifactId>
+  <packaging>war</packaging>
+  <name>Axis2 Sample Services</name>
+  <build>
+    <finalName>axis2-services</finalName>
+  </build>
+</project>

@@ -15,7 +15,7 @@
     <module>yani-bpel-extension</module>
     <module>qos-data-api</module>
     <module>qosmonitor</module>
-    <module>axis2-services</module>
+    <module>axis2-master</module>
   </modules>
   <build>
   	<plugins>
