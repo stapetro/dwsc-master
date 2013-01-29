@@ -4,6 +4,7 @@ import java.io.ByteArrayOutputStream;
 import java.sql.Timestamp;
 import java.util.Calendar;
 
+import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamReader;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerConfigurationException;
@@ -34,22 +35,40 @@ public class QosMonitoringHandler extends AbstractHandler {
 	public InvocationResponse invoke(MessageContext msgContext)
 			throws AxisFault {
 		SOAPEnvelope envelope = msgContext.getEnvelope();
-		XMLStreamReader xmlReader = envelope.getXMLStreamReader();
-		TransformerFactory tf = TransformerFactory.newInstance();
 		int bytes = 0;
-		try {
-			Transformer t = tf.newTransformer();
-			ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-			StreamResult sResult = new StreamResult(outputStream);
-			StAXSource staxSource = new StAXSource(xmlReader);
+		XMLStreamReader xmlReader = envelope.getXMLStreamReader();
+		if (xmlReader != null) {
+//			StringBuilder sb = new StringBuilder();
 			try {
-				t.transform(staxSource, sResult);
-				bytes = outputStream.size();
-			} catch (TransformerException e) {
-				logger.error("Error transforming", e);
+				while (xmlReader.hasNext()) {
+					int event = xmlReader.next();
+					if (event == XMLStreamReader.START_DOCUMENT
+							|| event == XMLStreamReader.START_ELEMENT) {
+						logger.info("XMLReader is in state "
+								+ (event == XMLStreamReader.START_ELEMENT ? "XMLStreamReader.START_ELEMENT"
+										: "XMLStreamReader.START_DOCUMENT"));
+						break;
+					}
+				}
+				// logger.info(sb.toString());
+			} catch (XMLStreamException e) {
+				logger.error(e);
 			}
-		} catch (TransformerConfigurationException e1) {
-			logger.error("Error transforming", e1);
+			TransformerFactory tf = TransformerFactory.newInstance();
+			try {
+				Transformer t = tf.newTransformer();
+				ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+				StreamResult sResult = new StreamResult(outputStream);
+				StAXSource staxSource = new StAXSource(xmlReader);
+				try {
+					t.transform(staxSource, sResult);
+					bytes = outputStream.size();
+				} catch (TransformerException e) {
+					logger.error("Error transforming", e);
+				}
+			} catch (TransformerConfigurationException e1) {
+				logger.error("Error transforming", e1);
+			}
 		}
 		int flow = msgContext.getFLOW();
 		EndpointReference from = msgContext.getFrom();

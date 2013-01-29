@@ -28,11 +28,11 @@ import bg.unisofia.fmi.ws.client.addition.AdditionServiceStandardStub.AddRespons
            bg.unisofia.fmi.ws.client.addition.AdditionServiceStandardStub.Add add4=
                                                         (bg.unisofia.fmi.ws.client.addition.AdditionServiceStandardStub.Add)getTestObject(bg.unisofia.fmi.ws.client.addition.AdditionServiceStandardStub.Add.class);
                     // TODO : Fill in the add4 here
-           add4.setA(3L);
-           add4.setA(4L);
+           add4.setA(3.0);
+           add4.setB(4.0);
            AddResponse response = stub.add(add4);
            assertNotNull(response);
-           assertEquals(7L, response.get_return());
+           assertEquals(7F, response.get_return());
         }
         
          /**

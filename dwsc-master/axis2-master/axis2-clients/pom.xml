@@ -10,5 +10,25 @@
   <description>Axis2 Web Service Clients</description>
   <build>
     <finalName>axis2-clients</finalName>
+	<plugins>
+		<!-- <plugin>
+		<groupId>org.apache.axis2</groupId>
+		<artifactId>axis2-wsdl2code-maven-plugin</artifactId>
+		<version>1.6.2</version>
+		<executions>
+		 <execution>
+			 <goals>
+				 <goal>wsdl2code</goal>
+			 </goals>
+			 <configuration>
+				 <packageName>bg.unisofia.fmi.ws.client.multiplicity</packageName>
+				 <wsdlFile>src/main/resources/wsdl/MultiplicityServiceStandard.wsdl</wsdlFile>
+				 <databindingName>adb</databindingName>
+				 <generateTestcase>true</generateTestcase>
+			 </configuration>
+		 </execution>
+		</executions>
+		</plugin> -->
+	</plugins>
   </build>  
 </project>
