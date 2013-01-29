@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<serviceGroup>
+
+<service name="PowServiceStandard" >
+	<Description>
+		PowServiceStandard Desc
+	</Description>
+	<messageReceivers>
+		<messageReceiver mep="http://www.w3.org/2004/08/wsdl/in-only" class="org.apache.axis2.rpc.receivers.RPCInOnlyMessageReceiver" />
+		<messageReceiver  mep="http://www.w3.org/2004/08/wsdl/in-out"  class="org.apache.axis2.rpc.receivers.RPCMessageReceiver"/>
+	</messageReceivers>
+	<parameter name="ServiceClass" locked="false">bg.unisofia.fmi.ws.pow.PowServiceStandard</parameter>
+</service>
+<service name="PowServiceSlow" >
+	<Description>
+		PowServiceSlow Desc
+	</Description>
+	<messageReceivers>
+		<messageReceiver mep="http://www.w3.org/2004/08/wsdl/in-only" class="org.apache.axis2.rpc.receivers.RPCInOnlyMessageReceiver" />
+		<messageReceiver  mep="http://www.w3.org/2004/08/wsdl/in-out"  class="org.apache.axis2.rpc.receivers.RPCMessageReceiver"/>
+	</messageReceivers>
+	<parameter name="ServiceClass" locked="false">bg.unisofia.fmi.ws.pow.PowServiceSlow</parameter>
+</service>
+<service name="PowServiceRandomAvailability" >
+	<Description>
+		PowServiceRandomAvailability Desc
+	</Description>
+	<messageReceivers>
+		<messageReceiver mep="http://www.w3.org/2004/08/wsdl/in-only" class="org.apache.axis2.rpc.receivers.RPCInOnlyMessageReceiver" />
+		<messageReceiver  mep="http://www.w3.org/2004/08/wsdl/in-out"  class="org.apache.axis2.rpc.receivers.RPCMessageReceiver"/>
+	</messageReceivers>
+	<parameter name="ServiceClass" locked="false">bg.unisofia.fmi.ws.pow.PowServiceRandomAvailability</parameter>
+</service>
+ 
+</serviceGroup>

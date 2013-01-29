@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<serviceGroup>
+
+<service name="MultiplicityServiceStandard" >
+	<Description>
+		MultiplicityServiceStandard Desc
+	</Description>
+	<messageReceivers>
+		<messageReceiver mep="http://www.w3.org/2004/08/wsdl/in-only" class="org.apache.axis2.rpc.receivers.RPCInOnlyMessageReceiver" />
+		<messageReceiver  mep="http://www.w3.org/2004/08/wsdl/in-out"  class="org.apache.axis2.rpc.receivers.RPCMessageReceiver"/>
+	</messageReceivers>
+	<parameter name="ServiceClass" locked="false">bg.unisofia.fmi.ws.multiplicity.MultiplicityServiceStandard</parameter>
+</service>
+<service name="MultiplicityServiceSlow" >
+	<Description>
+		MultiplicityServiceSlow Desc
+	</Description>
+	<messageReceivers>
+		<messageReceiver mep="http://www.w3.org/2004/08/wsdl/in-only" class="org.apache.axis2.rpc.receivers.RPCInOnlyMessageReceiver" />
+		<messageReceiver  mep="http://www.w3.org/2004/08/wsdl/in-out"  class="org.apache.axis2.rpc.receivers.RPCMessageReceiver"/>
+	</messageReceivers>
+	<parameter name="ServiceClass" locked="false">bg.unisofia.fmi.ws.multiplicity.MultiplicityServiceSlow</parameter>
+</service>
+<service name="MultiplicityServiceRandomAvailability" >
+	<Description>
+		MultiplicityServiceRandomAvailability Desc
+	</Description>
+	<messageReceivers>
+		<messageReceiver mep="http://www.w3.org/2004/08/wsdl/in-only" class="org.apache.axis2.rpc.receivers.RPCInOnlyMessageReceiver" />
+		<messageReceiver  mep="http://www.w3.org/2004/08/wsdl/in-out"  class="org.apache.axis2.rpc.receivers.RPCMessageReceiver"/>
+	</messageReceivers>
+	<parameter name="ServiceClass" locked="false">bg.unisofia.fmi.ws.multiplicity.MultiplicityServiceRandomAvailability</parameter>
+</service>
+ 
+</serviceGroup>
