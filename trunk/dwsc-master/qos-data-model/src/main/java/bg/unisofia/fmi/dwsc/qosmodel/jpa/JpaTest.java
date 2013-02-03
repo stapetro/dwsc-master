@@ -57,6 +57,7 @@ public class JpaTest {
 			service.setServiceKey("dummy" + index);
 			Operation operation = new Operation();
 			operation.setName(serviceNames[index + 1]);
+			operation.setService(service);
 			service.add(operation);
 			services.add(service);
 		}

@@ -1,20 +1,21 @@
 package bg.unisofia.fmi.dwsc.qosmodel.domain;
 
 import java.util.ArrayList;
-import java.util.Collection;
 
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import net.sf.json.JSONObject;
-import javax.persistence.Column;
+import bg.unisofia.fmi.dwsc.qosmodel.domain.Operation;
+import java.util.Collection;
+import javax.persistence.OneToMany;
 
 @Entity
 @Table(name = "Service")
@@ -26,12 +27,11 @@ public class Service {
 	private long id;
 	@Basic
 	private String name;
-	@ManyToMany(cascade = CascadeType.PERSIST)
-	private Collection<Operation> operations;
 	@Basic
 	@Column(unique = true, nullable = false)
 	private String serviceKey;
-
+	@OneToMany(mappedBy = "service", cascade=CascadeType.PERSIST)
+	private Collection<Operation> operations;
 	public long getId() {
 		return id;
 	}
@@ -46,14 +46,6 @@ public class Service {
 
 	public String getName() {
 		return name;
-	}
-
-	public Collection<Operation> getOperation() {
-		return operations;
-	}
-
-	public void setOperation(Collection<Operation> param) {
-		this.operations = param;
 	}
 
 	public void add(Operation op) {
@@ -82,6 +74,14 @@ public class Service {
 
 	public String getServiceKey() {
 		return serviceKey;
+	}
+
+	public Collection<Operation> getOperation() {
+	    return operations;
+	}
+
+	public void setOperation(Collection<Operation> param) {
+	    this.operations = param;
 	}
 
 }
