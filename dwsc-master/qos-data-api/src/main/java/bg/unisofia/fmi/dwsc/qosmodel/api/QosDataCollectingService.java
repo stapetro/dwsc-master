@@ -12,8 +12,7 @@ import bg.unisofia.fmi.dwsc.qosmodel.api.exceptions.PublishServiceException;
  * 
  */
 @WebService
-@SOAPBinding(style = Style.RPC)
+@SOAPBinding(style = Style.DOCUMENT)
 public interface QosDataCollectingService {
-
 
 }

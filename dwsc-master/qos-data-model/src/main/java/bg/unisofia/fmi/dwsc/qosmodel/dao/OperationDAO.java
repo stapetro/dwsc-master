@@ -36,9 +36,7 @@ public class OperationDAO extends GenericAppManagedDAOImpl<Operation> {
 		Operation operation = new Operation();
 		operation.setName(operationName);
 		if(service != null) {
-			Collection<Service> services = new ArrayList<>();
-			services.add(service);
-			operation.setService(services);
+			operation.setService(service);
 		}
 		return save(operation);
 	}

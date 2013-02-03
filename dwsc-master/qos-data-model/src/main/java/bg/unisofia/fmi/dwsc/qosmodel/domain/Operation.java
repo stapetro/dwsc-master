@@ -4,15 +4,15 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.SequenceGenerator;
-import bg.unisofia.fmi.dwsc.qosmodel.domain.OperationInvocation;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
+import bg.unisofia.fmi.dwsc.qosmodel.domain.Service;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Operation {
@@ -23,11 +23,11 @@ public class Operation {
 	private long id;
 	@Basic
 	private String name;
-	@ManyToMany(mappedBy = "operations")
-	private Collection<Service> services;
 	@OneToMany(mappedBy = "operation")
 	private Collection<OperationInvocation> operationInvocation;
-
+	@ManyToOne
+	@JoinColumn(nullable = false)
+	private Service service;
 	public long getId() {
 		return id;
 	}
@@ -42,23 +42,6 @@ public class Operation {
 
 	public String getName() {
 		return name;
-	}
-
-	public Collection<Service> getService() {
-		return services;
-	}
-
-	public void setService(Collection<Service> param) {
-		this.services = param;
-	}
-
-	public void add(Service srv) {
-		if (srv != null) {
-			if (this.services == null) {
-				this.services = new ArrayList<>();
-			}
-			this.services.add(srv);
-		}
 	}
 
 	public Collection<OperationInvocation> getOperationInvocation() {
@@ -77,6 +60,14 @@ public class Operation {
 			operationInvocation.setOperation(this);
 			this.operationInvocation.add(operationInvocation);
 		}
+	}
+
+	public Service getService() {
+	    return service;
+	}
+
+	public void setService(Service param) {
+	    this.service = param;
 	}
 
 }
