@@ -2,6 +2,8 @@ package bg.unisofia.fmi.dwsc.bpel.extension.util;
 
 import java.io.IOException;
 
+import junit.framework.Assert;
+
 import org.apache.ode.utils.DOMUtils;
 import org.junit.Test;
 import org.w3c.dom.Element;
@@ -26,5 +28,15 @@ public class EPRManipulatorTest {
 		eprManipulator.updateEPR(eprElement, NEW_ENDPOINT_ADDRESS);
 		
 		//TODO complete the test
+	}
+	
+	@Test
+	public void testGetEndpointAddressFromEPR() throws SAXException, IOException{
+		Element eprElement = DOMUtils.stringToDOM(ENDPOINT_REFERENCE_XML);
+		EPRManipulator eprManipulator = new EPRManipulator();
+		String actualAddress = eprManipulator.getEndPointAddressFromEPR(eprElement);
+		String extectedAddress = "http://localhost:8080/TestServices/services/AdditionServiceSlow.AdditionServiceSlowHttpSoap12Endpoint/";
+	
+		Assert.assertEquals(extectedAddress, actualAddress);
 	}
 }

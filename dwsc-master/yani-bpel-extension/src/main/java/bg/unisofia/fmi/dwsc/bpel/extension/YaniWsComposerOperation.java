@@ -1,5 +1,7 @@
 package bg.unisofia.fmi.dwsc.bpel.extension;
 
+import java.util.List;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.ode.bpel.common.FaultException;
@@ -10,11 +12,12 @@ import org.w3c.dom.Element;
 
 import bg.unisofia.fmi.dwsc.bpel.extension.util.ProcessUtils;
 import bg.unisofia.fmi.dwsc.bpel.extension.util.QoSUtils;
+import bg.unisofia.fmi.dwsc.yani.model.PartnerLinkDefinition;
 import bg.unisofia.fmi.dwsc.yani.model.QualityProfile;
 
 /**
- * This is the Dynamic Web Service Composer providing the extension operation
- * in BPEL
+ * This is the Dynamic Web Service Composer providing the extension operation in
+ * BPEL
  * 
  */
 public class YaniWsComposerOperation implements ExtensionOperation {
@@ -29,17 +32,24 @@ public class YaniWsComposerOperation implements ExtensionOperation {
 	public void run(Object obj, String channelID, Element element)
 			throws FaultException {
 		log.info("Yani starts analysing the current process model for service composition...");
-		
+
 		QoSUtils qosUtil = new QoSUtils();
 		QualityProfile qualityProfile = qosUtil.getQualityProfile(element);
-		
+
 		log.info("Activity Element is : \n" + DOMUtils.domToString(element));
 
 		ExtensionContext context = (ExtensionContext) obj;
 
 		ProcessUtils processUtils = new ProcessUtils();
-		processUtils.getQoSPartnerLinksDefinition(context);
+		List<PartnerLinkDefinition> plDefinitionList = processUtils
+				.getPartnerLinkDefinitions(context, element);
 		
+		for(PartnerLinkDefinition pld : plDefinitionList){
+			System.out.println(">>>>>>> name:  " + pld.getName());
+			System.out.println(">>>>>>> category: " + pld.getCategory());
+			System.out.println(">>>>>>> EPR: " + pld.getEndpointReference());
+		}
+
 		context.complete(channelID);
 
 	}
