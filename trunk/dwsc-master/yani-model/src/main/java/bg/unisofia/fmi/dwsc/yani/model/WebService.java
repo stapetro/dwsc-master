@@ -7,12 +7,15 @@ public class WebService {
 	private String endPoint;
 	private String category;
 	private Map<QualityAttributeEnum, String> qos;
+	private Map<QualityAttributeEnum, String> worstQos;
 
 	public WebService(String endPoint, String category,
-			Map<QualityAttributeEnum, String> qosMap) {
+			Map<QualityAttributeEnum, String> qosMap,
+			Map<QualityAttributeEnum, String> minimumQos) {
 		this.endPoint = endPoint;
 		this.category = category;
 		this.qos = qosMap;
+		this.worstQos = minimumQos;
 	}
 
 	public String getEndPoint() {
@@ -37,5 +40,13 @@ public class WebService {
 
 	public void setQos(Map<QualityAttributeEnum, String> qos) {
 		this.qos = qos;
+	}
+
+	public Map<QualityAttributeEnum, String> getWorstQos() {
+		return worstQos;
+	}
+
+	public void setWorstQos(Map<QualityAttributeEnum, String> minimumQos) {
+		this.worstQos = minimumQos;
 	}
 }
