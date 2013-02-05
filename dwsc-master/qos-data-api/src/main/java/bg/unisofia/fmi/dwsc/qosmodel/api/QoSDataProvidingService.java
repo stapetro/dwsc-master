@@ -5,11 +5,11 @@ import javax.jws.WebService;
 import javax.jws.soap.SOAPBinding;
 import javax.jws.soap.SOAPBinding.Style;
 
-import bg.unisofia.fmi.dwsc.qosmodel.api.exceptions.PublishServiceException;
+import bg.unisofia.fmi.dwsc.qosmodel.api.exceptions.RegisterServiceException;
 
 @WebService
 @SOAPBinding(style = Style.RPC)
-public interface QosDataProvidingService {
+public interface QoSDataProvidingService {
 
 	@WebMethod
 	/**
@@ -19,7 +19,7 @@ public interface QosDataProvidingService {
 	 * @return True - published successfully, false - otherwise.
 	 */
 	public boolean publishService(String serviceKey, String serviceName)
-			throws PublishServiceException;
+			throws RegisterServiceException;
 
 	/**
 	 * 

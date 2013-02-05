@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8'?><!-- Published by JAX-WS RI at http://jax-ws.dev.java.net. RI's version is JAX-WS RI 2.2.7-b01  svn-revision#13316. --><xs:schema xmlns:tns="http://api.qosmodel.dwsc.fmi.unisofia.bg/" xmlns:xs="http://www.w3.org/2001/XMLSchema" version="1.0" targetNamespace="http://api.qosmodel.dwsc.fmi.unisofia.bg/">
+
+<xs:element name="SaveQoSDataException" type="tns:SaveQoSDataException"/>
+
+<xs:element name="save" type="tns:save"/>
+
+<xs:element name="saveResponse" type="tns:saveResponse"/>
+
+<xs:complexType name="save">
+<xs:sequence>
+<xs:element name="arg0" type="tns:MessageQoSData" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="MessageQoSData">
+<xs:sequence>
+<xs:element name="processed" type="xs:dateTime" minOccurs="0"/>
+<xs:element name="size" type="xs:int"/>
+<xs:element name="successful" type="xs:boolean"/>
+<xs:element name="flow" type="xs:int"/>
+<xs:element name="serviceName" type="xs:string" minOccurs="0"/>
+<xs:element name="operationName" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="saveResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:boolean"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="SaveQoSDataException">
+<xs:sequence>
+<xs:element name="message" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+</xs:schema>

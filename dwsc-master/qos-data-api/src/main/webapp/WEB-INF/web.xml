@@ -18,7 +18,11 @@
         <servlet-name>jax-ws</servlet-name>
         <url-pattern>/QosDataProvidingService</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>jax-ws</servlet-name>
+        <url-pattern>/QosDataCollectingService</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>120</session-timeout>
-    </session-config>  
+    </session-config>
 </web-app>
