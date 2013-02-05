@@ -3,7 +3,11 @@
   xmlns="http://java.sun.com/xml/ns/jax-ws/ri/runtime"
   version="2.0">
   <endpoint
-      name="QosDataProvidingService"
-      implementation="bg.unisofia.fmi.dwsc.qosmodel.api.QosDataProvidingServiceImpl"
-      url-pattern="/QosDataProvidingService"/>
+      name="QoSDataProvidingService"
+      implementation="bg.unisofia.fmi.dwsc.qosmodel.api.QoSDataProvidingServiceImpl"
+      url-pattern="/QoSDataProvidingService"/>
+  <endpoint
+      name="QoSDataCollectingService"
+      implementation="bg.unisofia.fmi.dwsc.qosmodel.api.QoSDataCollectingServiceImpl"
+      url-pattern="/QoSDataCollectingService"/>
 </endpoints>

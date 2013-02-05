@@ -1,4 +1,4 @@
-<module name="qosmonitor" class="bg.unisofia.fmi.dwsc.qosmonitoring.QoSMontirongModule">
+<module name="qosmonitor" class="bg.unisofia.fmi.dwsc.qosmonitoring.QoSMonitoringModule">
     <InFlow>
         <handler name="FlowQosMonitorHandler" class="bg.unisofia.fmi.dwsc.qosmonitoring.QosMonitoringHandler">
             <order phase="qosmonitorPhase"/>

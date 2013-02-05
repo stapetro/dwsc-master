@@ -8,7 +8,7 @@ import org.apache.axis2.modules.Module;
 import org.apache.neethi.Assertion;
 import org.apache.neethi.Policy;
 
-public class QoSMontirongModule implements Module {
+public class QoSMonitoringModule implements Module {
 
 	@Override
 	public void init(ConfigurationContext configContext, AxisModule module)
