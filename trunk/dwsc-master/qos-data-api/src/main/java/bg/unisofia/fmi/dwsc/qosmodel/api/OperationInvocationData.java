@@ -1,0 +1,133 @@
+package bg.unisofia.fmi.dwsc.qosmodel.api;
+
+import java.util.Date;
+
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlType;
+
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(name = "operationInvocation")
+public class OperationInvocationData {
+
+	@XmlElement(name="operationName")
+	private String operationName;
+
+	@XmlElement(name="successful")
+	private boolean successful;
+
+	@XmlElement(name="requestReceived")
+	private Date requestReceived;
+
+	@XmlElement(name="responseSent")
+	private Date responseSent;
+
+	@XmlElement(name="requestMsgSize")
+	private long requestMsgSize;
+
+	@XmlElement(name="responseMsgSize")
+	private long responseMsgSize;
+
+	public OperationInvocationData() {
+
+	}
+
+	public String getOperationName() {
+		return operationName;
+	}
+
+	public void setOperationName(String operationName) {
+		this.operationName = operationName;
+	}
+
+	public boolean isSuccessful() {
+		return successful;
+	}
+
+	public void setSuccessful(boolean successful) {
+		this.successful = successful;
+	}
+
+	public Date getRequestReceived() {
+		return requestReceived;
+	}
+
+	public void setRequestReceived(Date requestReceived) {
+		this.requestReceived = requestReceived;
+	}
+
+	public Date getResponseSent() {
+		return responseSent;
+	}
+
+	public void setResponseSent(Date responseSent) {
+		this.responseSent = responseSent;
+	}
+
+	public long getRequestMsgSize() {
+		return requestMsgSize;
+	}
+
+	public void setRequestMsgSize(long requestMsgSize) {
+		this.requestMsgSize = requestMsgSize;
+	}
+
+	public long getResponseMsgSize() {
+		return responseMsgSize;
+	}
+
+	public void setResponseMsgSize(long responseMsgSize) {
+		this.responseMsgSize = responseMsgSize;
+	}
+
+	@Override
+	public boolean equals(Object opInvocationDataObje) {
+		if (opInvocationDataObje == null) {
+			return false;
+		}
+		if (this == opInvocationDataObje) {
+			return true;
+		}
+		if (!(opInvocationDataObje instanceof OperationInvocationData)) {
+			return false;
+		}
+		OperationInvocationData opInvocationData = (OperationInvocationData) opInvocationDataObje;
+		boolean requestDatesEqual = areObjectsEqual(this.requestReceived,
+				opInvocationData.requestReceived);
+		boolean responseDatesEqual = areObjectsEqual(this.responseSent,
+				opInvocationData.responseSent);
+		boolean opNamesEqual = areObjectsEqual(this.operationName,
+				opInvocationData.operationName);
+		return ((this.successful == opInvocationData.successful)
+				&& (this.requestMsgSize == opInvocationData.requestMsgSize)
+				&& (this.responseMsgSize == opInvocationData.responseMsgSize)
+				&& requestDatesEqual && responseDatesEqual && opNamesEqual);
+	}
+
+	@Override
+	public int hashCode() {
+		int successfulCode = (successful) ? 1 : 0;
+		int requestReceivedCode = (requestReceived != null) ? ((int) requestReceived
+				.getTime()) : 1;
+		int responseSentCode = (responseSent != null) ? ((int) responseSent
+				.getTime()) : 2;
+		int datesCode = (requestReceivedCode & responseSentCode);
+		int opNameCode = (operationName != null) ? operationName.hashCode() : 3;
+		return (opNameCode ^ successfulCode ^ datesCode
+				^ ((int) requestMsgSize) ^ ((int) responseMsgSize));
+	}
+
+	private boolean areObjectsEqual(Object date, Object otherDate) {
+		boolean dateEquality = false;
+		if (date != null && otherDate != null) {
+			dateEquality = date.equals(otherDate);
+		} else if (date == null && otherDate == null) {
+			dateEquality = true;
+		} else {
+			dateEquality = false;
+		}
+		return dateEquality;
+	}
+
+}
