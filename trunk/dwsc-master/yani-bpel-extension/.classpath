@@ -22,11 +22,6 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="E:/Lectures/Master ST/Semester 3/DWSC_Project/trunk/docs/libs/BpelExtension/commons-lang-2.6.0.wso2v1.jar"/>
-	<classpathentry kind="lib" path="E:/Lectures/Master ST/Semester 3/DWSC_Project/trunk/docs/libs/BpelExtension/ode-1.3.5.wso2v7.jar"/>
-	<classpathentry kind="lib" path="E:/Lectures/Master ST/Semester 3/DWSC_Project/trunk/docs/libs/BpelExtension/org.wso2.carbon.logging-4.0.0.jar"/>
-	<classpathentry kind="lib" path="E:/Lectures/Master ST/Semester 3/DWSC_Project/trunk/docs/libs/BpelExtension/org.wso2.carbon.server-4.0.2.jar"/>
-	<classpathentry kind="lib" path="E:/Lectures/Master ST/Semester 3/DWSC_Project/trunk/docs/libs/BpelExtension/org.wso2.ciphertool-1.0.0-wso2v2.jar"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/yani-model"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="lib" path="E:/Lectures/Master ST/Semester 3/DWSC_Project/trunk/docs/libs/BpelExtension/tests/xercesImpl-2.8.1.wso2v2.jar"/>

@@ -36,6 +36,16 @@ public class QoSUtils {
 	private static final String QUALITY_ATTRIBUTE_NAME = "name";
 
 	/**
+	 * Name of the attribute containing the cost of the quality attribute
+	 */
+	private static final String QUALITY_COST_ATTRIBTE_NAME = "cost";
+
+	/**
+	 * Default cost value for quality attributes
+	 */
+	private static final String DEFAULT_COST_VALUE = "0";
+
+	/**
 	 * Provide the quality profile for the current process. The quality profile
 	 * specifies all quality requirements that the user requires
 	 * 
@@ -49,6 +59,7 @@ public class QoSUtils {
 		}
 
 		Map<QualityAttributeEnum, String> qualityRequirements = new HashMap<QualityAttributeEnum, String>();
+		Map<QualityAttributeEnum, String> qualityCost = new HashMap<QualityAttributeEnum, String>();
 
 		String namespaceUri = qosElement.getNamespaceURI();
 		NodeList attributesNodeList = qosElement.getElementsByTagNameNS(
@@ -59,16 +70,23 @@ public class QoSUtils {
 			NamedNodeMap nodeAttributes = node.getAttributes();
 			Node nameNode = nodeAttributes.getNamedItem(QUALITY_ATTRIBUTE_NAME);
 			Node valueNode = nodeAttributes.getNamedItem(VALUE_ATTRIBUTE_NAME);
+			Node costNode = nodeAttributes
+					.getNamedItem(QUALITY_COST_ATTRIBTE_NAME);
 
 			String attributeName = nameNode.getTextContent();
 			QualityAttributeEnum qualityAttribute = QualityAttributeEnum
 					.getQualityAttributeEnumFromString(attributeName);
 			String attributeValue = valueNode.getTextContent();
 
+			String costValue = costNode == null ? DEFAULT_COST_VALUE : costNode
+					.getTextContent();
+
 			qualityRequirements.put(qualityAttribute, attributeValue);
+			qualityCost.put(qualityAttribute, costValue);
 		}
 
-		QualityProfile qualityProfile = new QualityProfile(qualityRequirements);
+		QualityProfile qualityProfile = new QualityProfile(qualityRequirements,
+				qualityCost);
 		return qualityProfile;
 	}
 }
