@@ -44,11 +44,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link SaveResponse }
+     * Create an instance of {@link Save }
      * 
      */
-    public SaveResponse createSaveResponse() {
-        return new SaveResponse();
+    public Save createSave() {
+        return new Save();
     }
 
     /**
@@ -60,11 +60,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Save }
+     * Create an instance of {@link SaveResponse }
      * 
      */
-    public Save createSave() {
-        return new Save();
+    public SaveResponse createSaveResponse() {
+        return new SaveResponse();
     }
 
     /**

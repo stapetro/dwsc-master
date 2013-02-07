@@ -23,7 +23,7 @@ public class User {
 	@Basic
 	private String name;
 	@ManyToMany
-	private Collection<OperationInvocation> operationInvocation;
+	private Collection<OperationMessage> operationMessage;
 	public long getId() {
 		return id;
 	}
@@ -40,20 +40,20 @@ public class User {
 		return name;
 	}
 
-	public Collection<OperationInvocation> getOperationInvocation() {
-		return operationInvocation;
+	public Collection<OperationMessage> getOperationMessage() {
+		return operationMessage;
 	}
 
-	public void setOperationInvocation(Collection<OperationInvocation> param) {
-		this.operationInvocation = param;
+	public void setOperationMessage(Collection<OperationMessage> param) {
+		this.operationMessage = param;
 	}
 	
-	public void add(OperationInvocation opInv) {
-		if(opInv != null) {
-			if(this.operationInvocation == null) {
-				this.operationInvocation = new ArrayList<>();
+	public void add(OperationMessage opMsg) {
+		if(opMsg != null) {
+			if(this.operationMessage == null) {
+				this.operationMessage = new ArrayList<>();
 			}
-			this.operationInvocation.add(opInv);
+			this.operationMessage.add(opMsg);
 		}
 	}
 

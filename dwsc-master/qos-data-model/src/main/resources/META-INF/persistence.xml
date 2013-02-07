@@ -6,8 +6,9 @@
 		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
 		<class>bg.unisofia.fmi.dwsc.qosmodel.domain.Service</class>
 		<class>bg.unisofia.fmi.dwsc.qosmodel.domain.Operation</class>
-		<class>bg.unisofia.fmi.dwsc.qosmodel.domain.OperationInvocation</class>
+		<class>bg.unisofia.fmi.dwsc.qosmodel.domain.OperationMessage</class>
 		<class>bg.unisofia.fmi.dwsc.qosmodel.domain.User</class>
+		<class>bg.unisofia.fmi.dwsc.qosmodel.domain.OperationInvocation</class>
 		<!-- shouldn't be valid for java SE per specification, but it works for EclipseLink ... -->
 		<!-- <exclude-unlisted-classes>false</exclude-unlisted-classes> -->
 		<!-- <properties>

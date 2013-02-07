@@ -6,7 +6,6 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
-import javax.xml.ws.handler.MessageContext;
 
 /**
  * Stores non-functional metrics for an exchanged service message.
@@ -15,10 +14,6 @@ import javax.xml.ws.handler.MessageContext;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "MessageQoSData")
 public class MessageQoSData {
-
-	public static final int REQUEST_MESSAGE = 1;
-
-	public static final int RESPONSE_MESSAGE = 2;
 
 	/**
 	 * Stores timestamp when message is processed.
@@ -32,12 +27,7 @@ public class MessageQoSData {
 	@XmlElement(name = "size")
 	private long size;
 
-	@XmlElement(name = "successful")
-	private boolean successful;
 
-	/**
-	 * See {@link MessageContext}
-	 */
 	@XmlElement(name = "flow")
 	private int flow;
 
@@ -47,8 +37,19 @@ public class MessageQoSData {
 	@XmlElement(name = "operationName")
 	private String operationName;
 
+	@XmlElement(name = "operationCorrelationId")
+	private String operationCorrelationId;
+
 	public MessageQoSData() {
 
+	}
+
+	public String getOperationCorrelationId() {
+		return operationCorrelationId;
+	}
+
+	public void setOperationCorrelationId(String operationCorrelationId) {
+		this.operationCorrelationId = operationCorrelationId;
 	}
 
 	public Date getProcessed() {
@@ -65,14 +66,6 @@ public class MessageQoSData {
 
 	public void setSize(long size) {
 		this.size = size;
-	}
-
-	public boolean isSuccessful() {
-		return successful;
-	}
-
-	public void setSuccessful(boolean successful) {
-		this.successful = successful;
 	}
 
 	public int getFlow() {
