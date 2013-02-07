@@ -2,16 +2,19 @@ package bg.unisofia.fmi.dwsc.yani.model;
 
 import java.util.Map;
 
+import bg.unisofia.fmi.dwsc.yani.model.qos.IQualityAttribute;
+import bg.unisofia.fmi.dwsc.yani.model.qos.QualityAttributeEnum;
+
 public class WebService {
 
 	private String endPoint;
 	private String category;
-	private Map<QualityAttributeEnum, String> qos;
-	private Map<QualityAttributeEnum, String> worstQos;
+	private Map<QualityAttributeEnum, IQualityAttribute> qos;
+	private Map<QualityAttributeEnum, IQualityAttribute> worstQos;
 
 	public WebService(String endPoint, String category,
-			Map<QualityAttributeEnum, String> qosMap,
-			Map<QualityAttributeEnum, String> minimumQos) {
+			Map<QualityAttributeEnum, IQualityAttribute> qosMap,
+			Map<QualityAttributeEnum, IQualityAttribute> minimumQos) {
 		this.endPoint = endPoint;
 		this.category = category;
 		this.qos = qosMap;
@@ -34,19 +37,20 @@ public class WebService {
 		this.category = category;
 	}
 
-	public Map<QualityAttributeEnum, String> getQos() {
+	public Map<QualityAttributeEnum, IQualityAttribute> getQos() {
 		return qos;
 	}
 
-	public void setQos(Map<QualityAttributeEnum, String> qos) {
+	public void setQos(Map<QualityAttributeEnum, IQualityAttribute> qos) {
 		this.qos = qos;
 	}
 
-	public Map<QualityAttributeEnum, String> getWorstQos() {
+	public Map<QualityAttributeEnum, IQualityAttribute> getWorstQos() {
 		return worstQos;
 	}
 
-	public void setWorstQos(Map<QualityAttributeEnum, String> minimumQos) {
+	public void setWorstQos(
+			Map<QualityAttributeEnum, IQualityAttribute> minimumQos) {
 		this.worstQos = minimumQos;
 	}
 }

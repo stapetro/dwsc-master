@@ -1,4 +1,4 @@
-package bg.unisofia.fmi.dwsc.yani.model;
+package bg.unisofia.fmi.dwsc.yani.model.qos;
 
 public enum QualityAttributeEnum {
 

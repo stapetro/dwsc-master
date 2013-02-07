@@ -8,8 +8,10 @@ import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import bg.unisofia.fmi.dwsc.yani.model.QualityAttributeEnum;
 import bg.unisofia.fmi.dwsc.yani.model.QualityProfile;
+import bg.unisofia.fmi.dwsc.yani.model.qos.IQualityAttribute;
+import bg.unisofia.fmi.dwsc.yani.model.qos.QualityAttributeEnum;
+import bg.unisofia.fmi.dwsc.yani.model.qos.utils.QualityAttributeFactory;
 
 /**
  * This class provides functionality for working with qosElements for the YANI
@@ -58,7 +60,7 @@ public class QoSUtils {
 			return null;
 		}
 
-		Map<QualityAttributeEnum, String> qualityRequirements = new HashMap<QualityAttributeEnum, String>();
+		Map<QualityAttributeEnum, IQualityAttribute> qualityRequirements = new HashMap<QualityAttributeEnum, IQualityAttribute>();
 		Map<QualityAttributeEnum, String> qualityCost = new HashMap<QualityAttributeEnum, String>();
 
 		String namespaceUri = qosElement.getNamespaceURI();
@@ -74,15 +76,17 @@ public class QoSUtils {
 					.getNamedItem(QUALITY_COST_ATTRIBTE_NAME);
 
 			String attributeName = nameNode.getTextContent();
-			QualityAttributeEnum qualityAttribute = QualityAttributeEnum
+			QualityAttributeEnum qualityAttributeType = QualityAttributeEnum
 					.getQualityAttributeEnumFromString(attributeName);
 			String attributeValue = valueNode.getTextContent();
 
 			String costValue = costNode == null ? DEFAULT_COST_VALUE : costNode
 					.getTextContent();
 
-			qualityRequirements.put(qualityAttribute, attributeValue);
-			qualityCost.put(qualityAttribute, costValue);
+			IQualityAttribute qualityAttribute = QualityAttributeFactory
+					.getQualityAttribute(qualityAttributeType, attributeValue);
+			qualityRequirements.put(qualityAttributeType, qualityAttribute);
+			qualityCost.put(qualityAttributeType, costValue);
 		}
 
 		QualityProfile qualityProfile = new QualityProfile(qualityRequirements,
