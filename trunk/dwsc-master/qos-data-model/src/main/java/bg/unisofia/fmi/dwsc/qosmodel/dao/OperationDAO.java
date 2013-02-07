@@ -19,7 +19,7 @@ public class OperationDAO extends GenericAppManagedDAOImpl<Operation> {
 	public OperationDAO() {
 		super();
 	}
-	
+
 	public OperationDAO(EntityManager entityMgr) {
 		super(entityMgr);
 	}
@@ -28,19 +28,19 @@ public class OperationDAO extends GenericAppManagedDAOImpl<Operation> {
 		Operation foundOperation = this.save(op, true);
 		return foundOperation;
 	}
-	
+
 	public Operation save(String operationName, Service service) {
-		if(operationName == null || operationName.equals("")) {
+		if (operationName == null || operationName.equals("")) {
 			return null;
 		}
 		Operation operation = new Operation();
 		operation.setName(operationName);
-		if(service != null) {
+		if (service != null) {
 			operation.setService(service);
 		}
 		return save(operation);
 	}
-	
+
 	public Collection<Operation> save(Collection<Operation> operations) {
 		if (operations != null && operations.size() > 0) {
 			Collection<Operation> newOperations = new ArrayList<>();
@@ -48,7 +48,7 @@ public class OperationDAO extends GenericAppManagedDAOImpl<Operation> {
 			tx.begin();
 			for (Operation op : operations) {
 				Operation newOperation = this.save(op, false);
-				if(newOperation != null) {
+				if (newOperation != null) {
 					newOperations.add(newOperation);
 				}
 			}
@@ -74,7 +74,24 @@ public class OperationDAO extends GenericAppManagedDAOImpl<Operation> {
 				"Select op from Operation op", Operation.class);
 		return query.getResultList();
 	}
-	
+
+	public Operation getOperation(long serviceId, String opName) {
+		TypedQuery<Operation> query = this.entityMgr
+				.createQuery(
+						"SELECT op FROM Operation op WHERE op.name = :name AND op.service.id = :serviceId",
+						Operation.class);
+		query.setParameter("name", opName);
+		query.setParameter("serviceId", serviceId);
+		try {
+			return query.getSingleResult();
+		} catch (Exception ex) {
+			this.logger
+					.error(String.format("Operation with name '%s' NOT found",
+							opName), ex);
+		}
+		return null;
+	}
+
 	/**
 	 * 
 	 * @param operation
@@ -84,7 +101,7 @@ public class OperationDAO extends GenericAppManagedDAOImpl<Operation> {
 	 * @return Saved operation
 	 */
 	private Operation save(Operation operation, boolean createTransaction) {
-		if(operation != null) {
+		if (operation != null) {
 			Operation foundService = find(operation.getId());
 			if (foundService != null) {
 				foundService = update(operation, createTransaction);

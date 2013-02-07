@@ -26,6 +26,7 @@ public class Service {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SERVICE_SERVICEID_GENERATOR")
 	private long id;
 	@Basic
+	@Column(unique = true, nullable = false)
 	private String name;
 	@Basic
 	@Column(unique = true, nullable = false)

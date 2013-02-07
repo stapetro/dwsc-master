@@ -10,7 +10,7 @@ package bg.unisofia.fmi.dwsc.qosmodel.api;
 
 public class SaveQoSDataExceptionException extends java.lang.Exception{
 
-    private static final long serialVersionUID = 1360099864772L;
+    private static final long serialVersionUID = 1360258014287L;
     
     private bg.unisofia.fmi.dwsc.qosmodel.api.SaveQoSDataException faultMessage;
 

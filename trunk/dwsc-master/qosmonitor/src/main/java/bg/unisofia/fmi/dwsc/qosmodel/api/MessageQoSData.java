@@ -19,11 +19,11 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
  *         &lt;element name="processed" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
- *         &lt;element name="size" type="{http://www.w3.org/2001/XMLSchema}int"/>
- *         &lt;element name="successful" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
+ *         &lt;element name="size" type="{http://www.w3.org/2001/XMLSchema}long"/>
  *         &lt;element name="flow" type="{http://www.w3.org/2001/XMLSchema}int"/>
  *         &lt;element name="serviceName" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="operationName" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="operationCorrelationId" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -36,20 +36,20 @@ import javax.xml.datatype.XMLGregorianCalendar;
 @XmlType(name = "MessageQoSData", propOrder = {
     "processed",
     "size",
-    "successful",
     "flow",
     "serviceName",
-    "operationName"
+    "operationName",
+    "operationCorrelationId"
 })
 public class MessageQoSData {
 
     @XmlSchemaType(name = "dateTime")
     protected XMLGregorianCalendar processed;
-    protected int size;
-    protected boolean successful;
+    protected long size;
     protected int flow;
     protected String serviceName;
     protected String operationName;
+    protected String operationCorrelationId;
 
     /**
      * Gets the value of the processed property.
@@ -79,7 +79,7 @@ public class MessageQoSData {
      * Gets the value of the size property.
      * 
      */
-    public int getSize() {
+    public long getSize() {
         return size;
     }
 
@@ -87,24 +87,8 @@ public class MessageQoSData {
      * Sets the value of the size property.
      * 
      */
-    public void setSize(int value) {
+    public void setSize(long value) {
         this.size = value;
-    }
-
-    /**
-     * Gets the value of the successful property.
-     * 
-     */
-    public boolean isSuccessful() {
-        return successful;
-    }
-
-    /**
-     * Sets the value of the successful property.
-     * 
-     */
-    public void setSuccessful(boolean value) {
-        this.successful = value;
     }
 
     /**
@@ -169,6 +153,30 @@ public class MessageQoSData {
      */
     public void setOperationName(String value) {
         this.operationName = value;
+    }
+
+    /**
+     * Gets the value of the operationCorrelationId property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getOperationCorrelationId() {
+        return operationCorrelationId;
+    }
+
+    /**
+     * Sets the value of the operationCorrelationId property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setOperationCorrelationId(String value) {
+        this.operationCorrelationId = value;
     }
 
 }

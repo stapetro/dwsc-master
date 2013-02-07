@@ -34,7 +34,7 @@ public class ServiceDAO extends GenericAppManagedDAOImpl<Service> {
 			tx.begin();
 			for (Service service : services) {
 				Service newService = this.save(service, false);
-				if(newService != null) {
+				if (newService != null) {
 					newServices.add(newService);
 				}
 			}
@@ -69,7 +69,25 @@ public class ServiceDAO extends GenericAppManagedDAOImpl<Service> {
 				"Select s from Service s", Service.class);
 		return query.getResultList();
 	}
-	
+
+	public Service getService(String serviceName) {
+		if (serviceName == null || serviceName.equals("")) {
+			return null;
+		}
+		TypedQuery<Service> query = this.entityMgr.createQuery(
+				"Select s from Service s where s.name = :name", Service.class);
+		query.setParameter("name", serviceName);
+		try {
+			return query.getSingleResult();
+		} catch (Exception ex) {
+			this.logger
+					.error(String.format(
+							"Error retrieving service with name '%s'",
+							serviceName), ex);
+		}
+		return null;
+	}
+
 	/**
 	 * 
 	 * @param service
@@ -79,7 +97,7 @@ public class ServiceDAO extends GenericAppManagedDAOImpl<Service> {
 	 * @return Saved service
 	 */
 	private Service save(Service service, boolean createTransaction) {
-		if(service != null) {
+		if (service != null) {
 			Service foundService = find(service.getId());
 			if (foundService != null) {
 				foundService = update(service, createTransaction);

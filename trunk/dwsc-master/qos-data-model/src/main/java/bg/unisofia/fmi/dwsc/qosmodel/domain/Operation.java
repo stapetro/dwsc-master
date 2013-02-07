@@ -4,15 +4,17 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
-import bg.unisofia.fmi.dwsc.qosmodel.domain.Service;
-import javax.persistence.ManyToOne;
+
 
 @Entity
 public class Operation {
@@ -22,12 +24,14 @@ public class Operation {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "OPERATION_OPERATIONID_GENERATOR")
 	private long id;
 	@Basic
+	@Column(nullable = false)
 	private String name;
-	@OneToMany(mappedBy = "operation")
-	private Collection<OperationInvocation> operationInvocation;
 	@ManyToOne
 	@JoinColumn(nullable = false)
 	private Service service;
+	@OneToMany(cascade=CascadeType.PERSIST, mappedBy="operation")
+	@JoinColumn(name = "operation_id", referencedColumnName = "id", nullable=false)
+	private Collection<OperationInvocation> operationInvocation;
 	public long getId() {
 		return id;
 	}
@@ -44,30 +48,29 @@ public class Operation {
 		return name;
 	}
 
-	public Collection<OperationInvocation> getOperationInvocation() {
-		return operationInvocation;
-	}
-
-	public void setOperationInvocation(Collection<OperationInvocation> param) {
-		this.operationInvocation = param;
-	}
-
-	public void add(OperationInvocation operationInvocation) {
-		if (operationInvocation != null) {
-			if (this.operationInvocation == null) {
-				this.operationInvocation = new ArrayList<>();
-			}
-			operationInvocation.setOperation(this);
-			this.operationInvocation.add(operationInvocation);
-		}
-	}
-
 	public Service getService() {
 	    return service;
 	}
 
 	public void setService(Service param) {
 	    this.service = param;
+	}
+
+	public Collection<OperationInvocation> getOperationInvocation() {
+	    return operationInvocation;
+	}
+
+	public void setOperationInvocation(Collection<OperationInvocation> param) {
+	    this.operationInvocation = param;
+	}
+	
+	public void addOperationInvocation(OperationInvocation opInvocation) {
+		if(opInvocation != null) {
+			if(this.operationInvocation == null) {
+				this.operationInvocation = new ArrayList<>();
+			}
+			this.operationInvocation.add(opInvocation);
+		}
 	}
 
 }
