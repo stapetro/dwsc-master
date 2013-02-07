@@ -1,9 +1,11 @@
-package bg.unisofia.fmi.dwsc.yani.model;
+package bg.unisofia.fmi.dwsc.yani.model.qos;
 
 import static org.junit.Assert.*;
 import junit.framework.Assert;
 
 import org.junit.Test;
+
+import bg.unisofia.fmi.dwsc.yani.model.qos.QualityAttributeEnum;
 
 public class QualityAttributeEnumTest {
 

@@ -2,6 +2,9 @@ package bg.unisofia.fmi.dwsc.yani.model;
 
 import java.util.Map;
 
+import bg.unisofia.fmi.dwsc.yani.model.qos.IQualityAttribute;
+import bg.unisofia.fmi.dwsc.yani.model.qos.QualityAttributeEnum;
+
 /**
  * Class representing quality profile for a BPEL Process
  * 
@@ -9,22 +12,22 @@ import java.util.Map;
  * 
  */
 public class QualityProfile {
-	private Map<QualityAttributeEnum, String> qualityRequirements;
+	private Map<QualityAttributeEnum, IQualityAttribute> qualityRequirements;
 	private Map<QualityAttributeEnum, String> qualityCost;
 
 	public QualityProfile(
-			Map<QualityAttributeEnum, String> qualityRequirements,
+			Map<QualityAttributeEnum, IQualityAttribute> qualityRequirements,
 			Map<QualityAttributeEnum, String> qualityCost) {
 		this.qualityRequirements = qualityRequirements;
 		this.qualityCost = qualityCost;
 	}
 
-	public Map<QualityAttributeEnum, String> getQualityRequirements() {
+	public Map<QualityAttributeEnum, IQualityAttribute> getQualityRequirements() {
 		return qualityRequirements;
 	}
 
 	public void setQualityRequirements(
-			Map<QualityAttributeEnum, String> qualityRequirements) {
+			Map<QualityAttributeEnum, IQualityAttribute> qualityRequirements) {
 		this.qualityRequirements = qualityRequirements;
 	}
 

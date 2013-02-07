@@ -10,8 +10,9 @@ import org.junit.Test;
 import org.w3c.dom.Element;
 import org.xml.sax.SAXException;
 
-import bg.unisofia.fmi.dwsc.yani.model.QualityAttributeEnum;
 import bg.unisofia.fmi.dwsc.yani.model.QualityProfile;
+import bg.unisofia.fmi.dwsc.yani.model.qos.IQualityAttribute;
+import bg.unisofia.fmi.dwsc.yani.model.qos.QualityAttributeEnum;
 
 public class QoSUtilTest {
 
@@ -39,7 +40,7 @@ public class QoSUtilTest {
 		QualityProfile resultQualityProfile = qosUtil
 				.getQualityProfile(qosElement);
 
-		Map<QualityAttributeEnum, String> qualityRequirementsMap = resultQualityProfile
+		Map<QualityAttributeEnum, IQualityAttribute> qualityRequirementsMap = resultQualityProfile
 				.getQualityRequirements();
 		int numberOfQualityAttributes = qualityRequirementsMap.size();
 
@@ -54,15 +55,15 @@ public class QoSUtilTest {
 		QualityProfile resultQualityProfile = qosUtil
 				.getQualityProfile(qosElement);
 
-		Map<QualityAttributeEnum, String> qualityRequirementsMap = resultQualityProfile
+		Map<QualityAttributeEnum, IQualityAttribute> qualityRequirementsMap = resultQualityProfile
 				.getQualityRequirements();
 
 		String executionTimeValue = qualityRequirementsMap
-				.get(QualityAttributeEnum.EXECUTION_TIME);
+				.get(QualityAttributeEnum.EXECUTION_TIME).getQos();
 		String availabilityValue = qualityRequirementsMap
-				.get(QualityAttributeEnum.AVAILABILITY);
+				.get(QualityAttributeEnum.AVAILABILITY).getQos();
 		String throughputValue = qualityRequirementsMap
-				.get(QualityAttributeEnum.THROUGHPUT);
+				.get(QualityAttributeEnum.THROUGHPUT).getQos();
 
 		Assert.assertEquals("0.432", executionTimeValue);
 		Assert.assertEquals("0.7", availabilityValue);
