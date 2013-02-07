@@ -7,18 +7,18 @@ import junit.framework.Assert;
 
 import org.junit.Test;
 
-import bg.unisofia.fmi.dwsc.yani.evaluator.ServiceCompositionAnalyser;
+import bg.unisofia.fmi.dwsc.yani.evaluator.ServiceCompositionUtils;
 import bg.unisofia.fmi.dwsc.yani.model.PartnerLinkDefinition;
 import bg.unisofia.fmi.dwsc.yani.model.WebService;
 
-public class ServiceCompositionAnalyserTest {
+public class ServiceCompositionUtilsTest {
 
 	// private static final String EXTECTED_ENDPOINTS_IN_GENERATED_MARIX = new
 	// String{{"additionEndpoint1", "additionEndpoint1"}}
 
 	@Test
 	public void testGetMatrixSize() {
-		ServiceCompositionAnalyser analyser = new ServiceCompositionAnalyser();
+		ServiceCompositionUtils analyser = new ServiceCompositionUtils();
 		List<PartnerLinkDefinition> plDefinitionList = getPlDefinitionList();
 
 		int[] matrixSize = analyser.getMatrixSize(plDefinitionList);
@@ -41,7 +41,7 @@ public class ServiceCompositionAnalyserTest {
 		int repeatInterval = 6;
 
 		WebService[][] wsMatrix = new WebService[12][3];
-		ServiceCompositionAnalyser analyser = new ServiceCompositionAnalyser();
+		ServiceCompositionUtils analyser = new ServiceCompositionUtils();
 		analyser.updateMatrix(wsList, wsMatrix, columnNumber, repeatInterval);
 
 		for (int i = 0; i < 6; i++) {
@@ -58,7 +58,7 @@ public class ServiceCompositionAnalyserTest {
 	@Test
 	public void testGetServiceCompositionMatrixSize() {
 		List<PartnerLinkDefinition> plDefinitionList = getPlDefinitionList();
-		ServiceCompositionAnalyser analyser = new ServiceCompositionAnalyser();
+		ServiceCompositionUtils analyser = new ServiceCompositionUtils();
 		WebService[][] webServiceCompositionMatrix = analyser
 				.getServiceCompositionMatrix(plDefinitionList);
 
@@ -78,7 +78,7 @@ public class ServiceCompositionAnalyserTest {
 	@Test
 	public void testGetServiceCompositionMatrixContentByEndpoints() {
 		List<PartnerLinkDefinition> plDefinitionList = getPlDefinitionList();
-		ServiceCompositionAnalyser analyser = new ServiceCompositionAnalyser();
+		ServiceCompositionUtils analyser = new ServiceCompositionUtils();
 		WebService[][] webServiceCompositionMatrix = analyser
 				.getServiceCompositionMatrix(plDefinitionList);
 

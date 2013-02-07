@@ -12,6 +12,7 @@ import org.w3c.dom.Element;
 
 import bg.unisofia.fmi.dwsc.bpel.extension.util.ProcessUtils;
 import bg.unisofia.fmi.dwsc.bpel.extension.util.QoSUtils;
+import bg.unisofia.fmi.dwsc.yani.evaluator.ModelEvaluator;
 import bg.unisofia.fmi.dwsc.yani.model.PartnerLinkDefinition;
 import bg.unisofia.fmi.dwsc.yani.model.QualityProfile;
 
@@ -43,8 +44,20 @@ public class YaniWsComposerOperation implements ExtensionOperation {
 		ProcessUtils processUtils = new ProcessUtils();
 		List<PartnerLinkDefinition> plDefinitionList = processUtils
 				.getPartnerLinkDefinitions(context, element);
+
+		for (PartnerLinkDefinition pld : plDefinitionList) {
+			System.out.println(">>>>>>> name:  " + pld.getName());
+			System.out.println(">>>>>>> category: " + pld.getCategory());
+			System.out.println(">>>>>>> EPR: " + pld.getEndpointReference());
+		}
+
+		ModelEvaluator modelEvaluator = new ModelEvaluator();
+		modelEvaluator.updateModelForComposition(plDefinitionList,
+				qualityProfile);
+		processUtils.updateProcessPartnerLinks(context, plDefinitionList);
 		
-		for(PartnerLinkDefinition pld : plDefinitionList){
+		System.out.println("------------------ NEW -------------------");
+		for (PartnerLinkDefinition pld : plDefinitionList) {
 			System.out.println(">>>>>>> name:  " + pld.getName());
 			System.out.println(">>>>>>> category: " + pld.getCategory());
 			System.out.println(">>>>>>> EPR: " + pld.getEndpointReference());

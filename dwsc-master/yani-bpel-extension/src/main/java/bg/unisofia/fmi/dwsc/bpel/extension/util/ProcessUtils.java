@@ -93,9 +93,44 @@ public class ProcessUtils {
 
 			Element plEPRElement = bpelContext
 					.fetchPartnerRoleEndpointReferenceData(plInstance);
-			String endpointAddress = eprManipulator.getEndPointAddressFromEPR(plEPRElement);
+			String endpointAddress = eprManipulator
+					.getEndPointAddressFromEPR(plEPRElement);
 
 			plDefinition.setEndpointReference(endpointAddress);
+		}
+	}
+
+	/**
+	 * Update the BPEL process partner links based on the computed best service
+	 * composition
+	 * 
+	 * @param plDefinitionList
+	 * @throws FaultException
+	 */
+	public void updateProcessPartnerLinks(ExtensionContext context,
+			List<PartnerLinkDefinition> plDefinitionsList)
+			throws FaultException {
+		if (plDefinitionsList == null || context == null) {
+			return;
+		}
+
+		BpelRuntimeContext bpelContext = context.getInternalInstance();
+		EPRManipulator eprManipulator = new EPRManipulator();
+		for (int i = 0; i < plDefinitionsList.size(); i++) {
+			PartnerLinkDefinition plDefinition = plDefinitionsList.get(i);
+			String plDefinitionName = plDefinition.getName();
+			PartnerLinkInstance plInstance = context
+					.getPartnerLinkInstance(plDefinitionName);
+
+			Element plEPRElement = bpelContext
+					.fetchPartnerRoleEndpointReferenceData(plInstance);
+			String endpointAddress = eprManipulator
+					.getEndPointAddressFromEPR(plEPRElement);
+
+			String newEndpointAddress = plDefinition.getEndpointReference();
+			Element newEprElement = eprManipulator.updateEPR(plEPRElement,
+					newEndpointAddress);
+			bpelContext.writeEndpointReference(plInstance, newEprElement);
 		}
 	}
 
