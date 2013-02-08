@@ -8,7 +8,7 @@
                 <description>Main jUDDI node</description>  
                 <properties>
                     <property name="serverName"  value="localhost"/>
-                    <property name="serverPort"  value="8081"/>
+                    <property name="serverPort"  value="8080"/>
                     <property name="keyDomain"   value="juddi.apache.org"/>
                     <property name="department"  value="businesses" />
                 </properties>
