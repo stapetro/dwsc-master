@@ -1,0 +1,4 @@
+#Sun Jan 13 15:12:28 EET 2013
+module-start-timeout=300000
+runtimes=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?>\r\n<runtimes>\r\n  <runtime id\="WSO2 Carbon 4.0 based server" location\="D\:/dev/wso2bps-3.0.0/wso2bps-3.0.0" name\="WSO2 Carbon 4.0 based server" runtime-type-id\="org.wso2.developerstudio.eclipse.carbon.runtime40" server_definition_id\="org.wso2.developerstudio.eclipse.carbon.runtime40" timestamp\="0" vm-install-id\="1358081843871" vm-install-type-id\="org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType">\r\n    <map carbon.home\="D\:/dev/wso2bps-3.0.0/wso2bps-3.0.0" key\="generic_server_instance_properties" server.name\="WSO2 Carbon 4.0 based server"/>\r\n  </runtime>\r\n</runtimes>\r\n
+eclipse.preferences.version=1
