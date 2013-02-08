@@ -8,11 +8,8 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "operationInvocation")
+@XmlType(name = "serviceOperationInvocation")
 public class OperationInvocationData {
-
-	@XmlElement(name="operationName")
-	private String operationName;
 
 	@XmlElement(name="successful")
 	private boolean successful;
@@ -31,14 +28,6 @@ public class OperationInvocationData {
 
 	public OperationInvocationData() {
 
-	}
-
-	public String getOperationName() {
-		return operationName;
-	}
-
-	public void setOperationName(String operationName) {
-		this.operationName = operationName;
 	}
 
 	public boolean isSuccessful() {
@@ -97,12 +86,10 @@ public class OperationInvocationData {
 				opInvocationData.requestReceived);
 		boolean responseDatesEqual = areObjectsEqual(this.responseSent,
 				opInvocationData.responseSent);
-		boolean opNamesEqual = areObjectsEqual(this.operationName,
-				opInvocationData.operationName);
 		return ((this.successful == opInvocationData.successful)
 				&& (this.requestMsgSize == opInvocationData.requestMsgSize)
 				&& (this.responseMsgSize == opInvocationData.responseMsgSize)
-				&& requestDatesEqual && responseDatesEqual && opNamesEqual);
+				&& requestDatesEqual && responseDatesEqual);
 	}
 
 	@Override
@@ -113,8 +100,7 @@ public class OperationInvocationData {
 		int responseSentCode = (responseSent != null) ? ((int) responseSent
 				.getTime()) : 2;
 		int datesCode = (requestReceivedCode & responseSentCode);
-		int opNameCode = (operationName != null) ? operationName.hashCode() : 3;
-		return (opNameCode ^ successfulCode ^ datesCode
+		return (successfulCode ^ datesCode
 				^ ((int) requestMsgSize) ^ ((int) responseMsgSize));
 	}
 

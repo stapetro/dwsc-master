@@ -14,10 +14,11 @@ import bg.unisofia.fmi.dwsc.qosmodel.api.exceptions.RegisterServiceException;
 public interface QoSDataProvidingService {
 
 	/**
-	 * Publishes service description to QoS Repository
+	 * Publishes service description to QoS Repository. If service is already
+	 * registered, updates it.
 	 * 
 	 * @param serviceKey
-	 *            serviceKey from UDDI registry to be specified.
+	 *            Service key from UDDI registry to be specified.
 	 * @param serviceName
 	 *            Service name from UDDI registry to be specified.
 	 * @return True - published successfully, false - otherwise.

@@ -19,6 +19,14 @@ import javax.persistence.Table;
 @Table(name = "operation_message")
 public class OperationMessage {
 
+	/* FLOW constants are retrieved from org.apache.axis2.context.MessageContext */
+	public final static int IN_FLOW = 1;
+	public final static int IN_FAULT_FLOW = 3;
+
+	public final static int OUT_FLOW = 2;
+	public final static int OUT_FAULT_FLOW = 4;
+	/* END FLOW Constants declaration */
+
 	@Id
 	@SequenceGenerator(name = "OPERATION_MSGS_ID_GENERATOR", sequenceName = "OP_MSG_ENTITY_SEQ")
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "OPERATION_MSGS_ID_GENERATOR")
@@ -35,7 +43,7 @@ public class OperationMessage {
 	@Basic
 	private int flow;
 	@Basic
-	@Column(nullable=false)
+	@Column(nullable = false)
 	private String correlationId;
 
 	public long getId() {

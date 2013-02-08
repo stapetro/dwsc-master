@@ -8,6 +8,7 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
 
+import bg.unisofia.fmi.dwsc.qosmodel.domain.Operation;
 import bg.unisofia.fmi.dwsc.qosmodel.domain.OperationInvocation;
 
 /**
@@ -66,6 +67,26 @@ public class OperationInvocationDAO extends
 				.createQuery(
 						"Select operationInvocation from OperationInvocation operationInvocation",
 						OperationInvocation.class);
+		return query.getResultList();
+	}
+
+	/**
+	 * 
+	 * @param size
+	 *            Limit for result size to be specified. If size is non-positive
+	 *            is specified, it fetches all entities.
+	 * @return
+	 */
+	public Collection<OperationInvocation> getOperationInvocationsLimited(
+			long operationId, int size) {
+		TypedQuery<OperationInvocation> query = this.entityMgr
+				.createQuery(
+						"SELECT opInv FROM OperationInvocation opInv WHERE opInv.operation.id = :opId",
+						OperationInvocation.class);
+		query.setParameter("opId", operationId);
+		if (size > 0) {
+			query.setMaxResults(size);
+		}
 		return query.getResultList();
 	}
 
