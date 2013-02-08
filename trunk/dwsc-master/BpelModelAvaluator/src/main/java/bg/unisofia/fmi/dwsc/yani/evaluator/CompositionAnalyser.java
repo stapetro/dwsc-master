@@ -24,9 +24,13 @@ public class CompositionAnalyser {
 				.getServiceAggregatedQuality(serviceCombinations);
 		List<Map<QualityAttributeEnum, IQualityAttribute>> aggregatedWorstQos = serviceUtils
 				.getServiceAggregatedQualityForWorstValues(serviceCombinations);
+		List<Map<QualityAttributeEnum, IQualityAttribute>> aggregatedBestQos = serviceUtils
+				.getServiceAggregatedQualityForBestValues(serviceCombinations);
+		
+		
 
 		int bestSelectionIndex = serviceUtils.getIndexOfBestComposition(
-				aggregatedQos, aggregatedWorstQos, qualityProfile);
+				aggregatedQos, aggregatedWorstQos, aggregatedBestQos, qualityProfile);
 
 		List<WebService> bestServiceComposition = new LinkedList<WebService>();
 		for (int i = 0; i < serviceCombinations[bestSelectionIndex].length; i++) {

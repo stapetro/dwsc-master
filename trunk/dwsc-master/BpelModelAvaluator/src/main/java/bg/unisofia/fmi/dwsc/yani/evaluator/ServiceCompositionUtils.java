@@ -102,10 +102,11 @@ public class ServiceCompositionUtils {
 				WebService webService = webServiceMatrix[row][column];
 				Map<QualityAttributeEnum, IQualityAttribute> serviceQos = webService
 						.getQos();
+
 				aggregatedQualityMap = qosCalc.aggregateQoS(
 						aggregatedQualityMap, serviceQos);
-
 			}
+
 			qualityList.add(aggregatedQualityMap);
 		}
 		return qualityList;
@@ -140,8 +141,58 @@ public class ServiceCompositionUtils {
 		return qualityList;
 	}
 
-	public int getIndexOfBestComposition(List<Map<QualityAttributeEnum, IQualityAttribute>> aggregatedQos,List<Map<QualityAttributeEnum, IQualityAttribute>> worstQos, QualityProfile profile){
-		
-		//TODO implement
-		return 0;
-	}}
+	public List<Map<QualityAttributeEnum, IQualityAttribute>> getServiceAggregatedQualityForBestValues(
+			WebService[][] webServiceMatrix) {
+		List<Map<QualityAttributeEnum, IQualityAttribute>> qualityList = new LinkedList<Map<QualityAttributeEnum, IQualityAttribute>>();
+
+		QoSCalculator qosCalc = new QoSCalculator();
+
+		for (int row = 0; row < webServiceMatrix.length; row++) {
+
+			Map<QualityAttributeEnum, IQualityAttribute> aggregatedQualityMap = new HashMap<QualityAttributeEnum, IQualityAttribute>();
+			aggregatedQualityMap.put(QualityAttributeEnum.AVAILABILITY,
+					new AvailabilityQualityAttribute("1"));
+			aggregatedQualityMap.put(QualityAttributeEnum.EXECUTION_TIME,
+					new ExecutionTimeQualityAttribute("0"));
+			aggregatedQualityMap.put(QualityAttributeEnum.THROUGHPUT,
+					new ThroughputQualityAttribute("" + Integer.MAX_VALUE));
+
+			for (int column = 0; column < webServiceMatrix[row].length; column++) {
+				WebService webService = webServiceMatrix[row][column];
+				Map<QualityAttributeEnum, IQualityAttribute> serviceQos = webService
+						.getBestQos();
+				aggregatedQualityMap = qosCalc.aggregateQoS(
+						aggregatedQualityMap, serviceQos);
+
+			}
+			qualityList.add(aggregatedQualityMap);
+		}
+		return qualityList;
+	}
+
+	public int getIndexOfBestComposition(
+			List<Map<QualityAttributeEnum, IQualityAttribute>> aggregatedQos,
+			List<Map<QualityAttributeEnum, IQualityAttribute>> worstQos,
+			List<Map<QualityAttributeEnum, IQualityAttribute>> bestQos,
+			QualityProfile profile) {
+		QoSCalculator calc = new QoSCalculator();
+
+		int bestCompositionIndex = 0;
+		double bestRatingValue = 0;
+		for (int i = 0; i < aggregatedQos.size(); i++) {
+			Map<QualityAttributeEnum, Double> normalizedQuality = calc
+					.getNormalizedQuality(aggregatedQos.get(i),
+							worstQos.get(i), bestQos.get(i), profile);
+			double qualityRating = calc.getQualityRating(normalizedQuality,
+					profile);
+
+			if (qualityRating > bestRatingValue) {
+				bestRatingValue = qualityRating;
+				bestCompositionIndex = i;
+				System.out.println("found!!!");
+			}
+		}
+
+		return bestCompositionIndex;
+	}
+}

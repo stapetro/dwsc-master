@@ -2,6 +2,8 @@ package bg.unisofia.fmi.dwsc.yani.model.qos;
 
 public class AvailabilityQualityAttribute extends QualityAttributeBase {
 
+	private static final boolean IS_UPPER_BOUND = true;
+	
 	public AvailabilityQualityAttribute(String qos) {
 		super(QualityAttributeEnum.AVAILABILITY, qos);
 	}
@@ -17,5 +19,8 @@ public class AvailabilityQualityAttribute extends QualityAttributeBase {
 		super.qos = aggregatedQosString;
 		return aggregatedQosString;
 	}
-
+	
+	public boolean isUpperBound(){
+		return IS_UPPER_BOUND;
+	}
 }

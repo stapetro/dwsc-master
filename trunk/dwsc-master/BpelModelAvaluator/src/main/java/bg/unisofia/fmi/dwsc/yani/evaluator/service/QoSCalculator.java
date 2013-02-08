@@ -45,12 +45,80 @@ public class QoSCalculator {
 		return totalQos;
 	}
 
-	public double getServiceQosRating(
-			Map<QualityAttributeEnum, IQualityAttribute> qos, Map<QualityAttributeEnum, IQualityAttribute> worstQoS, QualityProfile profile) {
-		
-		//TODO implement
-		double normalizedQoS = 0;
-		
-		return 0.0;
+	/**
+	 * get a representation of the normalized quality for the provided QoS
+	 * characterisstics
+	 * 
+	 * @param qos
+	 * @param worstQoS
+	 * @param profile
+	 * @return
+	 */
+	public Map<QualityAttributeEnum, Double> getNormalizedQuality(
+			Map<QualityAttributeEnum, IQualityAttribute> qos,
+			Map<QualityAttributeEnum, IQualityAttribute> worstQoS,
+			Map<QualityAttributeEnum, IQualityAttribute> bestQoS,
+			QualityProfile profile) {
+		Map<QualityAttributeEnum, Double> normalizedQualityMap = new HashMap<QualityAttributeEnum, Double>();
+
+		Set<QualityAttributeEnum> qosTypeSet = qos.keySet();
+		for (QualityAttributeEnum type : qosTypeSet) {
+			String avgQos = qos.get(type).getQos();
+			String worstQos = worstQoS.get(type).getQos();
+			String bestQos = bestQoS.get(type).getQos();
+			String requiredQos = profile.getQualityRequirements().get(type)
+					.getQos();
+
+			double avgQosDouble = Double.parseDouble(avgQos);
+			double worstQosDouble = Double.parseDouble(worstQos);
+			double bestQosDouble = Double.parseDouble(bestQos);
+			double requiredQosDouble = Double.parseDouble(requiredQos);
+
+			boolean isUpperBound = qos.get(type).isUpperBound();
+			double normalizedQuality = 0;
+			if (isUpperBound == true) {
+				normalizedQuality = (avgQosDouble - requiredQosDouble)
+						/ Math.abs((bestQosDouble - worstQosDouble));
+			} else {
+				normalizedQuality = (requiredQosDouble - avgQosDouble)
+						/ Math.abs((bestQosDouble - worstQosDouble));
+			}
+
+			// TODO delete printing
+			// String print = String
+			// .format("avg %f ; best: %f ; worst: %f ; required : %f ==> norm %f",
+			// avgQosDouble, bestQosDouble, worstQosDouble,
+			// requiredQosDouble, normalizedQuality);
+			// System.out.println(":::::::> " + print);
+
+			normalizedQualityMap.put(type, normalizedQuality);
+		}
+
+		return normalizedQualityMap;
+	}
+
+	public double getQualityRating(
+			Map<QualityAttributeEnum, Double> normalizedQuality,
+			QualityProfile profile) {
+		double rating = 0;
+
+		Map<QualityAttributeEnum, String> costsMap = profile.getQualityCost();
+
+		Set<QualityAttributeEnum> qosTypeSet = normalizedQuality.keySet();
+		for (QualityAttributeEnum type : qosTypeSet) {
+
+			double normValue = normalizedQuality.get(type);
+			double cost = Double.parseDouble(costsMap.get(type));
+			if (cost > 0) {
+				rating += normValue * cost;
+			} else {
+				rating += normValue;
+			}
+		}
+
+		int qualityElementsSize = normalizedQuality.size();
+		rating = rating / qualityElementsSize;
+
+		return rating;
 	}
 }
