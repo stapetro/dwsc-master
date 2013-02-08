@@ -13,12 +13,14 @@ import org.apache.juddi.v3.client.config.UDDIClientContainer;
 import org.apache.juddi.v3.client.transport.Transport;
 import org.apache.juddi.v3_service.JUDDIApiPortType;
 import org.uddi.api_v3.AuthToken;
+import org.uddi.api_v3.BindingTemplate;
 import org.uddi.api_v3.BusinessDetail;
 import org.uddi.api_v3.BusinessEntity;
 import org.uddi.api_v3.BusinessInfo;
 import org.uddi.api_v3.BusinessInfos;
 import org.uddi.api_v3.BusinessList;
 import org.uddi.api_v3.BusinessService;
+import org.uddi.api_v3.CategoryBag;
 import org.uddi.api_v3.Description;
 import org.uddi.api_v3.FindBusiness;
 import org.uddi.api_v3.FindQualifiers;
@@ -59,12 +61,12 @@ public class JuddiSample {
 	public static void main(String[] args) {
 		JuddiSample sample = new JuddiSample();
 		// sample.startClerkManager("META-INF/uddi.xml");
+		AuthToken rootAuthToken = sample.getAuthToken("root", "");
 		String myPublisherName = "my-publisher";
-		// AuthToken myPubAuthToken = sample.getAuthToken(myPublisherName, "");
+		AuthToken myPubAuthToken = sample.getAuthToken(myPublisherName, "");
 		try {
-			// sample.savePublisher(myPublisherName, "My publisher",
-			// rootAuthToken);
-			// sample.publishSample(myPubAuthToken);
+			sample.savePublisher(myPublisherName, "My publisher", rootAuthToken);
+			sample.publishSample(myPubAuthToken);
 			sample.findAllBusinesses();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -155,8 +157,11 @@ public class JuddiSample {
 		ServiceDetail sd = publish.saveService(ss);
 		String myServKey = sd.getBusinessService().get(0).getServiceKey();
 		System.out.println("myService key:  " + myServKey);
+		
+		BindingTemplate bindingTemplate = new BindingTemplate();
+		bindingTemplate.setServiceKey(myServKey);
 	}
-	
+
 	public void findAllBusinesses() {
 		FindBusiness body = new FindBusiness();
 		Name findName = new Name();
@@ -200,7 +205,7 @@ public class JuddiSample {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	}	
+	}
 
 	public void startClerkManager(String configFilePath) {
 		try {
