@@ -14,7 +14,7 @@
 		<entity-name>bg.unisofia.fmi.dwsc.qosmodel.domain.Operation</entity-name>
 		<entity-width>137</entity-width>
 		<entity-height>166</entity-height>
-		<entity-X-Coordinate>257</entity-X-Coordinate>
+		<entity-X-Coordinate>276</entity-X-Coordinate>
 		<entity-Y-Coordinate>31</entity-Y-Coordinate>
 		<primary-collapsed>false</primary-collapsed>
 		<relation-collapsed>false</relation-collapsed>
@@ -25,8 +25,19 @@
 		<entity-name>bg.unisofia.fmi.dwsc.qosmodel.domain.OperationMessage</entity-name>
 		<entity-width>151</entity-width>
 		<entity-height>206</entity-height>
-		<entity-X-Coordinate>232</entity-X-Coordinate>
-		<entity-Y-Coordinate>258</entity-Y-Coordinate>
+		<entity-X-Coordinate>291</entity-X-Coordinate>
+		<entity-Y-Coordinate>280</entity-Y-Coordinate>
+		<primary-collapsed>false</primary-collapsed>
+		<relation-collapsed>false</relation-collapsed>
+		<basic-collapsed>false</basic-collapsed>
+	</entity>
+
+	<entity>
+		<entity-name>bg.unisofia.fmi.dwsc.qosmodel.domain.OperationInvocation</entity-name>
+		<entity-width>120</entity-width>
+		<entity-height>166</entity-height>
+		<entity-X-Coordinate>537</entity-X-Coordinate>
+		<entity-Y-Coordinate>129</entity-Y-Coordinate>
 		<primary-collapsed>false</primary-collapsed>
 		<relation-collapsed>false</relation-collapsed>
 		<basic-collapsed>false</basic-collapsed>
@@ -38,17 +49,6 @@
 		<entity-height>146</entity-height>
 		<entity-X-Coordinate>10</entity-X-Coordinate>
 		<entity-Y-Coordinate>258</entity-Y-Coordinate>
-		<primary-collapsed>false</primary-collapsed>
-		<relation-collapsed>false</relation-collapsed>
-		<basic-collapsed>false</basic-collapsed>
-	</entity>
-
-	<entity>
-		<entity-name>bg.unisofia.fmi.dwsc.qosmodel.domain.OperationInvocation</entity-name>
-		<entity-width>120</entity-width>
-		<entity-height>166</entity-height>
-		<entity-X-Coordinate>460</entity-X-Coordinate>
-		<entity-Y-Coordinate>232</entity-Y-Coordinate>
 		<primary-collapsed>false</primary-collapsed>
 		<relation-collapsed>false</relation-collapsed>
 		<basic-collapsed>false</basic-collapsed>

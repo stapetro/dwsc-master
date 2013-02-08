@@ -7,6 +7,7 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -14,6 +15,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
+
+import net.sf.json.JSONObject;
 
 
 @Entity
@@ -29,7 +32,7 @@ public class Operation {
 	@ManyToOne
 	@JoinColumn(nullable = false)
 	private Service service;
-	@OneToMany(cascade=CascadeType.PERSIST, mappedBy="operation")
+	@OneToMany(cascade=CascadeType.PERSIST, mappedBy="operation", fetch=FetchType.LAZY)
 	@JoinColumn(name = "operation_id", referencedColumnName = "id", nullable=false)
 	private Collection<OperationInvocation> operationInvocation;
 	public long getId() {
@@ -71,6 +74,16 @@ public class Operation {
 			}
 			this.operationInvocation.add(opInvocation);
 		}
+	}
+	
+	@Override
+	public String toString() {
+		JSONObject json = new JSONObject();
+		json.put("operationId", getId());
+		json.put("name", getName());
+		String output = json.toString();
+		json = null;
+		return output;
 	}
 
 }

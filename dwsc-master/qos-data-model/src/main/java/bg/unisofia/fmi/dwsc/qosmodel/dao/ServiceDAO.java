@@ -5,6 +5,7 @@ import java.util.Collection;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
 
 import bg.unisofia.fmi.dwsc.qosmodel.domain.Service;
@@ -79,13 +80,43 @@ public class ServiceDAO extends GenericAppManagedDAOImpl<Service> {
 		query.setParameter("name", serviceName);
 		try {
 			return query.getSingleResult();
-		} catch (Exception ex) {
+		} catch(NoResultException noResEx) {
+			this.logger
+			.error(String.format(
+					"Service with name '%s' NOT found",
+					serviceName), noResEx);
+		}
+		catch (Exception ex) {
 			this.logger
 					.error(String.format(
 							"Error retrieving service with name '%s'",
 							serviceName), ex);
 		}
 		return null;
+	}
+	
+	public Service getServiceByKey(String serviceKey) {
+		if (serviceKey == null || serviceKey.equals("")) {
+			return null;
+		}
+		TypedQuery<Service> query = this.entityMgr.createQuery(
+				"Select s from Service s where s.serviceKey = :serviceKey", Service.class);
+		query.setParameter("serviceKey", serviceKey);
+		try {
+			return query.getSingleResult();
+		} catch(NoResultException noResEx) {
+			this.logger
+			.error(String.format(
+					"Service with key '%s' NOT found",
+					serviceKey), noResEx);
+		}
+		catch (Exception ex) {
+			this.logger
+					.error(String.format(
+							"Error retrieving service with key '%s'",
+							serviceKey), ex);
+		}
+		return null;		
 	}
 
 	/**
