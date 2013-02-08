@@ -7,5 +7,9 @@ public interface IQualityAttribute {
 	public QualityAttributeEnum getType();
 
 	public String getQos();
+	
+	public double getQosAsDouble();
+	
+	public boolean isUpperBound();
 
 }

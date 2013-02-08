@@ -2,6 +2,8 @@ package bg.unisofia.fmi.dwsc.yani.model.qos;
 
 public class ExecutionTimeQualityAttribute extends QualityAttributeBase {
 
+	private static final boolean IS_UPPER_BOUND = false;
+
 	public ExecutionTimeQualityAttribute(String qos) {
 		super(QualityAttributeEnum.EXECUTION_TIME, qos);
 	}
@@ -18,4 +20,7 @@ public class ExecutionTimeQualityAttribute extends QualityAttributeBase {
 		return aggregatedQosString;
 	}
 
+	public boolean isUpperBound() {
+		return IS_UPPER_BOUND;
+	}
 }

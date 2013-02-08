@@ -1,4 +1,4 @@
-package bg.unisofia.fmi.dwsc.yani.evaluator.service;
+package bg.unisofia.fmi.dwsc.yani.evaluator.service.util;
 
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -6,34 +6,44 @@ import java.util.List;
 import java.util.Map;
 
 import bg.unisofia.fmi.dwsc.yani.model.PartnerLinkDefinition;
+import bg.unisofia.fmi.dwsc.yani.model.QualityProfile;
 import bg.unisofia.fmi.dwsc.yani.model.WebService;
+import bg.unisofia.fmi.dwsc.yani.model.qos.AvailabilityQualityAttribute;
+import bg.unisofia.fmi.dwsc.yani.model.qos.ExecutionTimeQualityAttribute;
 import bg.unisofia.fmi.dwsc.yani.model.qos.IQualityAttribute;
 import bg.unisofia.fmi.dwsc.yani.model.qos.QualityAttributeEnum;
+import bg.unisofia.fmi.dwsc.yani.model.qos.ThroughputQualityAttribute;
 import bg.unisofia.fmi.dwsc.yani.model.qos.utils.QualityAttributeFactory;
 
-public class ServiceSelector {
+/**
+ * This is a class providing mock functionality for performing unit tests over
+ * the bpel-model-evaluator
+ * 
+ * IMPORTANT!!! Do not modify the content of this class!!! Most tests are based
+ * on it!!!
+ * 
+ * @author krasimir.baylov
+ * 
+ */
+public final class MockGenerator {
 
-	public void updateServicesForPlDefinitions(
-			List<PartnerLinkDefinition> plDefinitionList) {
-		if (plDefinitionList == null) {
-			return;
-		}
+	public List<PartnerLinkDefinition> getPlDefinitionList() {
+		List<PartnerLinkDefinition> plDefinitionList = new LinkedList<PartnerLinkDefinition>();
+		PartnerLinkDefinition additionPl = getAdditionPartnerLink();
+		PartnerLinkDefinition powPl = getPowPartnerLink();
 
-		for (int i = 0; i < plDefinitionList.size(); i++) {
-			PartnerLinkDefinition plDefinition = plDefinitionList.get(i);
-			String category = plDefinition.getCategory();
+		plDefinitionList.add(additionPl);
+		plDefinitionList.add(powPl);
 
-			List<WebService> wsList = null;
-			if (category.equals("addition")) {
-				wsList = getAdditionServices();
-			} else if (category.equals("pow")) {
-				wsList = getPowServices();
-			}
+		return plDefinitionList;
+	}
 
-			plDefinition.setAssiciatedServiceList(wsList);
-		}
-
-		// TODO use mocked data for now
+	public PartnerLinkDefinition getAdditionPartnerLink() {
+		List<WebService> additionWebServices = getAdditionServices();
+		PartnerLinkDefinition additionPl = new PartnerLinkDefinition(
+				"PL_Addition", "addition", "addition_default_endpoint",
+				additionWebServices);
+		return additionPl;
 	}
 
 	private List<WebService> getAdditionServices() {
@@ -79,9 +89,8 @@ public class ServiceSelector {
 				QualityAttributeFactory.getQualityAttribute(
 						QualityAttributeEnum.THROUGHPUT, "200"));
 
-		WebService wsStandard = new WebService(
-				"http://localhost:8080/TestServices/services/AdditionServiceStandard.AdditionServiceStandardHttpSoap12Endpoint/",
-				category, qosStandard, qosMinStandard, qosMaxStandard);
+		WebService wsStandard = new WebService("addition_endpoint_1", category,
+				qosStandard, qosMinStandard, qosMaxStandard);
 
 		Map<QualityAttributeEnum, IQualityAttribute> qosSlow = new HashMap<QualityAttributeEnum, IQualityAttribute>();
 		qosSlow.put(QualityAttributeEnum.EXECUTION_TIME,
@@ -113,19 +122,25 @@ public class ServiceSelector {
 
 		qosMaxSlow.put(QualityAttributeEnum.AVAILABILITY,
 				QualityAttributeFactory.getQualityAttribute(
-						QualityAttributeEnum.AVAILABILITY, "1.0"));
+						QualityAttributeEnum.AVAILABILITY, "1"));
 
 		qosMaxSlow.put(QualityAttributeEnum.THROUGHPUT, QualityAttributeFactory
 				.getQualityAttribute(QualityAttributeEnum.THROUGHPUT, "40"));
 
-		WebService wsSlow = new WebService(
-				"http://localhost:8080/TestServices/services/AdditionServiceSlow.AdditionServiceSlowdHttpSoap12Endpoint/",
-				category, qosSlow, qosMinSlow, qosMaxSlow);
+		WebService wsSlow = new WebService("addition_endpoint_2", category,
+				qosSlow, qosMinSlow, qosMaxSlow);
 
 		wsList.add(wsStandard);
 		wsList.add(wsSlow);
 
 		return wsList;
+	}
+
+	public PartnerLinkDefinition getPowPartnerLink() {
+		List<WebService> additionWebServices = getPowServices();
+		PartnerLinkDefinition pownPl = new PartnerLinkDefinition("PL_Pow",
+				"pow", "pow_default_endpoint", additionWebServices);
+		return pownPl;
 	}
 
 	private List<WebService> getPowServices() {
@@ -171,9 +186,8 @@ public class ServiceSelector {
 				QualityAttributeFactory.getQualityAttribute(
 						QualityAttributeEnum.THROUGHPUT, "190"));
 
-		WebService wsStandard = new WebService(
-				"http://localhost:8080/TestServices/services/PowServiceStandard.PowServiceStandardHttpSoap12Endpoint/",
-				category, qosStandard, qosMinStandard, qosMaxStandard);
+		WebService wsStandard = new WebService("pow_endpoint_1", category,
+				qosStandard, qosMinStandard, qosMaxStandard);
 
 		Map<QualityAttributeEnum, IQualityAttribute> qosSlow = new HashMap<QualityAttributeEnum, IQualityAttribute>();
 		qosSlow.put(QualityAttributeEnum.EXECUTION_TIME,
@@ -210,13 +224,30 @@ public class ServiceSelector {
 		qosMaxSlow.put(QualityAttributeEnum.THROUGHPUT, QualityAttributeFactory
 				.getQualityAttribute(QualityAttributeEnum.THROUGHPUT, "60"));
 
-		WebService wsSlow = new WebService(
-				"http://localhost:8080/TestServices/services/PowServiceSlow.PowServiceSlowHttpSoap12Endpoint/",
-				category, qosSlow, qosMinSlow, qosMaxSlow);
+		WebService wsSlow = new WebService("pow_endpoint_2", category, qosSlow,
+				qosMinSlow, qosMaxSlow);
 
 		wsList.add(wsStandard);
 		wsList.add(wsSlow);
 
 		return wsList;
+	}
+
+	public QualityProfile getQualityProfile() {
+		Map<QualityAttributeEnum, String> cost = new HashMap<QualityAttributeEnum, String>();
+		cost.put(QualityAttributeEnum.AVAILABILITY, "0.0");
+		cost.put(QualityAttributeEnum.EXECUTION_TIME, "0.0");
+		cost.put(QualityAttributeEnum.THROUGHPUT, "0.0");
+
+		Map<QualityAttributeEnum, IQualityAttribute> qosRequirements = new HashMap<QualityAttributeEnum, IQualityAttribute>();
+		qosRequirements.put(QualityAttributeEnum.AVAILABILITY,
+				new AvailabilityQualityAttribute("0.1"));
+		qosRequirements.put(QualityAttributeEnum.EXECUTION_TIME,
+				new ExecutionTimeQualityAttribute("4.1"));
+		qosRequirements.put(QualityAttributeEnum.THROUGHPUT,
+				new ThroughputQualityAttribute("11"));
+
+		QualityProfile profile = new QualityProfile(qosRequirements, cost);
+		return profile;
 	}
 }

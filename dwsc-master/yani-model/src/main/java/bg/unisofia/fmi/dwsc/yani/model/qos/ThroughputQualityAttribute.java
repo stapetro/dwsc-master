@@ -2,6 +2,8 @@ package bg.unisofia.fmi.dwsc.yani.model.qos;
 
 public class ThroughputQualityAttribute extends QualityAttributeBase {
 
+	private static final boolean IS_UPPER_BOUND = true;
+	
 	public ThroughputQualityAttribute(String qos) {
 		super(QualityAttributeEnum.THROUGHPUT, qos);
 	}
@@ -16,5 +18,9 @@ public class ThroughputQualityAttribute extends QualityAttributeBase {
 
 		super.qos = aggregatedQosString;
 		return aggregatedQosString;
+	}
+	
+	public boolean isUpperBound(){
+		return IS_UPPER_BOUND;
 	}
 }

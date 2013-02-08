@@ -52,5 +52,20 @@ public class QoSCalculatorTest {
 		Assert.assertEquals(1.0, executionTimeQosDouble);
 		Assert.assertEquals(22.0, throughputQosDouble);
 	}
+	
+	@Test
+	public void testGetNormalizedQuality(){
+		Map<QualityAttributeEnum, IQualityAttribute> qos;
+	}
+	
+	@Test
+	public void testGetQualityRating(){
+		Map<QualityAttributeEnum, Double> normalizedQuality = new HashMap<QualityAttributeEnum, Double>();
+		normalizedQuality.put(QualityAttributeEnum.AVAILABILITY, 1.8);
+		normalizedQuality.put(QualityAttributeEnum.EXECUTION_TIME, 1.4);
+		normalizedQuality.put(QualityAttributeEnum.THROUGHPUT, 7.0);
+		
+		Assert.assertTrue(false);
+	}
 
 }
