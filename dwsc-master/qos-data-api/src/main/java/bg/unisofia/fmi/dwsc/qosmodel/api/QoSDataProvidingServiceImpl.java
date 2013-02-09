@@ -7,9 +7,10 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 import javax.jws.WebMethod;
 import javax.jws.WebService;
-import javax.xml.ws.handler.MessageContext;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,15 +22,28 @@ import bg.unisofia.fmi.dwsc.qosmodel.domain.Operation;
 import bg.unisofia.fmi.dwsc.qosmodel.domain.OperationInvocation;
 import bg.unisofia.fmi.dwsc.qosmodel.domain.OperationMessage;
 import bg.unisofia.fmi.dwsc.qosmodel.domain.Service;
+import bg.unisofia.fmi.dwsc.qosmodel.uddi.UddiInquiryApi;
 
 @WebService(endpointInterface = "bg.unisofia.fmi.dwsc.qosmodel.api.QoSDataProvidingService")
 public class QoSDataProvidingServiceImpl implements QoSDataProvidingService {
 
 	private Logger logger;
 	private ServiceDAO serviceDao;
+	private UddiInquiryApi uddiApi;
 
 	public QoSDataProvidingServiceImpl() {
 		this.logger = LoggerFactory.getLogger(this.getClass());
+	}
+
+	@PostConstruct
+	private void init() {
+		this.uddiApi = new UddiInquiryApi();
+	}
+
+	@PreDestroy
+	private void release() {
+		this.uddiApi.release();
+		this.uddiApi = null;
 	}
 
 	private ServiceDAO getServiceDAO() {
@@ -75,16 +89,40 @@ public class QoSDataProvidingServiceImpl implements QoSDataProvidingService {
 	@WebMethod
 	public List<ServiceQoSData> getServiceQoSDataByCategory(
 			String serviceCategory) {
-		// TODO Retrieve all service keys by category from UDDI.
+		if (serviceCategory == null || serviceCategory.equals("")) {
+			return null;
+		}
+		if (this.uddiApi == null) {
+			this.logger.error("UDDI DWSC Inquiry API is not initialized.");
+			return null;
+		}
+		List<String> serviceKeys = this.uddiApi
+				.getServiceKeysByCategory(serviceCategory);
+		if (serviceKeys != null) {
+			List<ServiceQoSData> serviceQoSDataItems = new ArrayList<ServiceQoSData>();
+			for (String serviceKey : serviceKeys) {
+				List<String> serviceEndpointUrls = this.uddiApi
+						.getBindingAcessPointURL(serviceKey, serviceCategory);
+				if (serviceEndpointUrls != null
+						&& serviceEndpointUrls.size() > 0) {
+					String serviceEndpointUrl = serviceEndpointUrls.get(0);
+					if (serviceEndpointUrl != null
+							&& serviceEndpointUrl.equals("") == false) {
+						ServiceQoSData serviceQoSData = createServiceQoSData(
+								serviceKey, serviceCategory, serviceEndpointUrl);
+						if (serviceQoSData != null) {
+							serviceQoSDataItems.add(serviceQoSData);
+						}
+					}
+				}
+			}
+			return serviceQoSDataItems;
+		}
 		return null;
 	}
 
-	@Override
-	@WebMethod
-	public ServiceQoSData getServiceQoSData(String serviceKey) {
-		if (serviceKey == null || serviceKey.equals("")) {
-			return null;
-		}
+	private ServiceQoSData createServiceQoSData(String serviceKey,
+			String categoryName, String serviceEndpointUrl) {
 		ServiceQoSData serviceQosData = null;
 		ServiceDAO serviceDao = this.getServiceDAO();
 		Service foundService = serviceDao.getServiceByKey(serviceKey);
@@ -92,8 +130,8 @@ public class QoSDataProvidingServiceImpl implements QoSDataProvidingService {
 			serviceQosData = new ServiceQoSData();
 			serviceQosData.setKey(serviceKey);
 			serviceQosData.setName(foundService.getName());
-			// TODO set service category
-			// serviceQosData.setCategory();
+			serviceQosData.setCategory(categoryName);
+			serviceQosData.setEndPointUrl(serviceEndpointUrl);
 			Collection<Operation> serviceOps = foundService.getOperation();
 			if (serviceOps != null) {
 				OperationInvocationDAO opInvDao = new OperationInvocationDAO(
@@ -101,8 +139,7 @@ public class QoSDataProvidingServiceImpl implements QoSDataProvidingService {
 				Iterator<Operation> serviceOpsIterator = serviceOps.iterator();
 				while (serviceOpsIterator.hasNext()) {
 					Operation currOp = serviceOpsIterator.next();
-					populateOperationData(serviceQosData, currOp,
-							opInvDao);
+					populateOperationData(serviceQosData, currOp, opInvDao);
 				}
 				opInvDao.destroy();
 				opInvDao = null;
@@ -113,9 +150,36 @@ public class QoSDataProvidingServiceImpl implements QoSDataProvidingService {
 		return serviceQosData;
 	}
 
-	private void populateOperationData(
-			ServiceQoSData serviceQosData, Operation operation,
-			OperationInvocationDAO opInvDao) {
+	@Override
+	@WebMethod
+	public ServiceQoSData getServiceQoSData(String serviceKey,
+			String serviceCategory) {
+		if ((serviceKey == null || serviceKey.equals(""))
+				|| (serviceCategory == null || serviceCategory.equals(""))) {
+			return null;
+		}
+		if (this.uddiApi == null) {
+			this.logger.error("UDDI DWSC Inquiry API is not initialized.");
+			return null;
+		}
+		List<String> serviceEndpointUrls = this.uddiApi
+				.getBindingAcessPointURL(serviceKey, serviceCategory);
+		if (serviceEndpointUrls != null && serviceEndpointUrls.size() > 0) {
+			String serviceEndpointUrl = serviceEndpointUrls.get(0);
+			if (serviceEndpointUrl != null
+					&& serviceEndpointUrl.equals("") == false) {
+				ServiceQoSData serviceQoSData = createServiceQoSData(
+						serviceKey, serviceCategory, serviceEndpointUrl);
+				if (serviceQoSData != null) {
+					return serviceQoSData;
+				}
+			}
+		}
+		return null;
+	}
+
+	private void populateOperationData(ServiceQoSData serviceQosData,
+			Operation operation, OperationInvocationDAO opInvDao) {
 		Collection<OperationInvocation> currOpInvs = opInvDao
 				.getOperationInvocationsLimited(operation.getId(), 50);
 		if (currOpInvs != null) {
@@ -159,8 +223,7 @@ public class QoSDataProvidingServiceImpl implements QoSDataProvidingService {
 		case OperationMessage.IN_FLOW:
 		case OperationMessage.IN_FAULT_FLOW:
 			opInvData.setRequestMsgSize(size);
-			opInvData
-					.setRequestReceived(calendar.getTime());
+			opInvData.setRequestReceived(calendar.getTime());
 			break;
 		case OperationMessage.OUT_FLOW:
 		case OperationMessage.OUT_FAULT_FLOW:
