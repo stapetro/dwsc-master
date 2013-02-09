@@ -1,0 +1,100 @@
+﻿<?xml version="1.0"?>
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" 
+		xmlns:ns1="http://org.apache.axis2/xsd" 
+		xmlns:ns="http://pow.ws.fmi.unisofia.bg" 
+		xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl"
+		xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype"
+		xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" 
+		xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+		xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" 
+		xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" 
+		xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" 
+		targetNamespace="http://pow.ws.fmi.unisofia.bg">
+	<wsdl:documentation>Please Type your service description here</wsdl:documentation>
+	<wsdl:types>
+		<xs:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://pow.ws.fmi.unisofia.bg">
+			<xs:element name="pow">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="a" type="xs:double"/>
+						<xs:element minOccurs="0" name="b" type="xs:double"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="powResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="return" type="xs:double"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:schema>
+	</wsdl:types>
+	<wsdl:message name="powRequest">
+		<wsdl:part name="parameters" element="ns:pow"/>
+	</wsdl:message>
+	<wsdl:message name="powResponse">
+		<wsdl:part name="parameters" element="ns:powResponse"/>
+	</wsdl:message>
+	<wsdl:portType name="PowServiceSlowPortType">
+		<wsdl:operation name="pow">
+			<wsdl:input message="ns:powRequest" wsaw:Action="urn:pow"/>
+			<wsdl:output message="ns:powResponse" wsaw:Action="urn:powResponse"/>
+		</wsdl:operation>
+	</wsdl:portType>
+	
+	<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     PARTNER LINK TYPE DEFINITION
+     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->    
+    <plnk:partnerLinkType name="PowService">
+        <plnk:role name="PowServiceProvider" portType="ns:PowServiceSlowPortType"/>
+    </plnk:partnerLinkType>
+	
+	<wsdl:binding name="PowServiceSlowSoap11Binding" type="ns:PowServiceSlowPortType">
+		<soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+		<wsdl:operation name="pow">
+			<soap:operation soapAction="urn:pow" style="document"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:binding name="PowServiceSlowSoap12Binding" type="ns:PowServiceSlowPortType">
+		<soap12:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+		<wsdl:operation name="pow">
+			<soap12:operation soapAction="urn:pow" style="document"/>
+			<wsdl:input>
+				<soap12:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap12:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:binding name="PowServiceSlowHttpBinding" type="ns:PowServiceSlowPortType">
+		<http:binding verb="POST"/>
+		<wsdl:operation name="pow">
+			<http:operation location="pow"/>
+			<wsdl:input>
+				<mime:content type="application/xml" part="parameters"/>
+			</wsdl:input>
+			<wsdl:output>
+				<mime:content type="application/xml" part="parameters"/>
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="PowServiceSlow">
+		<wsdl:port name="PowServiceSlowHttpSoap11Endpoint" binding="ns:PowServiceSlowSoap11Binding">
+			<soap:address location="http://localhost:8080/TestServices/services/PowServiceSlow.PowServiceSlowHttpSoap11Endpoint/"/>
+		</wsdl:port>
+		<wsdl:port name="PowServiceSlowHttpSoap12Endpoint" binding="ns:PowServiceSlowSoap12Binding">
+			<soap12:address location="http://localhost:8080/TestServices/services/PowServiceSlow.PowServiceSlowHttpSoap12Endpoint/"/>
+		</wsdl:port>
+		<wsdl:port name="PowServiceSlowHttpEndpoint" binding="ns:PowServiceSlowHttpBinding">
+			<http:address location="http://localhost:8080/TestServices/services/PowServiceSlow.PowServiceSlowHttpEndpoint/"/>
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>
