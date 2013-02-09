@@ -2,8 +2,10 @@ package bg.unisofia.fmi.dwsc.qosmodel.jpa;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Collection;
+import java.util.Iterator;
 
 import org.slf4j.LoggerFactory;
 
@@ -35,7 +37,7 @@ public class JpaTest {
 	public static void main(String[] args) {
 		JpaTest jpaTest = new JpaTest();
 
-		 jpaTest.addServices();
+		// jpaTest.addServices();
 		jpaTest.testCustom();
 		// jpaTest.listServices();
 
@@ -60,7 +62,7 @@ public class JpaTest {
 	public void addServices() {
 		String[] serviceNames = { "AdditionServiceStandard", "add",
 				"MultiplicityService", "multiply" };
-		Collection<Service> services = new ArrayList<>();
+		Collection<Service> services = new ArrayList<Service>();
 		for (int index = 0; index < serviceNames.length; index = index + 2) {
 			Service service = new Service();
 			service.setName(serviceNames[index]);
@@ -84,7 +86,7 @@ public class JpaTest {
 	public void addUsers() {
 		String[] userNames = { "stanislavp@uni-sofia.bg",
 				"krasimirb@uni-sofia.bg" };
-		Collection<User> users = new ArrayList<>();
+		Collection<User> users = new ArrayList<User>();
 		for (String userName : userNames) {
 			User user = new User();
 			user.setName(userName);
@@ -155,43 +157,58 @@ public class JpaTest {
 	public void testCustom() {
 
 		String corrId = "alabalaStasalabala";
-		Service service = this.serviceDAO.getService("AdditionServiceStandard");
+		// Service service =
+		// this.serviceDAO.getService("AdditionServiceStandard");
+		Service service = this.serviceDAO.getServiceByKey("dummy0");
 		if (service != null) {
-			Operation operation = this.operationDAO.getOperation(
-					service.getId(), "add");
-			if (operation != null) {
-				this.logger.debug("Operation found");
-				OperationInvocation opInvocation = new OperationInvocation();
-				opInvocation.setCorrelationId(corrId);
-				opInvocation.setOperation(operation);
-				OperationMessage opMessage = new OperationMessage();
-				opMessage.setCorrelationId(corrId);
-				opMessage.setFlow(1);
-				opMessage.setSize(254);
-				Timestamp timeStamp = new Timestamp(Calendar.getInstance()
-						.getTimeInMillis());
-				opMessage.setProcessed(timeStamp);
-				opInvocation.addOperationMessage(opMessage);
-				Collection<OperationInvocation> temp = new ArrayList<>();
-				temp.add(opInvocation);
-				operation.setOperationInvocation(temp);
-				this.operationDAO.save(operation);
+			Collection<Operation> serviceOperations = service.getOperation();
+			this.logger.debug("service ops size: "
+					+ Arrays.toString(serviceOperations.toArray()));
+			Iterator<Operation> iterator = serviceOperations.iterator();
+			while (iterator.hasNext()) {
+				Operation op = iterator.next();
+				Collection<OperationInvocation> result = this.operationInvocationDAO
+						.getOperationInvocationsLimited(op.getId(), 2);
+				this.logger.debug("limited op invs: " + result.size());
+
+				/*this.logger.debug("op invs size: "
+						+ op.getOperationInvocation().size());*/
+				Iterator<OperationInvocation> opInvIterator = result.iterator();
+				while (opInvIterator.hasNext()) {
+					this.logger
+							.debug("op msg size: "
+									+ opInvIterator.next()
+											.getOperationMessage().size());
+				}
+
 			}
+			/*
+			 * Operation operation = this.operationDAO.getOperation(
+			 * service.getId(), "add"); if (operation != null) {
+			 * this.logger.debug("Operation found"); OperationInvocation
+			 * opInvocation = new OperationInvocation();
+			 * opInvocation.setCorrelationId(corrId);
+			 * opInvocation.setOperation(operation); OperationMessage opMessage
+			 * = new OperationMessage(); opMessage.setCorrelationId(corrId);
+			 * opMessage.setFlow(1); opMessage.setSize(254); Timestamp timeStamp
+			 * = new Timestamp(Calendar.getInstance() .getTimeInMillis());
+			 * opMessage.setProcessed(timeStamp);
+			 * opInvocation.addOperationMessage(opMessage);
+			 * Collection<OperationInvocation> temp = new ArrayList<>();
+			 * temp.add(opInvocation); operation.setOperationInvocation(temp);
+			 * this.operationDAO.save(operation); }
+			 */
 		}
 
-		OperationInvocation opInvocation = this.operationInvocationDAO
-				.getOperationInvocation(corrId);
-		if (opInvocation != null) {
-			OperationMessage opMessage = new OperationMessage();
-			opMessage
-					.setCorrelationId(corrId);
-			opMessage.setFlow(2);
-			opMessage.setSize(3634);
-			Timestamp timeStamp = new Timestamp(Calendar.getInstance()
-					.getTimeInMillis());
-			opMessage.setProcessed(timeStamp);
-			this.opMsgDao.save(opMessage);
-			this.logger.debug("OPMSGG saved");
-		}
+		/*
+		 * OperationInvocation opInvocation = this.operationInvocationDAO
+		 * .getOperationInvocation(corrId); if (opInvocation != null) {
+		 * OperationMessage opMessage = new OperationMessage(); opMessage
+		 * .setCorrelationId(corrId); opMessage.setFlow(2);
+		 * opMessage.setSize(3634); Timestamp timeStamp = new
+		 * Timestamp(Calendar.getInstance() .getTimeInMillis());
+		 * opMessage.setProcessed(timeStamp); this.opMsgDao.save(opMessage);
+		 * this.logger.debug("OPMSGG saved"); }
+		 */
 	}
 }

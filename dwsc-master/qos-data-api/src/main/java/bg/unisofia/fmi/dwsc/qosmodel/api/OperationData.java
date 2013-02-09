@@ -43,7 +43,7 @@ public class OperationData {
 	public void addOperationInvocation(OperationInvocationData opInvData) {
 		if(opInvData != null) {
 			if(this.opInvocations == null) {
-				this.opInvocations = new ArrayList<>();
+				this.opInvocations = new ArrayList<OperationInvocationData>();
 			}
 			this.opInvocations.add(opInvData);
 		}

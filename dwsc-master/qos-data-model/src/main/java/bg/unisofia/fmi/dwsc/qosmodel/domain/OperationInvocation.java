@@ -58,7 +58,7 @@ public class OperationInvocation {
 	public void addOperationMessage(OperationMessage opMessage) {
 		if(opMessage != null) {
 			if(this.operationMessage == null) {
-				this.operationMessage = new ArrayList<>();		
+				this.operationMessage = new ArrayList<OperationMessage>();		
 			}
 			this.operationMessage.add(opMessage);
 		}

@@ -52,7 +52,7 @@ public class Service {
 	public void add(Operation op) {
 		if (op != null) {
 			if (this.operations == null) {
-				this.operations = new ArrayList<>();
+				this.operations = new ArrayList<Operation>();
 			}
 			this.operations.add(op);
 		}

@@ -39,7 +39,7 @@ public class UserDAO extends GenericAppManagedDAOImpl<User> {
 
 	public Collection<User> save(Collection<User> users) {
 		if (users != null && users.size() > 0) {
-			Collection<User> newUsers = new ArrayList<>();
+			Collection<User> newUsers = new ArrayList<User>();
 			EntityTransaction tx = getTransaction();
 			tx.begin();
 			for (User user : users) {
