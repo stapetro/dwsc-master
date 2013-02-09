@@ -1,8 +1,11 @@
 package sample;
 
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import javax.swing.plaf.SliderUI;
 
 import org.apache.commons.configuration.ConfigurationException;
 import org.apache.juddi.api_v3.AccessPointType;
@@ -24,6 +27,9 @@ import org.uddi.api_v3.BusinessInfos;
 import org.uddi.api_v3.BusinessList;
 import org.uddi.api_v3.BusinessService;
 import org.uddi.api_v3.CategoryBag;
+import org.uddi.api_v3.DeleteBinding;
+import org.uddi.api_v3.DeleteBusiness;
+import org.uddi.api_v3.DeleteService;
 import org.uddi.api_v3.Description;
 import org.uddi.api_v3.FindBinding;
 import org.uddi.api_v3.FindBusiness;
@@ -77,10 +83,39 @@ public class JuddiSample {
 			 * sample.savePublisher(myPublisherName, "My publisher",
 			 * rootAuthToken); sample.publishSample(myPubAuthToken);
 			 */
-//			sample.findAllBusinesses();
-//			String serviceKey = sample.getServiceKey("My Stas Service");
-//			sample.publishBinding(myPubAuthToken, serviceKey);
-			sample.getServicesByCategory("");
+			// sample.findAllBusinesses();
+			// String serviceKey = sample.getServiceKey("My Stas Service");
+			// sample.publishBinding(myPubAuthToken, serviceKey);
+			// sample.getServicesByCategory("addition");
+			// String serviceKey = "";
+			// sample.getBindings(serviceKey);
+			 /*sample.deleteService(myPubAuthToken,
+			 "uddi:juddi.apache.org:dcb0237b-324b-4b4f-8fe5-6a244dc1573f");
+			 sample.deleteService(myPubAuthToken,
+			 "uddi:juddi.apache.org:82f3a8ab-7e5d-4a41-8807-76a4a716311f");
+			 sample.deleteService(myPubAuthToken,
+			 "uddi:juddi.apache.org:1046f04e-88d9-474e-9011-11a09dbe7932");
+			 sample.deleteService(myPubAuthToken,
+			 "uddi:juddi.apache.org:f220c630-4520-4d19-8033-b53d9dc2a9bf"); */
+//			 sample.publishBinding(myPubAuthToken, "uddi:juddi.apache.org:82f3a8ab-7e5d-4a41-8807-76a4a716311f", "custom url new 4", "custom");
+			// sample.deleteService(myPubAuthToken,
+			// "uddi:juddi.apache.org:c9e17741-d363-40fe-9f69-911729755a4b");
+			/*String busKey = "uddi:juddi.apache.org:85e582ef-d4fb-4184-a2a9-5c556ce282ba";
+			String[] serviceNames = { "Sample Service 1", "Sample Service 2",
+					"Custom Service 3", "Custom Service 4" };
+			String[] categories = {"samples", "samples", "custom", "custom"};
+			String[] endpointURLs = {"url1", "url2", "Custom url3", "Custom url4"};
+			
+			for(int index = 0; index < serviceNames.length; index++) {
+				String serviceKey = sample.publishService(myPubAuthToken, busKey, serviceNames[index], categories[index]);	
+				sample.publishBinding(myPubAuthToken, serviceKey, endpointURLs[index], categories[index]);
+			}*/
+			String category = "addition";
+			List<String> serviceKeys = sample.getServicesByCategory(category);
+			for(String sKey : serviceKeys) {
+				List<String> urls = sample.getAcessPointURL(sKey, category);
+				System.out.println(sKey + " -> " + Arrays.toString(urls.toArray()));
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -137,8 +172,8 @@ public class JuddiSample {
 	public void publishSample(AuthToken myPubAuthToken) throws RemoteException {
 		String myBusKey = publishBusiness(myPubAuthToken, "My Stas Business");
 		String serviceKey = publishService(myPubAuthToken, myBusKey,
-				"My Stas Service");
-		String bindingKey = publishBinding(myPubAuthToken, serviceKey);
+				"My Stas Service", "stas Category");
+		String bindingKey = publishBinding(myPubAuthToken, serviceKey, "url example", "stas Category");
 	}
 
 	/**
@@ -168,7 +203,7 @@ public class JuddiSample {
 	}
 
 	public String publishService(AuthToken myPubAuthToken, String myBusKey,
-			String serviceName) throws RemoteException {
+			String serviceName, String category) throws RemoteException {
 		// Creating a service to save. Only adding the minimum data: the parent
 		// business key retrieved
 		// from saving the business above and a single name.
@@ -177,12 +212,12 @@ public class JuddiSample {
 		Name myServName = new Name();
 		myServName.setValue(serviceName);
 		myService.getName().add(myServName);
-		
+
 		CategoryBag categoryBag = new CategoryBag();
 		KeyedReference keyReference = new KeyedReference();
 		keyReference.setTModelKey("uddi:uddi.org:categorization:types");
 		keyReference.setKeyName("serviceCategory");
-		keyReference.setKeyValue("samples");
+		keyReference.setKeyValue(category);
 		categoryBag.getKeyedReference().add(keyReference);
 		myService.setCategoryBag(categoryBag);
 
@@ -199,24 +234,23 @@ public class JuddiSample {
 		return myServKey;
 	}
 
-	public String publishBinding(AuthToken myPubAuthToken, String serviceKey)
-			throws RemoteException {
+	public String publishBinding(AuthToken myPubAuthToken, String serviceKey,
+			String endpointUrl, String category) throws RemoteException {
 		BindingTemplate bindingTemplate = new BindingTemplate();
 		bindingTemplate.setServiceKey(serviceKey);
 		AccessPoint accessPoint = new AccessPoint();
 		accessPoint.setUseType(AccessPointType.WSDL_DEPLOYMENT.toString());
-		accessPoint
-				.setValue("http://${serverName}:${serverPort}/axis2-services/services/SimpleService?wsdl");
+		accessPoint.setValue(endpointUrl);
 		bindingTemplate.setAccessPoint(accessPoint);
 		
 		CategoryBag categoryBag = new CategoryBag();
 		KeyedReference keyReference = new KeyedReference();
 		keyReference.setTModelKey("uddi:uddi.org:categorization:types");
 		keyReference.setKeyName("serviceCategory");
-		keyReference.setKeyValue("samples");
+		keyReference.setKeyValue(category);
 		categoryBag.getKeyedReference().add(keyReference);
 		bindingTemplate.setCategoryBag(categoryBag);
-		
+
 		SaveBinding saveBinding = new SaveBinding();
 		saveBinding.setAuthInfo(myPubAuthToken.getAuthInfo());
 		saveBinding.getBindingTemplate().add(bindingTemplate);
@@ -287,21 +321,89 @@ public class JuddiSample {
 				serviceName, serviceKey));
 		return serviceKey;
 	}
-	
-	public void getServicesByCategory(String categoryName) throws RemoteException {
-		FindBinding findBinding = new FindBinding();
+
+	public List<String> getServicesByCategory(String categoryName)
+			throws RemoteException {
+		FindService findService = new FindService();
 		CategoryBag categoryBag = new CategoryBag();
 		KeyedReference keyReference = new KeyedReference();
 		keyReference.setTModelKey("uddi:uddi.org:categorization:types");
 		keyReference.setKeyName("serviceCategory");
-		keyReference.setKeyValue("samples");
+		keyReference.setKeyValue(categoryName);
 		categoryBag.getKeyedReference().add(keyReference);
-		findBinding.setCategoryBag(categoryBag);
+		findService.setCategoryBag(categoryBag);
+		FindQualifiers findQualifiers = new FindQualifiers();
+		findQualifiers.getFindQualifier().add("approximateMatch");
+		findService.setFindQualifiers(findQualifiers);
+		ServiceList serviceList = inquiryApi.findService(findService);
+		ServiceInfos serviceInfos = serviceList.getServiceInfos();
+		List<ServiceInfo> sInfoList = serviceInfos.getServiceInfo();
+		List<String> serviceKeys = new ArrayList<String>();
+		for (ServiceInfo serviceInfo : sInfoList) {
+			serviceKeys.add(serviceInfo.getServiceKey());
+		}
+		return serviceKeys;
+	}
+
+	public List<BindingTemplate> getBindings(String serviceKey)
+			throws RemoteException {
+		FindBinding findBinding = new FindBinding();
+		findBinding.setServiceKey(serviceKey);
 		FindQualifiers findQualifiers = new FindQualifiers();
 		findQualifiers.getFindQualifier().add("approximateMatch");
 		findBinding.setFindQualifiers(findQualifiers);
 		BindingDetail bDetail = inquiryApi.findBinding(findBinding);
-		System.out.println(bDetail.getBindingTemplate().get(0).getAccessPoint().getValue());
+		List<BindingTemplate> bTemplates = bDetail.getBindingTemplate();
+		return bTemplates;
+	}
+
+	public List<String> getAcessPointURL(String serviceKey, String categoryName)
+			throws RemoteException {
+		FindBinding findBinding = new FindBinding();
+		findBinding.setServiceKey(serviceKey);
+		
+		CategoryBag categoryBag = new CategoryBag();
+		KeyedReference keyReference = new KeyedReference();
+		keyReference.setTModelKey("uddi:uddi.org:categorization:types");
+		keyReference.setKeyName("serviceCategory");
+		keyReference.setKeyValue(categoryName);
+		categoryBag.getKeyedReference().add(keyReference);
+		findBinding.setCategoryBag(categoryBag);
+		
+		FindQualifiers findQualifiers = new FindQualifiers();
+		findQualifiers.getFindQualifier().add("approximateMatch");
+		findBinding.setFindQualifiers(findQualifiers);
+		BindingDetail bDetail = inquiryApi.findBinding(findBinding);
+		List<BindingTemplate> bTemplates = bDetail.getBindingTemplate();
+		List<String> endpointUrls = new ArrayList<String>();
+		for (BindingTemplate bTemplate : bTemplates) {
+			endpointUrls.add(bTemplate.getAccessPoint().getValue());
+		}
+		return endpointUrls;
+	}
+
+	public void deleteBusiness(AuthToken myPubAuthToken, String businessKey)
+			throws RemoteException {
+		DeleteBusiness delBusiness = new DeleteBusiness();
+		delBusiness.setAuthInfo(myPubAuthToken.getAuthInfo());
+		delBusiness.getBusinessKey().add(businessKey);
+		publish.deleteBusiness(delBusiness);
+	}
+
+	public void deleteService(AuthToken myPubAuthToken, String serviceKey)
+			throws RemoteException {
+		DeleteService delService = new DeleteService();
+		delService.setAuthInfo(myPubAuthToken.getAuthInfo());
+		delService.getServiceKey().add(serviceKey);
+		publish.deleteService(delService);
+	}
+
+	public void deleteServiceBinding(AuthToken myPubAuthToken, String bindingKey)
+			throws RemoteException {
+		DeleteBinding delBinding = new DeleteBinding();
+		delBinding.setAuthInfo(myPubAuthToken.getAuthInfo());
+		delBinding.getBindingKey().add(bindingKey);
+		publish.deleteBinding(delBinding);
 	}
 
 	public void startClerkManager(String configFilePath) {
@@ -325,7 +427,7 @@ public class JuddiSample {
 			Class<?> transportClass = ClassUtil.forName(clazz, Transport.class);
 			if (transportClass != null) {
 				Transport transport = (Transport) transportClass
-						.getConstructor(String.class).newInstance("default");
+						.getConstructor(String.class, String.class).newInstance("example-manager", "default");
 				security = transport.getUDDISecurityService();
 				juddiApi = transport.getJUDDIApiService();
 				publish = transport.getUDDIPublishService();
