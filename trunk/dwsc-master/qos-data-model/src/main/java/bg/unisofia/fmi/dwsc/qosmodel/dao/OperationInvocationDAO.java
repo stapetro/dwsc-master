@@ -35,7 +35,7 @@ public class OperationInvocationDAO extends
 	public Collection<OperationInvocation> save(
 			Collection<OperationInvocation> operationInvocations) {
 		if (operationInvocations != null && operationInvocations.size() > 0) {
-			Collection<OperationInvocation> newOperationInvocations = new ArrayList<>();
+			Collection<OperationInvocation> newOperationInvocations = new ArrayList<OperationInvocation>();
 			EntityTransaction tx = getTransaction();
 			tx.begin();
 			for (OperationInvocation operationInvocation : operationInvocations) {

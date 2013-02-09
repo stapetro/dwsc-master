@@ -81,7 +81,7 @@ public class OperationMessage {
 	public void add(User user) {
 		if (user != null) {
 			if (this.user == null) {
-				this.user = new ArrayList<>();
+				this.user = new ArrayList<User>();
 			}
 			this.user.add(user);
 		}

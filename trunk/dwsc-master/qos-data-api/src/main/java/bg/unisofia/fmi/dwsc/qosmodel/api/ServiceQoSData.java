@@ -74,7 +74,7 @@ public class ServiceQoSData {
 	public void addOperationData(OperationData opData) {
 		if(opData != null) {
 			if(this.operations == null) {
-				this.operations = new ArrayList<>();
+				this.operations = new ArrayList<OperationData>();
 			}
 			this.operations.add(opData);
 		}

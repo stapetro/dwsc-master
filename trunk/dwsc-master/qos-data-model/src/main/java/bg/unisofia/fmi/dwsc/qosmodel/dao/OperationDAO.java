@@ -43,7 +43,7 @@ public class OperationDAO extends GenericAppManagedDAOImpl<Operation> {
 
 	public Collection<Operation> save(Collection<Operation> operations) {
 		if (operations != null && operations.size() > 0) {
-			Collection<Operation> newOperations = new ArrayList<>();
+			Collection<Operation> newOperations = new ArrayList<Operation>();
 			EntityTransaction tx = getTransaction();
 			tx.begin();
 			for (Operation op : operations) {

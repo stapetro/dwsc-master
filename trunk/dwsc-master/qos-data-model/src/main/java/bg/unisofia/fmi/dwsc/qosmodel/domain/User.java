@@ -51,7 +51,7 @@ public class User {
 	public void add(OperationMessage opMsg) {
 		if(opMsg != null) {
 			if(this.operationMessage == null) {
-				this.operationMessage = new ArrayList<>();
+				this.operationMessage = new ArrayList<OperationMessage>();
 			}
 			this.operationMessage.add(opMsg);
 		}

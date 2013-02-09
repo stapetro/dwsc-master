@@ -70,7 +70,7 @@ public class Operation {
 	public void addOperationInvocation(OperationInvocation opInvocation) {
 		if(opInvocation != null) {
 			if(this.operationInvocation == null) {
-				this.operationInvocation = new ArrayList<>();
+				this.operationInvocation = new ArrayList<OperationInvocation>();
 			}
 			this.operationInvocation.add(opInvocation);
 		}

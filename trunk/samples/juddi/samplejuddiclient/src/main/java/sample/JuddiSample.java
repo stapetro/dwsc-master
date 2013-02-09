@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.apache.commons.configuration.ConfigurationException;
+import org.apache.juddi.api_v3.AccessPointType;
 import org.apache.juddi.api_v3.Publisher;
 import org.apache.juddi.api_v3.SavePublisher;
 import org.apache.juddi.v3.client.ClassUtil;
@@ -12,7 +13,9 @@ import org.apache.juddi.v3.client.config.UDDIClerkManager;
 import org.apache.juddi.v3.client.config.UDDIClientContainer;
 import org.apache.juddi.v3.client.transport.Transport;
 import org.apache.juddi.v3_service.JUDDIApiPortType;
+import org.uddi.api_v3.AccessPoint;
 import org.uddi.api_v3.AuthToken;
+import org.uddi.api_v3.BindingDetail;
 import org.uddi.api_v3.BindingTemplate;
 import org.uddi.api_v3.BusinessDetail;
 import org.uddi.api_v3.BusinessEntity;
@@ -22,15 +25,20 @@ import org.uddi.api_v3.BusinessList;
 import org.uddi.api_v3.BusinessService;
 import org.uddi.api_v3.CategoryBag;
 import org.uddi.api_v3.Description;
+import org.uddi.api_v3.FindBinding;
 import org.uddi.api_v3.FindBusiness;
 import org.uddi.api_v3.FindQualifiers;
+import org.uddi.api_v3.FindService;
 import org.uddi.api_v3.GetAuthToken;
+import org.uddi.api_v3.KeyedReference;
 import org.uddi.api_v3.Name;
+import org.uddi.api_v3.SaveBinding;
 import org.uddi.api_v3.SaveBusiness;
 import org.uddi.api_v3.SaveService;
 import org.uddi.api_v3.ServiceDetail;
 import org.uddi.api_v3.ServiceInfo;
 import org.uddi.api_v3.ServiceInfos;
+import org.uddi.api_v3.ServiceList;
 import org.uddi.v3_service.DispositionReportFaultMessage;
 import org.uddi.v3_service.UDDIInquiryPortType;
 import org.uddi.v3_service.UDDIPublicationPortType;
@@ -65,9 +73,14 @@ public class JuddiSample {
 		String myPublisherName = "my-publisher";
 		AuthToken myPubAuthToken = sample.getAuthToken(myPublisherName, "");
 		try {
-			sample.savePublisher(myPublisherName, "My publisher", rootAuthToken);
-			sample.publishSample(myPubAuthToken);
-			sample.findAllBusinesses();
+			/*
+			 * sample.savePublisher(myPublisherName, "My publisher",
+			 * rootAuthToken); sample.publishSample(myPubAuthToken);
+			 */
+//			sample.findAllBusinesses();
+//			String serviceKey = sample.getServiceKey("My Stas Service");
+//			sample.publishBinding(myPubAuthToken, serviceKey);
+			sample.getServicesByCategory("");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -122,10 +135,23 @@ public class JuddiSample {
 	}
 
 	public void publishSample(AuthToken myPubAuthToken) throws RemoteException {
+		String myBusKey = publishBusiness(myPubAuthToken, "My Stas Business");
+		String serviceKey = publishService(myPubAuthToken, myBusKey,
+				"My Stas Service");
+		String bindingKey = publishBinding(myPubAuthToken, serviceKey);
+	}
+
+	/**
+	 * 
+	 * @param myPubAuthToken
+	 * @return Business kye
+	 */
+	public String publishBusiness(AuthToken myPubAuthToken,
+			String businessEntityName) throws RemoteException {
 		// Creating the parent business entity that will contain our service.
 		BusinessEntity myBusEntity = new BusinessEntity();
 		Name myBusName = new Name();
-		myBusName.setValue("My Stas Business");
+		myBusName.setValue(businessEntityName);
 		myBusEntity.getName().add(myBusName);
 
 		// Adding the business entity to the "save" structure, using our
@@ -136,16 +162,29 @@ public class JuddiSample {
 		sb.setAuthInfo(myPubAuthToken.getAuthInfo());
 		BusinessDetail bd = publish.saveBusiness(sb);
 		String myBusKey = bd.getBusinessEntity().get(0).getBusinessKey();
-		System.out.println("myBusiness key:  " + myBusKey);
+		System.out.println(String.format("Business '%s' key: %s ",
+				businessEntityName, myBusKey));
+		return myBusKey;
+	}
 
+	public String publishService(AuthToken myPubAuthToken, String myBusKey,
+			String serviceName) throws RemoteException {
 		// Creating a service to save. Only adding the minimum data: the parent
 		// business key retrieved
 		// from saving the business above and a single name.
 		BusinessService myService = new BusinessService();
 		myService.setBusinessKey(myBusKey);
 		Name myServName = new Name();
-		myServName.setValue("My Stas Service");
+		myServName.setValue(serviceName);
 		myService.getName().add(myServName);
+		
+		CategoryBag categoryBag = new CategoryBag();
+		KeyedReference keyReference = new KeyedReference();
+		keyReference.setTModelKey("uddi:uddi.org:categorization:types");
+		keyReference.setKeyName("serviceCategory");
+		keyReference.setKeyValue("samples");
+		categoryBag.getKeyedReference().add(keyReference);
+		myService.setCategoryBag(categoryBag);
 
 		// Add binding templates, etc...
 		// Adding the service to the "save" structure, using our publisher's
@@ -157,9 +196,35 @@ public class JuddiSample {
 		ServiceDetail sd = publish.saveService(ss);
 		String myServKey = sd.getBusinessService().get(0).getServiceKey();
 		System.out.println("myService key:  " + myServKey);
-		
+		return myServKey;
+	}
+
+	public String publishBinding(AuthToken myPubAuthToken, String serviceKey)
+			throws RemoteException {
 		BindingTemplate bindingTemplate = new BindingTemplate();
-		bindingTemplate.setServiceKey(myServKey);
+		bindingTemplate.setServiceKey(serviceKey);
+		AccessPoint accessPoint = new AccessPoint();
+		accessPoint.setUseType(AccessPointType.WSDL_DEPLOYMENT.toString());
+		accessPoint
+				.setValue("http://${serverName}:${serverPort}/axis2-services/services/SimpleService?wsdl");
+		bindingTemplate.setAccessPoint(accessPoint);
+		
+		CategoryBag categoryBag = new CategoryBag();
+		KeyedReference keyReference = new KeyedReference();
+		keyReference.setTModelKey("uddi:uddi.org:categorization:types");
+		keyReference.setKeyName("serviceCategory");
+		keyReference.setKeyValue("samples");
+		categoryBag.getKeyedReference().add(keyReference);
+		bindingTemplate.setCategoryBag(categoryBag);
+		
+		SaveBinding saveBinding = new SaveBinding();
+		saveBinding.setAuthInfo(myPubAuthToken.getAuthInfo());
+		saveBinding.getBindingTemplate().add(bindingTemplate);
+
+		BindingDetail bDetail = publish.saveBinding(saveBinding);
+		String bindingKey = bDetail.getBindingTemplate().get(0).getBindingKey();
+		System.out.println("Binding key : " + bindingKey);
+		return bindingKey;
 	}
 
 	public void findAllBusinesses() {
@@ -205,6 +270,38 @@ public class JuddiSample {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+
+	public String getServiceKey(String serviceName) throws RemoteException {
+		FindService findService = new FindService();
+		Name name = new Name();
+		name.setValue(serviceName);
+		findService.getName().add(name);
+		FindQualifiers findQualifier = new FindQualifiers();
+		findQualifier.getFindQualifier().add("approximateMatch");
+		findService.setFindQualifiers(findQualifier);
+		ServiceList services = inquiryApi.findService(findService);
+		String serviceKey = services.getServiceInfos().getServiceInfo().get(0)
+				.getServiceKey();
+		System.out.println(String.format("Service key for '%s' : %s",
+				serviceName, serviceKey));
+		return serviceKey;
+	}
+	
+	public void getServicesByCategory(String categoryName) throws RemoteException {
+		FindBinding findBinding = new FindBinding();
+		CategoryBag categoryBag = new CategoryBag();
+		KeyedReference keyReference = new KeyedReference();
+		keyReference.setTModelKey("uddi:uddi.org:categorization:types");
+		keyReference.setKeyName("serviceCategory");
+		keyReference.setKeyValue("samples");
+		categoryBag.getKeyedReference().add(keyReference);
+		findBinding.setCategoryBag(categoryBag);
+		FindQualifiers findQualifiers = new FindQualifiers();
+		findQualifiers.getFindQualifier().add("approximateMatch");
+		findBinding.setFindQualifiers(findQualifiers);
+		BindingDetail bDetail = inquiryApi.findBinding(findBinding);
+		System.out.println(bDetail.getBindingTemplate().get(0).getAccessPoint().getValue());
 	}
 
 	public void startClerkManager(String configFilePath) {

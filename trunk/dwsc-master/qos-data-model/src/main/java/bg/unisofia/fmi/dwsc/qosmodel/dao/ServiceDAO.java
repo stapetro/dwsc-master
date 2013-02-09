@@ -30,7 +30,7 @@ public class ServiceDAO extends GenericAppManagedDAOImpl<Service> {
 
 	public Collection<Service> save(Collection<Service> services) {
 		if (services != null && services.size() > 0) {
-			Collection<Service> newServices = new ArrayList<>();
+			Collection<Service> newServices = new ArrayList<Service>();
 			EntityTransaction tx = getTransaction();
 			tx.begin();
 			for (Service service : services) {
