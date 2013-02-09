@@ -16,6 +16,7 @@
     <module>qos-data-api</module>
     <module>qosmonitor</module>
     <module>axis2-master</module>
+    <module>uddi-util</module>
   </modules>
   <build>
   	<plugins>
