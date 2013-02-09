@@ -30,6 +30,9 @@ public class ServiceQoSData {
 	 */
 	@XmlElement(name="serviceCategory")
 	private String category;
+	
+	@XmlElement(name="serviceEndpointUrl")
+	private String endPointUrl;
 
 	@XmlElementWrapper(name="operations")
 	@XmlElement(name="operation")
@@ -63,6 +66,14 @@ public class ServiceQoSData {
 		this.category = category;
 	}
 	
+	public String getEndPointUrl() {
+		return endPointUrl;
+	}
+
+	public void setEndPointUrl(String endPointUrl) {
+		this.endPointUrl = endPointUrl;
+	}
+
 	public List<OperationData> getOperations() {
 		return operations;
 	}

@@ -43,9 +43,12 @@ public interface QoSDataProvidingService {
 	 * Gets QoS data from service.
 	 * 
 	 * @param serviceKey
-	 *            serviceKey from UDDI registry to be specified.
+	 *            Service key from UDDI registry to be specified.
+	 * @param serviceCategory
+	 *            Service category value from UDDI registry to be specified.
 	 * @return QoS data for service or NULL.
 	 */
 	@WebMethod
-	public ServiceQoSData getServiceQoSData(String serviceKey);
+	public ServiceQoSData getServiceQoSData(String serviceKey,
+			String serviceCategory);
 }
