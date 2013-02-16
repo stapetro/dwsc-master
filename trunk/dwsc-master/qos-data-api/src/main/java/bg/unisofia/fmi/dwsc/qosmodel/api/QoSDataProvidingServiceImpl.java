@@ -224,11 +224,14 @@ public class QoSDataProvidingServiceImpl implements QoSDataProvidingService {
 		case OperationMessage.IN_FAULT_FLOW:
 			opInvData.setRequestMsgSize(size);
 			opInvData.setRequestReceived(calendar.getTime());
+			opInvData.setRequestReceivedNanoTime(opMessage
+					.getProcessedNanoTime());
 			break;
 		case OperationMessage.OUT_FLOW:
 		case OperationMessage.OUT_FAULT_FLOW:
 			opInvData.setResponseMsgSize(size);
 			opInvData.setResponseSent(calendar.getTime());
+			opInvData.setResponseSentNanoTime(opMessage.getProcessedNanoTime());
 			break;
 		}
 	}

@@ -20,6 +20,9 @@ public class MessageQoSData {
 	 */
 	@XmlElement(name = "processed")
 	private Date processed;
+	
+	@XmlElement(name = "processedNanoTime")
+	private long processedNanoTime;
 
 	/**
 	 * Stores message size in bytes.
@@ -58,6 +61,14 @@ public class MessageQoSData {
 
 	public void setProcessed(Date processed) {
 		this.processed = processed;
+	}
+	
+	public long getProcessedNanoTime() {
+		return processedNanoTime;
+	}
+
+	public void setProcessedNanoTime(long processedNanoTime) {
+		this.processedNanoTime = processedNanoTime;
 	}
 
 	public long getSize() {

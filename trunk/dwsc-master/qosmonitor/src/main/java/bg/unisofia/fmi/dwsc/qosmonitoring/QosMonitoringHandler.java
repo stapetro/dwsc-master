@@ -78,6 +78,7 @@ public class QosMonitoringHandler extends AbstractHandler {
 			MessageQoSData msgQoSData = new MessageQoSData();
 			msgQoSData.setFlow(flow);
 			msgQoSData.setProcessed(xmlGregorianCal);
+			msgQoSData.setProcessedNanoTime(System.nanoTime());
 			msgQoSData.setServiceName(serviceName);
 			msgQoSData.setOperationName(operationName);
 			msgQoSData.setOperationCorrelationId(opCorrId);

@@ -19,6 +19,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
  *         &lt;element name="processed" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
+ *         &lt;element name="processedNanoTime" type="{http://www.w3.org/2001/XMLSchema}long"/>
  *         &lt;element name="size" type="{http://www.w3.org/2001/XMLSchema}long"/>
  *         &lt;element name="flow" type="{http://www.w3.org/2001/XMLSchema}int"/>
  *         &lt;element name="serviceName" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
@@ -35,6 +36,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "MessageQoSData", propOrder = {
     "processed",
+    "processedNanoTime",
     "size",
     "flow",
     "serviceName",
@@ -45,6 +47,7 @@ public class MessageQoSData {
 
     @XmlSchemaType(name = "dateTime")
     protected XMLGregorianCalendar processed;
+    protected long processedNanoTime;
     protected long size;
     protected int flow;
     protected String serviceName;
@@ -73,6 +76,22 @@ public class MessageQoSData {
      */
     public void setProcessed(XMLGregorianCalendar value) {
         this.processed = value;
+    }
+
+    /**
+     * Gets the value of the processedNanoTime property.
+     * 
+     */
+    public long getProcessedNanoTime() {
+        return processedNanoTime;
+    }
+
+    /**
+     * Sets the value of the processedNanoTime property.
+     * 
+     */
+    public void setProcessedNanoTime(long value) {
+        this.processedNanoTime = value;
     }
 
     /**

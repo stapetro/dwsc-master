@@ -16,9 +16,15 @@ public class OperationInvocationData {
 
 	@XmlElement(name="requestReceived")
 	private Date requestReceived;
+	
+	@XmlElement(name="requestReceivedNanoTime")
+	private long requestReceivedNanoTime;
 
 	@XmlElement(name="responseSent")
 	private Date responseSent;
+	
+	@XmlElement(name="responseSentNanoTime")
+	private long responseSentNanoTime;
 
 	@XmlElement(name="requestMsgSize")
 	private long requestMsgSize;
@@ -52,6 +58,22 @@ public class OperationInvocationData {
 
 	public void setResponseSent(Date responseSent) {
 		this.responseSent = responseSent;
+	}
+	
+	public long getRequestReceivedNanoTime() {
+		return requestReceivedNanoTime;
+	}
+
+	public void setRequestReceivedNanoTime(long requestReceivedNanoTime) {
+		this.requestReceivedNanoTime = requestReceivedNanoTime;
+	}
+
+	public long getResponseSentNanoTime() {
+		return responseSentNanoTime;
+	}
+
+	public void setResponseSentNanoTime(long responseSentNanoTime) {
+		this.responseSentNanoTime = responseSentNanoTime;
 	}
 
 	public long getRequestMsgSize() {

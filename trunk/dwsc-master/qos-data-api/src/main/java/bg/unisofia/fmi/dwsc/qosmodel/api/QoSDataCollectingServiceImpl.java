@@ -96,6 +96,7 @@ public class QoSDataCollectingServiceImpl implements QoSDataCollectingService {
 			Timestamp timeStamp = new Timestamp(processedDate.getTime());
 			opMessage.setProcessed(timeStamp);
 		}
+		opMessage.setProcessedNanoTime(msgQos.getProcessedNanoTime());
 		return opMessage;
 	}
 

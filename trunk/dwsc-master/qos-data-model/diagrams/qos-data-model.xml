@@ -24,7 +24,7 @@
 	<entity>
 		<entity-name>bg.unisofia.fmi.dwsc.qosmodel.domain.OperationMessage</entity-name>
 		<entity-width>151</entity-width>
-		<entity-height>206</entity-height>
+		<entity-height>226</entity-height>
 		<entity-X-Coordinate>291</entity-X-Coordinate>
 		<entity-Y-Coordinate>280</entity-Y-Coordinate>
 		<primary-collapsed>false</primary-collapsed>
