@@ -15,6 +15,7 @@
 <xs:complexType name="MessageQoSData">
 <xs:sequence>
 <xs:element name="processed" type="xs:dateTime" minOccurs="0"/>
+<xs:element name="processedNanoTime" type="xs:long"/>
 <xs:element name="size" type="xs:long"/>
 <xs:element name="flow" type="xs:int"/>
 <xs:element name="serviceName" type="xs:string" minOccurs="0"/>

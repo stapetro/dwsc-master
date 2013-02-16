@@ -39,6 +39,8 @@ public class OperationMessage {
 	@Basic
 	private Timestamp processed;
 	@Basic
+	private long processedNanoTime;
+	@Basic
 	private long size;
 	@Basic
 	private int flow;
@@ -68,6 +70,14 @@ public class OperationMessage {
 
 	public Timestamp getProcessed() {
 		return processed;
+	}
+	
+	public long getProcessedNanoTime() {
+		return processedNanoTime;
+	}
+
+	public void setProcessedNanoTime(long processedNanoTime) {
+		this.processedNanoTime = processedNanoTime;
 	}
 
 	public void setSize(long param) {

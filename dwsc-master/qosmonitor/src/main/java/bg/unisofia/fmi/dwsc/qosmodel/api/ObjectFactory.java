@@ -36,14 +36,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link SaveQoSDataException }
-     * 
-     */
-    public SaveQoSDataException createSaveQoSDataException() {
-        return new SaveQoSDataException();
-    }
-
-    /**
      * Create an instance of {@link Save }
      * 
      */
@@ -52,19 +44,27 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link MessageQoSData }
-     * 
-     */
-    public MessageQoSData createMessageQoSData() {
-        return new MessageQoSData();
-    }
-
-    /**
      * Create an instance of {@link SaveResponse }
      * 
      */
     public SaveResponse createSaveResponse() {
         return new SaveResponse();
+    }
+
+    /**
+     * Create an instance of {@link SaveQoSDataException }
+     * 
+     */
+    public SaveQoSDataException createSaveQoSDataException() {
+        return new SaveQoSDataException();
+    }
+
+    /**
+     * Create an instance of {@link MessageQoSData }
+     * 
+     */
+    public MessageQoSData createMessageQoSData() {
+        return new MessageQoSData();
     }
 
     /**
