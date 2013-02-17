@@ -16,6 +16,5 @@ public interface IModelEvaluator {
 
 	public void updateModelForComposition(
 			List<PartnerLinkDefinition> plDefinitionList,
-			QualityProfile qualityProfile);
-
+			QualityProfile qualityProfile) throws Exception;
 }
