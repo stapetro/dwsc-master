@@ -12,6 +12,10 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry combineaccessrules="false" kind="src" path="/yani-model"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
+	<classpathentry kind="lib" path="E:/Lectures/Master ST/Semester 3/DWSC_Project/trunk/docs/libs/BpelExtension/tests/xercesImpl-2.8.1.wso2v2.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/BpelModelAvaluator"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6">
 		<attributes>
 			<attribute name="maven.pomderived" value="true"/>
@@ -22,9 +26,5 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry combineaccessrules="false" kind="src" path="/yani-model"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
-	<classpathentry kind="lib" path="E:/Lectures/Master ST/Semester 3/DWSC_Project/trunk/docs/libs/BpelExtension/tests/xercesImpl-2.8.1.wso2v2.jar"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/BpelModelAvaluator"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

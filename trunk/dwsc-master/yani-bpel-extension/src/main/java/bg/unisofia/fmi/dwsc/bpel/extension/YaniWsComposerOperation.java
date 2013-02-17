@@ -8,6 +8,7 @@ import org.apache.ode.bpel.common.FaultException;
 import org.apache.ode.bpel.extension.ExtensionOperation;
 import org.apache.ode.bpel.runtime.extension.ExtensionContext;
 import org.apache.ode.utils.DOMUtils;
+import org.apache.ode.utils.QNameUtils;
 import org.w3c.dom.Element;
 
 import bg.unisofia.fmi.dwsc.bpel.extension.util.ProcessUtils;
@@ -52,10 +53,15 @@ public class YaniWsComposerOperation implements ExtensionOperation {
 		}
 
 		ModelEvaluator modelEvaluator = new ModelEvaluator();
-		modelEvaluator.updateModelForComposition(plDefinitionList,
-				qualityProfile);
+		try {
+			modelEvaluator.updateModelForComposition(plDefinitionList,
+					qualityProfile);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new FaultException(QNameUtils.toQName("yani-bpel-extension"), "Problem with finding best composition");
+		}
 		processUtils.updateProcessPartnerLinks(context, plDefinitionList);
-		
+
 		System.out.println("------------------ NEW -------------------");
 		for (PartnerLinkDefinition pld : plDefinitionList) {
 			System.out.println(">>>>>>> name:  " + pld.getName());
@@ -66,5 +72,4 @@ public class YaniWsComposerOperation implements ExtensionOperation {
 		context.complete(channelID);
 
 	}
-
 }
