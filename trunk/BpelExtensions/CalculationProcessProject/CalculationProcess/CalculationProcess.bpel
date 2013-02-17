@@ -13,7 +13,8 @@
 	</bpel:extensions>
 
 	<!-- Import the client WSDL -->
-	<bpel:import namespace="http://addition.ws.fmi.unisofia.bg"
+    <bpel:import namespace="http://pow.ws.fmi.unisofia.bg" location="PowServiceSlow.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"></bpel:import>
+    <bpel:import namespace="http://addition.ws.fmi.unisofia.bg"
 		location="AddtionServiceSlow.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"></bpel:import>
 	<bpel:import location="CalculationProcessArtifacts.wsdl"
 		namespace="http://wso2.org/bps/sample" importType="http://schemas.xmlsoap.org/wsdl/" />
@@ -28,7 +29,8 @@
 			myRole="CalculationProcessProvider" />
 		<bpel:partnerLink name="AdditionPL" partnerLinkType="ns1:AdditionService"
 			partnerRole="AdditionServiceProvider"></bpel:partnerLink>
-	</bpel:partnerLinks>
+        <bpel:partnerLink name="PowPL"></bpel:partnerLink>
+    </bpel:partnerLinks>
 
 	<!-- ================================================================= -->
 	<!-- VARIABLES -->

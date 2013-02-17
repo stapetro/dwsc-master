@@ -88,13 +88,13 @@
 	</wsdl:binding>
 	<wsdl:service name="PowServiceSlow">
 		<wsdl:port name="PowServiceSlowHttpSoap11Endpoint" binding="ns:PowServiceSlowSoap11Binding">
-			<soap:address location="http://localhost:8080/TestServices/services/PowServiceSlow.PowServiceSlowHttpSoap11Endpoint/"/>
+			<soap:address location="http://localhost:8080/axis2-services/services/PowServiceSlow.PowServiceSlowHttpSoap11Endpoint/"/>
 		</wsdl:port>
 		<wsdl:port name="PowServiceSlowHttpSoap12Endpoint" binding="ns:PowServiceSlowSoap12Binding">
-			<soap12:address location="http://localhost:8080/TestServices/services/PowServiceSlow.PowServiceSlowHttpSoap12Endpoint/"/>
+			<soap12:address location="http://localhost:8080/axis2-services/services/PowServiceSlow.PowServiceSlowHttpSoap12Endpoint/"/>
 		</wsdl:port>
 		<wsdl:port name="PowServiceSlowHttpEndpoint" binding="ns:PowServiceSlowHttpBinding">
-			<http:address location="http://localhost:8080/TestServices/services/PowServiceSlow.PowServiceSlowHttpEndpoint/"/>
+			<http:address location="http://localhost:8080/axis2-services/services/PowServiceSlow.PowServiceSlowHttpEndpoint/"/>
 		</wsdl:port>
 	</wsdl:service>
 </wsdl:definitions>
