@@ -21,6 +21,7 @@
   <modules>
     <module>axis2-services</module>
 	<module>axis2-clients</module>
+	<module>service-adapter</module>
   </modules>
   <dependencies>
     <dependency>
