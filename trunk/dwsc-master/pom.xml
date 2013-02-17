@@ -18,6 +18,7 @@
     <module>axis2-master</module>
     <module>service-adapter</module>
     <module>uddi-util</module>
+    <module>yani-qos-calculator</module>
   </modules>
   <build>
   	<plugins>
