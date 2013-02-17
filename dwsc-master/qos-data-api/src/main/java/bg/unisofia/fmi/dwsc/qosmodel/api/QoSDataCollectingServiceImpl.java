@@ -54,12 +54,7 @@ public class QoSDataCollectingServiceImpl implements QoSDataCollectingService {
 			OperationInvocation opInvocation = opInvDao
 					.getOperationInvocation(corrId);
 			if (opInvocation != null) {
-				OperationMessage opMessage = createOperationMessage(msgQos);
-				OperationMessageDAO opMsgDao = new OperationMessageDAO(
-						serviceDao.getEntityMgr());
-				opMsgDao.save(opMessage);
-				opMsgDao.destroy();
-				opMsgDao = null;
+				saveOperationMessageOnly(msgQos, serviceDao);
 			} else {
 				String operationName = msgQos.getOperationName();
 				OperationDAO operationDao = new OperationDAO(
@@ -71,19 +66,35 @@ public class QoSDataCollectingServiceImpl implements QoSDataCollectingService {
 					operation.setName(operationName);
 					operation.setService(service);
 				}
-				opInvocation = new OperationInvocation();
-				opInvocation.setCorrelationId(corrId);
-				opInvocation.setOperation(operation);
-				OperationMessage opMessage = createOperationMessage(msgQos);
-				opInvocation.addOperationMessage(opMessage);
-				operation.addOperationInvocation(opInvocation);
-				operationDao.save(operation);
-				operationDao.destroy();
-				operationDao = null;
+				opInvocation = opInvDao
+						.getOperationInvocation(corrId);
+				if (opInvocation == null) {
+					opInvocation = new OperationInvocation();
+					opInvocation.setCorrelationId(corrId);
+					opInvocation.setOperation(operation);
+					operation.addOperationInvocation(opInvocation);
+					OperationMessage opMessage = createOperationMessage(msgQos);
+					opInvocation.addOperationMessage(opMessage);
+					operationDao.save(operation);
+					operationDao.destroy();
+					operationDao = null;
+				} else {
+					saveOperationMessageOnly(msgQos, serviceDao);
+				}
 			}
 			opInvDao.destroy();
 			opInvDao = null;
 		}
+	}
+
+	private void saveOperationMessageOnly(MessageQoSData msgQos,
+			ServiceDAO serviceDao) {
+		OperationMessage opMessage = createOperationMessage(msgQos);
+		OperationMessageDAO opMsgDao = new OperationMessageDAO(
+				serviceDao.getEntityMgr());
+		opMsgDao.save(opMessage);
+		opMsgDao.destroy();
+		opMsgDao = null;
 	}
 
 	private OperationMessage createOperationMessage(MessageQoSData msgQos) {

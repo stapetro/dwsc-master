@@ -5,6 +5,7 @@ import java.util.Collection;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
 
 import bg.unisofia.fmi.dwsc.qosmodel.domain.Operation;
@@ -84,9 +85,13 @@ public class OperationDAO extends GenericAppManagedDAOImpl<Operation> {
 		query.setParameter("serviceId", serviceId);
 		try {
 			return query.getSingleResult();
+		} catch (NoResultException noResEx) {
+			this.logger
+			.warn(String.format("Operation with name '%s' NOT found",
+					opName), noResEx);
 		} catch (Exception ex) {
 			this.logger
-					.error(String.format("Operation with name '%s' NOT found",
+					.error(String.format("Error occured when finding operation with name '%s'",
 							opName), ex);
 		}
 		return null;

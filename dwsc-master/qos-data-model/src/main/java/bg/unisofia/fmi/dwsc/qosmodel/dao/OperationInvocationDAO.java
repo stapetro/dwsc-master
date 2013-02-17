@@ -104,7 +104,7 @@ public class OperationInvocationDAO extends
 		try {
 			return query.getSingleResult();
 		} catch (NoResultException noResEx) {
-			this.logger.error(String.format(
+			this.logger.warn(String.format(
 					"Operation invocation with correlation id '%s' NOT found",
 					operationInvocationCorrelationId), noResEx);
 		} catch (Exception ex) {
