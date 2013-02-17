@@ -5,6 +5,9 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.logging.impl.AvalonLogger;
+
+import bg.unisofia.fmi.dwsc.service.adapter.ServiceAdapter;
 import bg.unisofia.fmi.dwsc.yani.model.PartnerLinkDefinition;
 import bg.unisofia.fmi.dwsc.yani.model.WebService;
 import bg.unisofia.fmi.dwsc.yani.model.qos.IQualityAttribute;
@@ -14,11 +17,15 @@ import bg.unisofia.fmi.dwsc.yani.model.qos.utils.QualityAttributeFactory;
 public class ServiceSelector {
 
 	public void updateServicesForPlDefinitions(
-			List<PartnerLinkDefinition> plDefinitionList) {
+			List<PartnerLinkDefinition> plDefinitionList) throws Exception {
 		if (plDefinitionList == null) {
 			return;
 		}
 
+//		List<String> categoriesList = getCategoriesList(plDefinitionList);
+//		ServiceAdapter serviceAdapter = new ServiceAdapter();
+//		Map<String, List<WebService>> availableWebServices = serviceAdapter.getServices(categoriesList);
+		
 		for (int i = 0; i < plDefinitionList.size(); i++) {
 			PartnerLinkDefinition plDefinition = plDefinitionList.get(i);
 			String category = plDefinition.getCategory();
@@ -29,11 +36,24 @@ public class ServiceSelector {
 			} else if (category.equals("pow")) {
 				wsList = getPowServices();
 			}
-
+			
+			//List<WebService> wsList = availableWebServices.get(category);
+			
 			plDefinition.setAssiciatedServiceList(wsList);
 		}
 
 		// TODO use mocked data for now
+	}
+
+	private List<String> getCategoriesList(
+			List<PartnerLinkDefinition> plDefinitionList) {
+		List<String> categoriesList = new LinkedList<String>();
+		for (PartnerLinkDefinition plDef : plDefinitionList) {
+			String category = plDef.getCategory();
+			categoriesList.add(category);
+		}
+
+		return categoriesList;
 	}
 
 	private List<WebService> getAdditionServices() {
@@ -80,7 +100,7 @@ public class ServiceSelector {
 						QualityAttributeEnum.THROUGHPUT, "200"));
 
 		WebService wsStandard = new WebService(
-				"http://localhost:8080/TestServices/services/AdditionServiceStandard.AdditionServiceStandardHttpSoap12Endpoint/",
+				"http://localhost:8080/axis2-services/services/AdditionServiceStandard.AdditionServiceStandardHttpSoap12Endpoint/",
 				category, qosStandard, qosMinStandard, qosMaxStandard);
 
 		Map<QualityAttributeEnum, IQualityAttribute> qosSlow = new HashMap<QualityAttributeEnum, IQualityAttribute>();
@@ -119,7 +139,7 @@ public class ServiceSelector {
 				.getQualityAttribute(QualityAttributeEnum.THROUGHPUT, "40"));
 
 		WebService wsSlow = new WebService(
-				"http://localhost:8080/TestServices/services/AdditionServiceSlow.AdditionServiceSlowdHttpSoap12Endpoint/",
+				"http://localhost:8080/axis2-services/services/AdditionServiceSlow.AdditionServiceSlowdHttpSoap12Endpoint/",
 				category, qosSlow, qosMinSlow, qosMaxSlow);
 
 		wsList.add(wsStandard);
@@ -172,7 +192,7 @@ public class ServiceSelector {
 						QualityAttributeEnum.THROUGHPUT, "190"));
 
 		WebService wsStandard = new WebService(
-				"http://localhost:8080/TestServices/services/PowServiceStandard.PowServiceStandardHttpSoap12Endpoint/",
+				"http://localhost:8080/axis2-services/services/PowServiceStandard.PowServiceStandardHttpSoap12Endpoint/",
 				category, qosStandard, qosMinStandard, qosMaxStandard);
 
 		Map<QualityAttributeEnum, IQualityAttribute> qosSlow = new HashMap<QualityAttributeEnum, IQualityAttribute>();
@@ -211,7 +231,7 @@ public class ServiceSelector {
 				.getQualityAttribute(QualityAttributeEnum.THROUGHPUT, "60"));
 
 		WebService wsSlow = new WebService(
-				"http://localhost:8080/TestServices/services/PowServiceSlow.PowServiceSlowHttpSoap12Endpoint/",
+				"http://localhost:8080/axis2-services/services/PowServiceSlow.PowServiceSlowHttpSoap12Endpoint/",
 				category, qosSlow, qosMinSlow, qosMaxSlow);
 
 		wsList.add(wsStandard);
