@@ -1,0 +1,976 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project activeEnvironment="Default" name="axis2-services" resourceRoot="" soapui-version="4.5.1" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="AdditionServiceStandardSoap12Binding" type="wsdl" bindingName="{http://addition.ws.fmi.unisofia.bg}AdditionServiceStandardSoap12Binding" soapVersion="1_2" anonymous="optional" definition="file:/D:/MasterThesis/repo/trunk/samples/soapui/axis2services/AdditionServiceStandard.xml" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache/><con:endpoints><con:endpoint>http://localhost:8080/axis2-services/services/AdditionServiceStandard.AdditionServiceStandardHttpSoap12Endpoint/</con:endpoint></con:endpoints><con:operation isOneWay="false" action="urn:add" name="add" bindingOperationName="add" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/axis2-services/services/AdditionServiceStandard.AdditionServiceStandardHttpSoap12Endpoint/</con:endpoint><con:request><![CDATA[<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:add="http://addition.ws.fmi.unisofia.bg">
+   <soap:Header/>
+   <soap:Body>
+      <add:add>
+         <!--Optional:-->
+         <add:a>?</add:a>
+         <!--Optional:-->
+         <add:b>?</add:b>
+      </add:add>
+   </soap:Body>
+</soap:Envelope>]]></con:request><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:add"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="AdditionServiceStandardSoap11Binding" type="wsdl" bindingName="{http://addition.ws.fmi.unisofia.bg}AdditionServiceStandardSoap11Binding" soapVersion="1_1" anonymous="optional" definition="file:/D:/MasterThesis/repo/trunk/samples/soapui/axis2services/AdditionServiceStandard.xml" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="file:/D:/MasterThesis/repo/trunk/samples/soapui/axis2services/AdditionServiceStandard.xml"><con:part><con:url>file:/D:/MasterThesis/repo/trunk/samples/soapui/axis2services/AdditionServiceStandard.xml</con:url><con:content><![CDATA[<wsdl:definitions targetNamespace="http://addition.ws.fmi.unisofia.bg" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:ns1="http://org.apache.axis2/xsd" xmlns:ns="http://addition.ws.fmi.unisofia.bg" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/">
+  <wsdl:documentation>AdditionServiceStandard Desc</wsdl:documentation>
+  <wsdl:types>
+    <xs:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://addition.ws.fmi.unisofia.bg">
+      <xs:element name="add">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="a" type="xs:double"/>
+            <xs:element minOccurs="0" name="b" type="xs:double"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="addResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="return" type="xs:double"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="addRequest">
+    <wsdl:part name="parameters" element="ns:add"/>
+  </wsdl:message>
+  <wsdl:message name="addResponse">
+    <wsdl:part name="parameters" element="ns:addResponse"/>
+  </wsdl:message>
+  <wsdl:portType name="AdditionServiceStandardPortType">
+    <wsdl:operation name="add">
+      <wsdl:input message="ns:addRequest" wsaw:Action="urn:add"/>
+      <wsdl:output message="ns:addResponse" wsaw:Action="urn:addResponse"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="AdditionServiceStandardSoap11Binding" type="ns:AdditionServiceStandardPortType">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+    <wsdl:operation name="add">
+      <soap:operation soapAction="urn:add" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="AdditionServiceStandardSoap12Binding" type="ns:AdditionServiceStandardPortType">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+    <wsdl:operation name="add">
+      <soap12:operation soapAction="urn:add" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="AdditionServiceStandardHttpBinding" type="ns:AdditionServiceStandardPortType">
+    <http:binding verb="POST"/>
+    <wsdl:operation name="add">
+      <http:operation location="add"/>
+      <wsdl:input>
+        <mime:content type="application/xml" part="parameters"/>
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content type="application/xml" part="parameters"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="AdditionServiceStandard">
+    <wsdl:port name="AdditionServiceStandardHttpSoap11Endpoint" binding="ns:AdditionServiceStandardSoap11Binding">
+      <soap:address location="http://localhost:8080/axis2-services/services/AdditionServiceStandard.AdditionServiceStandardHttpSoap11Endpoint/"/>
+    </wsdl:port>
+    <wsdl:port name="AdditionServiceStandardHttpSoap12Endpoint" binding="ns:AdditionServiceStandardSoap12Binding">
+      <soap12:address location="http://localhost:8080/axis2-services/services/AdditionServiceStandard.AdditionServiceStandardHttpSoap12Endpoint/"/>
+    </wsdl:port>
+    <wsdl:port name="AdditionServiceStandardHttpEndpoint" binding="ns:AdditionServiceStandardHttpBinding">
+      <http:address location="http://localhost:8080/axis2-services/services/AdditionServiceStandard.AdditionServiceStandardHttpEndpoint/"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:8080/axis2-services/services/AdditionServiceStandard.AdditionServiceStandardHttpSoap11Endpoint/</con:endpoint></con:endpoints><con:operation isOneWay="false" action="urn:add" name="add" bindingOperationName="add" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/axis2-services/services/AdditionServiceStandard.AdditionServiceStandardHttpSoap11Endpoint/</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:add="http://addition.ws.fmi.unisofia.bg">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <add:add>
+         <!--Optional:-->
+         <add:a>?</add:a>
+         <!--Optional:-->
+         <add:b>?</add:b>
+      </add:add>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:add"/></con:call></con:operation></con:interface><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="AdditionServiceSlowSoap12Binding" type="wsdl" bindingName="{http://addition.ws.fmi.unisofia.bg}AdditionServiceSlowSoap12Binding" soapVersion="1_2" anonymous="optional" definition="file:/D:/MasterThesis/repo/trunk/samples/soapui/axis2services/AdditionServiceSlow.xml" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache/><con:endpoints><con:endpoint>http://localhost:8080/axis2-services/services/AdditionServiceSlow.AdditionServiceSlowHttpSoap12Endpoint/</con:endpoint></con:endpoints><con:operation isOneWay="false" action="urn:add" name="add" bindingOperationName="add" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/axis2-services/services/AdditionServiceSlow.AdditionServiceSlowHttpSoap12Endpoint/</con:endpoint><con:request><![CDATA[<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:add="http://addition.ws.fmi.unisofia.bg">
+   <soap:Header/>
+   <soap:Body>
+      <add:add>
+         <!--Optional:-->
+         <add:a>?</add:a>
+         <!--Optional:-->
+         <add:b>?</add:b>
+      </add:add>
+   </soap:Body>
+</soap:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:add"/></con:call></con:operation></con:interface><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="AdditionServiceSlowSoap11Binding" type="wsdl" bindingName="{http://addition.ws.fmi.unisofia.bg}AdditionServiceSlowSoap11Binding" soapVersion="1_1" anonymous="optional" definition="file:/D:/MasterThesis/repo/trunk/samples/soapui/axis2services/AdditionServiceSlow.xml" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="file:/D:/MasterThesis/repo/trunk/samples/soapui/axis2services/AdditionServiceSlow.xml"><con:part><con:url>file:/D:/MasterThesis/repo/trunk/samples/soapui/axis2services/AdditionServiceSlow.xml</con:url><con:content><![CDATA[<wsdl:definitions targetNamespace="http://addition.ws.fmi.unisofia.bg" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:ns1="http://org.apache.axis2/xsd" xmlns:ns="http://addition.ws.fmi.unisofia.bg" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/">
+  <wsdl:documentation>AdditionServiceSlow Desc</wsdl:documentation>
+  <wsdl:types>
+    <xs:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://addition.ws.fmi.unisofia.bg">
+      <xs:element name="add">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="a" type="xs:double"/>
+            <xs:element minOccurs="0" name="b" type="xs:double"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="addResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="return" type="xs:double"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="addRequest">
+    <wsdl:part name="parameters" element="ns:add"/>
+  </wsdl:message>
+  <wsdl:message name="addResponse">
+    <wsdl:part name="parameters" element="ns:addResponse"/>
+  </wsdl:message>
+  <wsdl:portType name="AdditionServiceSlowPortType">
+    <wsdl:operation name="add">
+      <wsdl:input message="ns:addRequest" wsaw:Action="urn:add"/>
+      <wsdl:output message="ns:addResponse" wsaw:Action="urn:addResponse"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="AdditionServiceSlowSoap11Binding" type="ns:AdditionServiceSlowPortType">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+    <wsdl:operation name="add">
+      <soap:operation soapAction="urn:add" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="AdditionServiceSlowSoap12Binding" type="ns:AdditionServiceSlowPortType">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+    <wsdl:operation name="add">
+      <soap12:operation soapAction="urn:add" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="AdditionServiceSlowHttpBinding" type="ns:AdditionServiceSlowPortType">
+    <http:binding verb="POST"/>
+    <wsdl:operation name="add">
+      <http:operation location="add"/>
+      <wsdl:input>
+        <mime:content type="application/xml" part="parameters"/>
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content type="application/xml" part="parameters"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="AdditionServiceSlow">
+    <wsdl:port name="AdditionServiceSlowHttpSoap11Endpoint" binding="ns:AdditionServiceSlowSoap11Binding">
+      <soap:address location="http://localhost:8080/axis2-services/services/AdditionServiceSlow.AdditionServiceSlowHttpSoap11Endpoint/"/>
+    </wsdl:port>
+    <wsdl:port name="AdditionServiceSlowHttpSoap12Endpoint" binding="ns:AdditionServiceSlowSoap12Binding">
+      <soap12:address location="http://localhost:8080/axis2-services/services/AdditionServiceSlow.AdditionServiceSlowHttpSoap12Endpoint/"/>
+    </wsdl:port>
+    <wsdl:port name="AdditionServiceSlowHttpEndpoint" binding="ns:AdditionServiceSlowHttpBinding">
+      <http:address location="http://localhost:8080/axis2-services/services/AdditionServiceSlow.AdditionServiceSlowHttpEndpoint/"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:8080/axis2-services/services/AdditionServiceSlow.AdditionServiceSlowHttpSoap11Endpoint/</con:endpoint></con:endpoints><con:operation isOneWay="false" action="urn:add" name="add" bindingOperationName="add" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/axis2-services/services/AdditionServiceSlow.AdditionServiceSlowHttpSoap11Endpoint/</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:add="http://addition.ws.fmi.unisofia.bg">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <add:add>
+         <!--Optional:-->
+         <add:a>?</add:a>
+         <!--Optional:-->
+         <add:b>?</add:b>
+      </add:add>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:add"/></con:call></con:operation></con:interface><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="AdditionServiceRandomAvailableSoap12Binding" type="wsdl" bindingName="{http://addition.ws.fmi.unisofia.bg}AdditionServiceRandomAvailableSoap12Binding" soapVersion="1_2" anonymous="optional" definition="file:/D:/MasterThesis/repo/trunk/samples/soapui/axis2services/AdditionServiceRandomAvailable.xml" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache/><con:endpoints><con:endpoint>http://localhost:8080/axis2-services/services/AdditionServiceRandomAvailable.AdditionServiceRandomAvailableHttpSoap12Endpoint/</con:endpoint></con:endpoints><con:operation isOneWay="false" action="urn:add" name="add" bindingOperationName="add" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/axis2-services/services/AdditionServiceRandomAvailable.AdditionServiceRandomAvailableHttpSoap12Endpoint/</con:endpoint><con:request><![CDATA[<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:add="http://addition.ws.fmi.unisofia.bg">
+   <soap:Header/>
+   <soap:Body>
+      <add:add>
+         <!--Optional:-->
+         <add:a>?</add:a>
+         <!--Optional:-->
+         <add:b>?</add:b>
+      </add:add>
+   </soap:Body>
+</soap:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:add"/></con:call></con:operation></con:interface><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="AdditionServiceRandomAvailableSoap11Binding" type="wsdl" bindingName="{http://addition.ws.fmi.unisofia.bg}AdditionServiceRandomAvailableSoap11Binding" soapVersion="1_1" anonymous="optional" definition="file:/D:/MasterThesis/repo/trunk/samples/soapui/axis2services/AdditionServiceRandomAvailable.xml" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="file:/D:/MasterThesis/repo/trunk/samples/soapui/axis2services/AdditionServiceRandomAvailable.xml"><con:part><con:url>file:/D:/MasterThesis/repo/trunk/samples/soapui/axis2services/AdditionServiceRandomAvailable.xml</con:url><con:content><![CDATA[<wsdl:definitions targetNamespace="http://addition.ws.fmi.unisofia.bg" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:ns1="http://org.apache.axis2/xsd" xmlns:ns="http://addition.ws.fmi.unisofia.bg" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/">
+  <wsdl:documentation>AdditionServiceRandomAvailable Desc</wsdl:documentation>
+  <wsdl:types>
+    <xs:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://addition.ws.fmi.unisofia.bg">
+      <xs:element name="add">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="a" type="xs:double"/>
+            <xs:element minOccurs="0" name="b" type="xs:double"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="addResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="return" type="xs:double"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="addRequest">
+    <wsdl:part name="parameters" element="ns:add"/>
+  </wsdl:message>
+  <wsdl:message name="addResponse">
+    <wsdl:part name="parameters" element="ns:addResponse"/>
+  </wsdl:message>
+  <wsdl:portType name="AdditionServiceRandomAvailablePortType">
+    <wsdl:operation name="add">
+      <wsdl:input message="ns:addRequest" wsaw:Action="urn:add"/>
+      <wsdl:output message="ns:addResponse" wsaw:Action="urn:addResponse"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="AdditionServiceRandomAvailableSoap11Binding" type="ns:AdditionServiceRandomAvailablePortType">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+    <wsdl:operation name="add">
+      <soap:operation soapAction="urn:add" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="AdditionServiceRandomAvailableSoap12Binding" type="ns:AdditionServiceRandomAvailablePortType">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+    <wsdl:operation name="add">
+      <soap12:operation soapAction="urn:add" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="AdditionServiceRandomAvailableHttpBinding" type="ns:AdditionServiceRandomAvailablePortType">
+    <http:binding verb="POST"/>
+    <wsdl:operation name="add">
+      <http:operation location="add"/>
+      <wsdl:input>
+        <mime:content type="application/xml" part="parameters"/>
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content type="application/xml" part="parameters"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="AdditionServiceRandomAvailable">
+    <wsdl:port name="AdditionServiceRandomAvailableHttpSoap11Endpoint" binding="ns:AdditionServiceRandomAvailableSoap11Binding">
+      <soap:address location="http://localhost:8080/axis2-services/services/AdditionServiceRandomAvailable.AdditionServiceRandomAvailableHttpSoap11Endpoint/"/>
+    </wsdl:port>
+    <wsdl:port name="AdditionServiceRandomAvailableHttpSoap12Endpoint" binding="ns:AdditionServiceRandomAvailableSoap12Binding">
+      <soap12:address location="http://localhost:8080/axis2-services/services/AdditionServiceRandomAvailable.AdditionServiceRandomAvailableHttpSoap12Endpoint/"/>
+    </wsdl:port>
+    <wsdl:port name="AdditionServiceRandomAvailableHttpEndpoint" binding="ns:AdditionServiceRandomAvailableHttpBinding">
+      <http:address location="http://localhost:8080/axis2-services/services/AdditionServiceRandomAvailable.AdditionServiceRandomAvailableHttpEndpoint/"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:8080/axis2-services/services/AdditionServiceRandomAvailable.AdditionServiceRandomAvailableHttpSoap11Endpoint/</con:endpoint></con:endpoints><con:operation isOneWay="false" action="urn:add" name="add" bindingOperationName="add" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/axis2-services/services/AdditionServiceRandomAvailable.AdditionServiceRandomAvailableHttpSoap11Endpoint/</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:add="http://addition.ws.fmi.unisofia.bg">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <add:add>
+         <!--Optional:-->
+         <add:a>?</add:a>
+         <!--Optional:-->
+         <add:b>?</add:b>
+      </add:add>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:add"/></con:call></con:operation></con:interface><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="MultiplicityServiceStandardSoap11Binding" type="wsdl" bindingName="{http://multiplicity.ws.fmi.unisofia.bg}MultiplicityServiceStandardSoap11Binding" soapVersion="1_1" anonymous="optional" definition="file:/D:/MasterThesis/repo/trunk/samples/soapui/axis2services/MultiplicityServiceStandard.xml" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache/><con:endpoints><con:endpoint>http://localhost:8080/axis2-services/services/MultiplicityServiceStandard.MultiplicityServiceStandardHttpSoap11Endpoint/</con:endpoint></con:endpoints><con:operation isOneWay="false" action="urn:multiply" name="multiply" bindingOperationName="multiply" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/axis2-services/services/MultiplicityServiceStandard.MultiplicityServiceStandardHttpSoap11Endpoint/</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:mul="http://multiplicity.ws.fmi.unisofia.bg">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <mul:multiply>
+         <!--Optional:-->
+         <mul:a>?</mul:a>
+         <!--Optional:-->
+         <mul:b>?</mul:b>
+      </mul:multiply>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:multiply"/></con:call></con:operation></con:interface><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="MultiplicityServiceStandardSoap12Binding" type="wsdl" bindingName="{http://multiplicity.ws.fmi.unisofia.bg}MultiplicityServiceStandardSoap12Binding" soapVersion="1_2" anonymous="optional" definition="file:/D:/MasterThesis/repo/trunk/samples/soapui/axis2services/MultiplicityServiceStandard.xml" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="file:/D:/MasterThesis/repo/trunk/samples/soapui/axis2services/MultiplicityServiceStandard.xml"><con:part><con:url>file:/D:/MasterThesis/repo/trunk/samples/soapui/axis2services/MultiplicityServiceStandard.xml</con:url><con:content><![CDATA[<wsdl:definitions targetNamespace="http://multiplicity.ws.fmi.unisofia.bg" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:ns1="http://org.apache.axis2/xsd" xmlns:ns="http://multiplicity.ws.fmi.unisofia.bg" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/">
+  <wsdl:documentation>MultiplicityServiceStandard Desc</wsdl:documentation>
+  <wsdl:types>
+    <xs:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://multiplicity.ws.fmi.unisofia.bg">
+      <xs:element name="multiply">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="a" type="xs:double"/>
+            <xs:element minOccurs="0" name="b" type="xs:double"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="multiplyResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="return" type="xs:double"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="multiplyRequest">
+    <wsdl:part name="parameters" element="ns:multiply"/>
+  </wsdl:message>
+  <wsdl:message name="multiplyResponse">
+    <wsdl:part name="parameters" element="ns:multiplyResponse"/>
+  </wsdl:message>
+  <wsdl:portType name="MultiplicityServiceStandardPortType">
+    <wsdl:operation name="multiply">
+      <wsdl:input message="ns:multiplyRequest" wsaw:Action="urn:multiply"/>
+      <wsdl:output message="ns:multiplyResponse" wsaw:Action="urn:multiplyResponse"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="MultiplicityServiceStandardSoap11Binding" type="ns:MultiplicityServiceStandardPortType">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+    <wsdl:operation name="multiply">
+      <soap:operation soapAction="urn:multiply" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="MultiplicityServiceStandardSoap12Binding" type="ns:MultiplicityServiceStandardPortType">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+    <wsdl:operation name="multiply">
+      <soap12:operation soapAction="urn:multiply" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="MultiplicityServiceStandardHttpBinding" type="ns:MultiplicityServiceStandardPortType">
+    <http:binding verb="POST"/>
+    <wsdl:operation name="multiply">
+      <http:operation location="multiply"/>
+      <wsdl:input>
+        <mime:content type="application/xml" part="parameters"/>
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content type="application/xml" part="parameters"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="MultiplicityServiceStandard">
+    <wsdl:port name="MultiplicityServiceStandardHttpSoap11Endpoint" binding="ns:MultiplicityServiceStandardSoap11Binding">
+      <soap:address location="http://localhost:8080/axis2-services/services/MultiplicityServiceStandard.MultiplicityServiceStandardHttpSoap11Endpoint/"/>
+    </wsdl:port>
+    <wsdl:port name="MultiplicityServiceStandardHttpSoap12Endpoint" binding="ns:MultiplicityServiceStandardSoap12Binding">
+      <soap12:address location="http://localhost:8080/axis2-services/services/MultiplicityServiceStandard.MultiplicityServiceStandardHttpSoap12Endpoint/"/>
+    </wsdl:port>
+    <wsdl:port name="MultiplicityServiceStandardHttpEndpoint" binding="ns:MultiplicityServiceStandardHttpBinding">
+      <http:address location="http://localhost:8080/axis2-services/services/MultiplicityServiceStandard.MultiplicityServiceStandardHttpEndpoint/"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:8080/axis2-services/services/MultiplicityServiceStandard.MultiplicityServiceStandardHttpSoap12Endpoint/</con:endpoint></con:endpoints><con:operation isOneWay="false" action="urn:multiply" name="multiply" bindingOperationName="multiply" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/axis2-services/services/MultiplicityServiceStandard.MultiplicityServiceStandardHttpSoap12Endpoint/</con:endpoint><con:request><![CDATA[<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:mul="http://multiplicity.ws.fmi.unisofia.bg">
+   <soap:Header/>
+   <soap:Body>
+      <mul:multiply>
+         <!--Optional:-->
+         <mul:a>?</mul:a>
+         <!--Optional:-->
+         <mul:b>?</mul:b>
+      </mul:multiply>
+   </soap:Body>
+</soap:Envelope>]]></con:request><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:multiply"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="MultiplicityServiceSlowSoap12Binding" type="wsdl" bindingName="{http://multiplicity.ws.fmi.unisofia.bg}MultiplicityServiceSlowSoap12Binding" soapVersion="1_2" anonymous="optional" definition="file:/D:/MasterThesis/repo/trunk/samples/soapui/axis2services/MultiplicityServiceSlow.xml" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache/><con:endpoints><con:endpoint>http://localhost:8080/axis2-services/services/MultiplicityServiceSlow.MultiplicityServiceSlowHttpSoap12Endpoint/</con:endpoint></con:endpoints><con:operation isOneWay="false" action="urn:multiply" name="multiply" bindingOperationName="multiply" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/axis2-services/services/MultiplicityServiceSlow.MultiplicityServiceSlowHttpSoap12Endpoint/</con:endpoint><con:request><![CDATA[<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:mul="http://multiplicity.ws.fmi.unisofia.bg">
+   <soap:Header/>
+   <soap:Body>
+      <mul:multiply>
+         <!--Optional:-->
+         <mul:a>?</mul:a>
+         <!--Optional:-->
+         <mul:b>?</mul:b>
+      </mul:multiply>
+   </soap:Body>
+</soap:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:multiply"/></con:call></con:operation></con:interface><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="MultiplicityServiceSlowSoap11Binding" type="wsdl" bindingName="{http://multiplicity.ws.fmi.unisofia.bg}MultiplicityServiceSlowSoap11Binding" soapVersion="1_1" anonymous="optional" definition="file:/D:/MasterThesis/repo/trunk/samples/soapui/axis2services/MultiplicityServiceSlow.xml" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="file:/D:/MasterThesis/repo/trunk/samples/soapui/axis2services/MultiplicityServiceSlow.xml"><con:part><con:url>file:/D:/MasterThesis/repo/trunk/samples/soapui/axis2services/MultiplicityServiceSlow.xml</con:url><con:content><![CDATA[<wsdl:definitions targetNamespace="http://multiplicity.ws.fmi.unisofia.bg" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:ns1="http://org.apache.axis2/xsd" xmlns:ns="http://multiplicity.ws.fmi.unisofia.bg" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/">
+  <wsdl:documentation>MultiplicityServiceSlow Desc</wsdl:documentation>
+  <wsdl:types>
+    <xs:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://multiplicity.ws.fmi.unisofia.bg">
+      <xs:element name="multiply">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="a" type="xs:double"/>
+            <xs:element minOccurs="0" name="b" type="xs:double"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="multiplyResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="return" type="xs:double"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="multiplyRequest">
+    <wsdl:part name="parameters" element="ns:multiply"/>
+  </wsdl:message>
+  <wsdl:message name="multiplyResponse">
+    <wsdl:part name="parameters" element="ns:multiplyResponse"/>
+  </wsdl:message>
+  <wsdl:portType name="MultiplicityServiceSlowPortType">
+    <wsdl:operation name="multiply">
+      <wsdl:input message="ns:multiplyRequest" wsaw:Action="urn:multiply"/>
+      <wsdl:output message="ns:multiplyResponse" wsaw:Action="urn:multiplyResponse"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="MultiplicityServiceSlowSoap11Binding" type="ns:MultiplicityServiceSlowPortType">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+    <wsdl:operation name="multiply">
+      <soap:operation soapAction="urn:multiply" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="MultiplicityServiceSlowSoap12Binding" type="ns:MultiplicityServiceSlowPortType">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+    <wsdl:operation name="multiply">
+      <soap12:operation soapAction="urn:multiply" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="MultiplicityServiceSlowHttpBinding" type="ns:MultiplicityServiceSlowPortType">
+    <http:binding verb="POST"/>
+    <wsdl:operation name="multiply">
+      <http:operation location="multiply"/>
+      <wsdl:input>
+        <mime:content type="application/xml" part="parameters"/>
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content type="application/xml" part="parameters"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="MultiplicityServiceSlow">
+    <wsdl:port name="MultiplicityServiceSlowHttpSoap11Endpoint" binding="ns:MultiplicityServiceSlowSoap11Binding">
+      <soap:address location="http://localhost:8080/axis2-services/services/MultiplicityServiceSlow.MultiplicityServiceSlowHttpSoap11Endpoint/"/>
+    </wsdl:port>
+    <wsdl:port name="MultiplicityServiceSlowHttpSoap12Endpoint" binding="ns:MultiplicityServiceSlowSoap12Binding">
+      <soap12:address location="http://localhost:8080/axis2-services/services/MultiplicityServiceSlow.MultiplicityServiceSlowHttpSoap12Endpoint/"/>
+    </wsdl:port>
+    <wsdl:port name="MultiplicityServiceSlowHttpEndpoint" binding="ns:MultiplicityServiceSlowHttpBinding">
+      <http:address location="http://localhost:8080/axis2-services/services/MultiplicityServiceSlow.MultiplicityServiceSlowHttpEndpoint/"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:8080/axis2-services/services/MultiplicityServiceSlow.MultiplicityServiceSlowHttpSoap11Endpoint/</con:endpoint></con:endpoints><con:operation isOneWay="false" action="urn:multiply" name="multiply" bindingOperationName="multiply" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/axis2-services/services/MultiplicityServiceSlow.MultiplicityServiceSlowHttpSoap11Endpoint/</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:mul="http://multiplicity.ws.fmi.unisofia.bg">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <mul:multiply>
+         <!--Optional:-->
+         <mul:a>?</mul:a>
+         <!--Optional:-->
+         <mul:b>?</mul:b>
+      </mul:multiply>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:multiply"/></con:call></con:operation></con:interface><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="MultiplicityServiceRandomAvailabilitySoap12Binding" type="wsdl" bindingName="{http://multiplicity.ws.fmi.unisofia.bg}MultiplicityServiceRandomAvailabilitySoap12Binding" soapVersion="1_2" anonymous="optional" definition="file:/D:/MasterThesis/repo/trunk/samples/soapui/axis2services/MultiplicityServiceRandomAvailability.xml" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache/><con:endpoints><con:endpoint>http://localhost:8080/axis2-services/services/MultiplicityServiceRandomAvailability.MultiplicityServiceRandomAvailabilityHttpSoap12Endpoint/</con:endpoint></con:endpoints><con:operation isOneWay="false" action="urn:multiply" name="multiply" bindingOperationName="multiply" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/axis2-services/services/MultiplicityServiceRandomAvailability.MultiplicityServiceRandomAvailabilityHttpSoap12Endpoint/</con:endpoint><con:request><![CDATA[<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:mul="http://multiplicity.ws.fmi.unisofia.bg">
+   <soap:Header/>
+   <soap:Body>
+      <mul:multiply>
+         <!--Optional:-->
+         <mul:a>?</mul:a>
+         <!--Optional:-->
+         <mul:b>?</mul:b>
+      </mul:multiply>
+   </soap:Body>
+</soap:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:multiply"/></con:call></con:operation></con:interface><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="MultiplicityServiceRandomAvailabilitySoap11Binding" type="wsdl" bindingName="{http://multiplicity.ws.fmi.unisofia.bg}MultiplicityServiceRandomAvailabilitySoap11Binding" soapVersion="1_1" anonymous="optional" definition="file:/D:/MasterThesis/repo/trunk/samples/soapui/axis2services/MultiplicityServiceRandomAvailability.xml" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="file:/D:/MasterThesis/repo/trunk/samples/soapui/axis2services/MultiplicityServiceRandomAvailability.xml"><con:part><con:url>file:/D:/MasterThesis/repo/trunk/samples/soapui/axis2services/MultiplicityServiceRandomAvailability.xml</con:url><con:content><![CDATA[<wsdl:definitions targetNamespace="http://multiplicity.ws.fmi.unisofia.bg" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:ns1="http://org.apache.axis2/xsd" xmlns:ns="http://multiplicity.ws.fmi.unisofia.bg" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/">
+  <wsdl:documentation>MultiplicityServiceRandomAvailability Desc</wsdl:documentation>
+  <wsdl:types>
+    <xs:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://multiplicity.ws.fmi.unisofia.bg">
+      <xs:element name="multiply">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="a" type="xs:double"/>
+            <xs:element minOccurs="0" name="b" type="xs:double"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="multiplyResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="return" type="xs:double"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="multiplyRequest">
+    <wsdl:part name="parameters" element="ns:multiply"/>
+  </wsdl:message>
+  <wsdl:message name="multiplyResponse">
+    <wsdl:part name="parameters" element="ns:multiplyResponse"/>
+  </wsdl:message>
+  <wsdl:portType name="MultiplicityServiceRandomAvailabilityPortType">
+    <wsdl:operation name="multiply">
+      <wsdl:input message="ns:multiplyRequest" wsaw:Action="urn:multiply"/>
+      <wsdl:output message="ns:multiplyResponse" wsaw:Action="urn:multiplyResponse"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="MultiplicityServiceRandomAvailabilitySoap11Binding" type="ns:MultiplicityServiceRandomAvailabilityPortType">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+    <wsdl:operation name="multiply">
+      <soap:operation soapAction="urn:multiply" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="MultiplicityServiceRandomAvailabilitySoap12Binding" type="ns:MultiplicityServiceRandomAvailabilityPortType">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+    <wsdl:operation name="multiply">
+      <soap12:operation soapAction="urn:multiply" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="MultiplicityServiceRandomAvailabilityHttpBinding" type="ns:MultiplicityServiceRandomAvailabilityPortType">
+    <http:binding verb="POST"/>
+    <wsdl:operation name="multiply">
+      <http:operation location="multiply"/>
+      <wsdl:input>
+        <mime:content type="application/xml" part="parameters"/>
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content type="application/xml" part="parameters"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="MultiplicityServiceRandomAvailability">
+    <wsdl:port name="MultiplicityServiceRandomAvailabilityHttpSoap11Endpoint" binding="ns:MultiplicityServiceRandomAvailabilitySoap11Binding">
+      <soap:address location="http://localhost:8080/axis2-services/services/MultiplicityServiceRandomAvailability.MultiplicityServiceRandomAvailabilityHttpSoap11Endpoint/"/>
+    </wsdl:port>
+    <wsdl:port name="MultiplicityServiceRandomAvailabilityHttpSoap12Endpoint" binding="ns:MultiplicityServiceRandomAvailabilitySoap12Binding">
+      <soap12:address location="http://localhost:8080/axis2-services/services/MultiplicityServiceRandomAvailability.MultiplicityServiceRandomAvailabilityHttpSoap12Endpoint/"/>
+    </wsdl:port>
+    <wsdl:port name="MultiplicityServiceRandomAvailabilityHttpEndpoint" binding="ns:MultiplicityServiceRandomAvailabilityHttpBinding">
+      <http:address location="http://localhost:8080/axis2-services/services/MultiplicityServiceRandomAvailability.MultiplicityServiceRandomAvailabilityHttpEndpoint/"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:8080/axis2-services/services/MultiplicityServiceRandomAvailability.MultiplicityServiceRandomAvailabilityHttpSoap11Endpoint/</con:endpoint></con:endpoints><con:operation isOneWay="false" action="urn:multiply" name="multiply" bindingOperationName="multiply" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/axis2-services/services/MultiplicityServiceRandomAvailability.MultiplicityServiceRandomAvailabilityHttpSoap11Endpoint/</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:mul="http://multiplicity.ws.fmi.unisofia.bg">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <mul:multiply>
+         <!--Optional:-->
+         <mul:a>?</mul:a>
+         <!--Optional:-->
+         <mul:b>?</mul:b>
+      </mul:multiply>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:multiply"/></con:call></con:operation></con:interface><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="PowServiceStandardSoap12Binding" type="wsdl" bindingName="{http://pow.ws.fmi.unisofia.bg}PowServiceStandardSoap12Binding" soapVersion="1_2" anonymous="optional" definition="file:/D:/MasterThesis/repo/trunk/samples/soapui/axis2services/PowServiceStandard.xml" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache/><con:endpoints><con:endpoint>http://localhost:8080/axis2-services/services/PowServiceStandard.PowServiceStandardHttpSoap12Endpoint/</con:endpoint></con:endpoints><con:operation isOneWay="false" action="urn:pow" name="pow" bindingOperationName="pow" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/axis2-services/services/PowServiceStandard.PowServiceStandardHttpSoap12Endpoint/</con:endpoint><con:request><![CDATA[<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:pow="http://pow.ws.fmi.unisofia.bg">
+   <soap:Header/>
+   <soap:Body>
+      <pow:pow>
+         <!--Optional:-->
+         <pow:a>?</pow:a>
+         <!--Optional:-->
+         <pow:b>?</pow:b>
+      </pow:pow>
+   </soap:Body>
+</soap:Envelope>]]></con:request><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:pow"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="PowServiceStandardSoap11Binding" type="wsdl" bindingName="{http://pow.ws.fmi.unisofia.bg}PowServiceStandardSoap11Binding" soapVersion="1_1" anonymous="optional" definition="file:/D:/MasterThesis/repo/trunk/samples/soapui/axis2services/PowServiceStandard.xml" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="file:/D:/MasterThesis/repo/trunk/samples/soapui/axis2services/PowServiceStandard.xml"><con:part><con:url>file:/D:/MasterThesis/repo/trunk/samples/soapui/axis2services/PowServiceStandard.xml</con:url><con:content><![CDATA[<wsdl:definitions targetNamespace="http://pow.ws.fmi.unisofia.bg" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:ns1="http://org.apache.axis2/xsd" xmlns:ns="http://pow.ws.fmi.unisofia.bg" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/">
+  <wsdl:documentation>PowServiceStandard Desc</wsdl:documentation>
+  <wsdl:types>
+    <xs:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://pow.ws.fmi.unisofia.bg">
+      <xs:element name="pow">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="a" type="xs:double"/>
+            <xs:element minOccurs="0" name="b" type="xs:double"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="powResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="return" type="xs:double"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="powRequest">
+    <wsdl:part name="parameters" element="ns:pow"/>
+  </wsdl:message>
+  <wsdl:message name="powResponse">
+    <wsdl:part name="parameters" element="ns:powResponse"/>
+  </wsdl:message>
+  <wsdl:portType name="PowServiceStandardPortType">
+    <wsdl:operation name="pow">
+      <wsdl:input message="ns:powRequest" wsaw:Action="urn:pow"/>
+      <wsdl:output message="ns:powResponse" wsaw:Action="urn:powResponse"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="PowServiceStandardSoap11Binding" type="ns:PowServiceStandardPortType">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+    <wsdl:operation name="pow">
+      <soap:operation soapAction="urn:pow" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="PowServiceStandardSoap12Binding" type="ns:PowServiceStandardPortType">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+    <wsdl:operation name="pow">
+      <soap12:operation soapAction="urn:pow" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="PowServiceStandardHttpBinding" type="ns:PowServiceStandardPortType">
+    <http:binding verb="POST"/>
+    <wsdl:operation name="pow">
+      <http:operation location="pow"/>
+      <wsdl:input>
+        <mime:content type="application/xml" part="parameters"/>
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content type="application/xml" part="parameters"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="PowServiceStandard">
+    <wsdl:port name="PowServiceStandardHttpSoap11Endpoint" binding="ns:PowServiceStandardSoap11Binding">
+      <soap:address location="http://localhost:8080/axis2-services/services/PowServiceStandard.PowServiceStandardHttpSoap11Endpoint/"/>
+    </wsdl:port>
+    <wsdl:port name="PowServiceStandardHttpSoap12Endpoint" binding="ns:PowServiceStandardSoap12Binding">
+      <soap12:address location="http://localhost:8080/axis2-services/services/PowServiceStandard.PowServiceStandardHttpSoap12Endpoint/"/>
+    </wsdl:port>
+    <wsdl:port name="PowServiceStandardHttpEndpoint" binding="ns:PowServiceStandardHttpBinding">
+      <http:address location="http://localhost:8080/axis2-services/services/PowServiceStandard.PowServiceStandardHttpEndpoint/"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:8080/axis2-services/services/PowServiceStandard.PowServiceStandardHttpSoap11Endpoint/</con:endpoint></con:endpoints><con:operation isOneWay="false" action="urn:pow" name="pow" bindingOperationName="pow" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/axis2-services/services/PowServiceStandard.PowServiceStandardHttpSoap11Endpoint/</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:pow="http://pow.ws.fmi.unisofia.bg">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <pow:pow>
+         <!--Optional:-->
+         <pow:a>?</pow:a>
+         <!--Optional:-->
+         <pow:b>?</pow:b>
+      </pow:pow>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:pow"/></con:call></con:operation></con:interface><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="PowServiceSlowSoap12Binding" type="wsdl" bindingName="{http://pow.ws.fmi.unisofia.bg}PowServiceSlowSoap12Binding" soapVersion="1_2" anonymous="optional" definition="file:/D:/MasterThesis/repo/trunk/samples/soapui/axis2services/PowServiceSlow.xml" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache/><con:endpoints><con:endpoint>http://localhost:8080/axis2-services/services/PowServiceSlow.PowServiceSlowHttpSoap12Endpoint/</con:endpoint></con:endpoints><con:operation isOneWay="false" action="urn:pow" name="pow" bindingOperationName="pow" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/axis2-services/services/PowServiceSlow.PowServiceSlowHttpSoap12Endpoint/</con:endpoint><con:request><![CDATA[<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:pow="http://pow.ws.fmi.unisofia.bg">
+   <soap:Header/>
+   <soap:Body>
+      <pow:pow>
+         <!--Optional:-->
+         <pow:a>?</pow:a>
+         <!--Optional:-->
+         <pow:b>?</pow:b>
+      </pow:pow>
+   </soap:Body>
+</soap:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:pow"/></con:call></con:operation></con:interface><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="PowServiceSlowSoap11Binding" type="wsdl" bindingName="{http://pow.ws.fmi.unisofia.bg}PowServiceSlowSoap11Binding" soapVersion="1_1" anonymous="optional" definition="file:/D:/MasterThesis/repo/trunk/samples/soapui/axis2services/PowServiceSlow.xml" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="file:/D:/MasterThesis/repo/trunk/samples/soapui/axis2services/PowServiceSlow.xml"><con:part><con:url>file:/D:/MasterThesis/repo/trunk/samples/soapui/axis2services/PowServiceSlow.xml</con:url><con:content><![CDATA[<wsdl:definitions targetNamespace="http://pow.ws.fmi.unisofia.bg" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:ns1="http://org.apache.axis2/xsd" xmlns:ns="http://pow.ws.fmi.unisofia.bg" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/">
+  <wsdl:documentation>PowServiceSlow Desc</wsdl:documentation>
+  <wsdl:types>
+    <xs:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://pow.ws.fmi.unisofia.bg">
+      <xs:element name="pow">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="a" type="xs:double"/>
+            <xs:element minOccurs="0" name="b" type="xs:double"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="powResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="return" type="xs:double"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="powRequest">
+    <wsdl:part name="parameters" element="ns:pow"/>
+  </wsdl:message>
+  <wsdl:message name="powResponse">
+    <wsdl:part name="parameters" element="ns:powResponse"/>
+  </wsdl:message>
+  <wsdl:portType name="PowServiceSlowPortType">
+    <wsdl:operation name="pow">
+      <wsdl:input message="ns:powRequest" wsaw:Action="urn:pow"/>
+      <wsdl:output message="ns:powResponse" wsaw:Action="urn:powResponse"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="PowServiceSlowSoap11Binding" type="ns:PowServiceSlowPortType">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+    <wsdl:operation name="pow">
+      <soap:operation soapAction="urn:pow" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="PowServiceSlowSoap12Binding" type="ns:PowServiceSlowPortType">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+    <wsdl:operation name="pow">
+      <soap12:operation soapAction="urn:pow" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="PowServiceSlowHttpBinding" type="ns:PowServiceSlowPortType">
+    <http:binding verb="POST"/>
+    <wsdl:operation name="pow">
+      <http:operation location="pow"/>
+      <wsdl:input>
+        <mime:content type="application/xml" part="parameters"/>
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content type="application/xml" part="parameters"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="PowServiceSlow">
+    <wsdl:port name="PowServiceSlowHttpSoap11Endpoint" binding="ns:PowServiceSlowSoap11Binding">
+      <soap:address location="http://localhost:8080/axis2-services/services/PowServiceSlow.PowServiceSlowHttpSoap11Endpoint/"/>
+    </wsdl:port>
+    <wsdl:port name="PowServiceSlowHttpSoap12Endpoint" binding="ns:PowServiceSlowSoap12Binding">
+      <soap12:address location="http://localhost:8080/axis2-services/services/PowServiceSlow.PowServiceSlowHttpSoap12Endpoint/"/>
+    </wsdl:port>
+    <wsdl:port name="PowServiceSlowHttpEndpoint" binding="ns:PowServiceSlowHttpBinding">
+      <http:address location="http://localhost:8080/axis2-services/services/PowServiceSlow.PowServiceSlowHttpEndpoint/"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:8080/axis2-services/services/PowServiceSlow.PowServiceSlowHttpSoap11Endpoint/</con:endpoint></con:endpoints><con:operation isOneWay="false" action="urn:pow" name="pow" bindingOperationName="pow" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/axis2-services/services/PowServiceSlow.PowServiceSlowHttpSoap11Endpoint/</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:pow="http://pow.ws.fmi.unisofia.bg">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <pow:pow>
+         <!--Optional:-->
+         <pow:a>?</pow:a>
+         <!--Optional:-->
+         <pow:b>?</pow:b>
+      </pow:pow>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:pow"/></con:call></con:operation></con:interface><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="PowServiceRandomAvailabilitySoap12Binding" type="wsdl" bindingName="{http://pow.ws.fmi.unisofia.bg}PowServiceRandomAvailabilitySoap12Binding" soapVersion="1_2" anonymous="optional" definition="file:/D:/MasterThesis/repo/trunk/samples/soapui/axis2services/PowServiceRandomAvailability.xml" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache/><con:endpoints><con:endpoint>http://localhost:8080/axis2-services/services/PowServiceRandomAvailability.PowServiceRandomAvailabilityHttpSoap12Endpoint/</con:endpoint></con:endpoints><con:operation isOneWay="false" action="urn:pow" name="pow" bindingOperationName="pow" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/axis2-services/services/PowServiceRandomAvailability.PowServiceRandomAvailabilityHttpSoap12Endpoint/</con:endpoint><con:request><![CDATA[<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:pow="http://pow.ws.fmi.unisofia.bg">
+   <soap:Header/>
+   <soap:Body>
+      <pow:pow>
+         <!--Optional:-->
+         <pow:a>?</pow:a>
+         <!--Optional:-->
+         <pow:b>?</pow:b>
+      </pow:pow>
+   </soap:Body>
+</soap:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:pow"/></con:call></con:operation></con:interface><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="PowServiceRandomAvailabilitySoap11Binding" type="wsdl" bindingName="{http://pow.ws.fmi.unisofia.bg}PowServiceRandomAvailabilitySoap11Binding" soapVersion="1_1" anonymous="optional" definition="file:/D:/MasterThesis/repo/trunk/samples/soapui/axis2services/PowServiceRandomAvailability.xml" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="file:/D:/MasterThesis/repo/trunk/samples/soapui/axis2services/PowServiceRandomAvailability.xml"><con:part><con:url>file:/D:/MasterThesis/repo/trunk/samples/soapui/axis2services/PowServiceRandomAvailability.xml</con:url><con:content><![CDATA[<wsdl:definitions targetNamespace="http://pow.ws.fmi.unisofia.bg" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:ns1="http://org.apache.axis2/xsd" xmlns:ns="http://pow.ws.fmi.unisofia.bg" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/">
+  <wsdl:documentation>PowServiceRandomAvailability Desc</wsdl:documentation>
+  <wsdl:types>
+    <xs:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://pow.ws.fmi.unisofia.bg">
+      <xs:element name="pow">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="a" type="xs:double"/>
+            <xs:element minOccurs="0" name="b" type="xs:double"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="powResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="return" type="xs:double"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="powRequest">
+    <wsdl:part name="parameters" element="ns:pow"/>
+  </wsdl:message>
+  <wsdl:message name="powResponse">
+    <wsdl:part name="parameters" element="ns:powResponse"/>
+  </wsdl:message>
+  <wsdl:portType name="PowServiceRandomAvailabilityPortType">
+    <wsdl:operation name="pow">
+      <wsdl:input message="ns:powRequest" wsaw:Action="urn:pow"/>
+      <wsdl:output message="ns:powResponse" wsaw:Action="urn:powResponse"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="PowServiceRandomAvailabilitySoap11Binding" type="ns:PowServiceRandomAvailabilityPortType">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+    <wsdl:operation name="pow">
+      <soap:operation soapAction="urn:pow" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="PowServiceRandomAvailabilitySoap12Binding" type="ns:PowServiceRandomAvailabilityPortType">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+    <wsdl:operation name="pow">
+      <soap12:operation soapAction="urn:pow" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="PowServiceRandomAvailabilityHttpBinding" type="ns:PowServiceRandomAvailabilityPortType">
+    <http:binding verb="POST"/>
+    <wsdl:operation name="pow">
+      <http:operation location="pow"/>
+      <wsdl:input>
+        <mime:content type="application/xml" part="parameters"/>
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content type="application/xml" part="parameters"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="PowServiceRandomAvailability">
+    <wsdl:port name="PowServiceRandomAvailabilityHttpSoap11Endpoint" binding="ns:PowServiceRandomAvailabilitySoap11Binding">
+      <soap:address location="http://localhost:8080/axis2-services/services/PowServiceRandomAvailability.PowServiceRandomAvailabilityHttpSoap11Endpoint/"/>
+    </wsdl:port>
+    <wsdl:port name="PowServiceRandomAvailabilityHttpSoap12Endpoint" binding="ns:PowServiceRandomAvailabilitySoap12Binding">
+      <soap12:address location="http://localhost:8080/axis2-services/services/PowServiceRandomAvailability.PowServiceRandomAvailabilityHttpSoap12Endpoint/"/>
+    </wsdl:port>
+    <wsdl:port name="PowServiceRandomAvailabilityHttpEndpoint" binding="ns:PowServiceRandomAvailabilityHttpBinding">
+      <http:address location="http://localhost:8080/axis2-services/services/PowServiceRandomAvailability.PowServiceRandomAvailabilityHttpEndpoint/"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:8080/axis2-services/services/PowServiceRandomAvailability.PowServiceRandomAvailabilityHttpSoap11Endpoint/</con:endpoint></con:endpoints><con:operation isOneWay="false" action="urn:pow" name="pow" bindingOperationName="pow" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/axis2-services/services/PowServiceRandomAvailability.PowServiceRandomAvailabilityHttpSoap11Endpoint/</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:pow="http://pow.ws.fmi.unisofia.bg">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <pow:pow>
+         <!--Optional:-->
+         <pow:a>?</pow:a>
+         <!--Optional:-->
+         <pow:b>?</pow:b>
+      </pow:pow>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:pow"/></con:call></con:operation></con:interface><con:testSuite name="AutomateAxis2ServicesCalling"><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="CallAxis2Services" searchProperties="true" id="df08c4a4-da94-402e-8e30-915e915816ce"><con:settings/><con:testStep type="request" name="Call AdditionServiceStandard"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>AdditionServiceStandardSoap12Binding</con:interface><con:operation>add</con:operation><con:request name="Call AdditionServiceStandard"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/axis2-services/services/AdditionServiceStandard.AdditionServiceStandardHttpSoap12Endpoint/</con:endpoint><con:request><![CDATA[<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:add="http://addition.ws.fmi.unisofia.bg">
+   <soap:Header/>
+   <soap:Body>
+      <add:add>
+         <!--Optional:-->
+         <add:a>37</add:a>
+         <!--Optional:-->
+         <add:b>64</add:b>
+	</add:add>      
+   </soap:Body>
+</soap:Envelope>]]></con:request><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="Call AdditionServiceSlow"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>AdditionServiceSlowSoap12Binding</con:interface><con:operation>add</con:operation><con:request name="Call AdditionServiceSlow"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/axis2-services/services/AdditionServiceSlow.AdditionServiceSlowHttpSoap12Endpoint/</con:endpoint><con:request><![CDATA[<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:add="http://addition.ws.fmi.unisofia.bg">
+   <soap:Header/>
+   <soap:Body>
+      <add:add>
+         <add:a>37</add:a>         
+         <add:b>64</add:b>      
+      </add:add>
+   </soap:Body>
+</soap:Envelope>]]></con:request><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="Call AdditionServiceRandomAvailable"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>AdditionServiceRandomAvailableSoap12Binding</con:interface><con:operation>add</con:operation><con:request name="Call AdditionServiceRandomAvailable"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/axis2-services/services/AdditionServiceRandomAvailable.AdditionServiceRandomAvailableHttpSoap12Endpoint/</con:endpoint><con:request><![CDATA[<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:add="http://addition.ws.fmi.unisofia.bg">
+   <soap:Header/>
+   <soap:Body>
+      <add:add>
+         <add:a>37</add:a>
+         <add:b>64</add:b>      
+      </add:add>
+   </soap:Body>
+</soap:Envelope>]]></con:request><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="Call MultiplicityServiceStandard"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>MultiplicityServiceStandardSoap12Binding</con:interface><con:operation>multiply</con:operation><con:request name="Call MultiplicityServiceStandard"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/axis2-services/services/MultiplicityServiceStandard.MultiplicityServiceStandardHttpSoap12Endpoint/</con:endpoint><con:request><![CDATA[<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:mul="http://multiplicity.ws.fmi.unisofia.bg">
+   <soap:Header/>
+   <soap:Body>
+      <mul:multiply>
+         <mul:a>15</mul:a>
+         <mul:b>16</mul:b>
+      </mul:multiply>
+   </soap:Body>
+</soap:Envelope>]]></con:request><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="Call MultiplicityServiceSlow"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>MultiplicityServiceSlowSoap12Binding</con:interface><con:operation>multiply</con:operation><con:request name="Call MultiplicityServiceSlow"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/axis2-services/services/MultiplicityServiceSlow.MultiplicityServiceSlowHttpSoap12Endpoint/</con:endpoint><con:request><![CDATA[<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:mul="http://multiplicity.ws.fmi.unisofia.bg">
+   <soap:Header/>
+   <soap:Body>
+      <mul:multiply>
+         <mul:a>15</mul:a>
+         <mul:b>16</mul:b>      
+      </mul:multiply>
+   </soap:Body>
+</soap:Envelope>]]></con:request><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="Call MultiplicityServiceRandomAvailability"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>MultiplicityServiceRandomAvailabilitySoap12Binding</con:interface><con:operation>multiply</con:operation><con:request name="Call MultiplicityServiceRandomAvailability"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/axis2-services/services/MultiplicityServiceRandomAvailability.MultiplicityServiceRandomAvailabilityHttpSoap12Endpoint/</con:endpoint><con:request><![CDATA[<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:mul="http://multiplicity.ws.fmi.unisofia.bg">
+   <soap:Header/>
+   <soap:Body>
+      <mul:multiply>
+         <mul:a>15</mul:a>
+         <mul:b>16</mul:b>      
+      </mul:multiply>
+   </soap:Body>
+</soap:Envelope>]]></con:request><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="Call PowServiceStandard"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>PowServiceStandardSoap12Binding</con:interface><con:operation>pow</con:operation><con:request name="Call PowServiceStandard"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/axis2-services/services/PowServiceStandard.PowServiceStandardHttpSoap12Endpoint/</con:endpoint><con:request><![CDATA[<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:pow="http://pow.ws.fmi.unisofia.bg">
+   <soap:Header/>
+   <soap:Body>
+      <pow:pow>
+         <pow:a>4</pow:a>
+         <pow:b>3</pow:b>      
+      </pow:pow>
+   </soap:Body>
+</soap:Envelope>]]></con:request><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="Call PowServiceSlow"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>PowServiceSlowSoap12Binding</con:interface><con:operation>pow</con:operation><con:request name="Call PowServiceSlow"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/axis2-services/services/PowServiceSlow.PowServiceSlowHttpSoap12Endpoint/</con:endpoint><con:request><![CDATA[<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:pow="http://pow.ws.fmi.unisofia.bg">
+   <soap:Header/>
+   <soap:Body>
+      <pow:pow>
+         <pow:a>4</pow:a>
+         <pow:b>3</pow:b>        
+      </pow:pow>
+   </soap:Body>
+</soap:Envelope>]]></con:request><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="Call PowServiceRandomAvailability"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>PowServiceRandomAvailabilitySoap12Binding</con:interface><con:operation>pow</con:operation><con:request name="Call PowServiceRandomAvailability"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/axis2-services/services/PowServiceRandomAvailability.PowServiceRandomAvailabilityHttpSoap12Endpoint/</con:endpoint><con:request><![CDATA[<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:pow="http://pow.ws.fmi.unisofia.bg">
+   <soap:Header/>
+   <soap:Body>
+      <pow:pow>
+         <pow:a>4</pow:a>
+         <pow:b>3</pow:b>        
+      </pow:pow>
+   </soap:Body>
+</soap:Envelope>]]></con:request><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:properties/></con:testSuite><con:properties/><con:wssContainer/><con:sensitiveInformation/></con:soapui-project>

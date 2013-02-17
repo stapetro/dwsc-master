@@ -82,7 +82,7 @@ public class ServiceDAO extends GenericAppManagedDAOImpl<Service> {
 			return query.getSingleResult();
 		} catch(NoResultException noResEx) {
 			this.logger
-			.error(String.format(
+			.warn(String.format(
 					"Service with name '%s' NOT found",
 					serviceName), noResEx);
 		}
