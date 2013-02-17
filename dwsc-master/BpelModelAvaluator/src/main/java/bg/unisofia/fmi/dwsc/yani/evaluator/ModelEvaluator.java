@@ -12,7 +12,7 @@ public class ModelEvaluator implements IModelEvaluator {
 
 	public void updateModelForComposition(
 			List<PartnerLinkDefinition> plDefinitionList,
-			QualityProfile qualityProfile) {
+			QualityProfile qualityProfile) throws Exception {
 		if (plDefinitionList == null) {
 			return;
 		}
