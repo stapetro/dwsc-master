@@ -22,7 +22,7 @@
   </extensions>
   <extensions>
     <extendedObject href="CalculationProcess.bpel#/"/>
-    <extensionObject xsi:type="org.eclipse.bpel.ui.uiextensionmodel:ProcessExtension" modificationStamp="1358700952835"/>
+    <extensionObject xsi:type="org.eclipse.bpel.ui.uiextensionmodel:ProcessExtension" modificationStamp="1360400394369"/>
   </extensions>
   <extensions>
     <extendedObject href="CalculationProcess.bpel#//@activity/@activities.1"/>

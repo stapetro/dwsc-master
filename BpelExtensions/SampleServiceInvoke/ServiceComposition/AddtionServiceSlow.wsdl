@@ -86,13 +86,13 @@
 	</wsdl:binding>
 	<wsdl:service name="AdditionServiceSlow">
 		<wsdl:port name="AdditionServiceSlowHttpSoap11Endpoint" binding="ns:AdditionServiceSlowSoap11Binding">
-			<soap:address location="http://localhost:8080/TestServices/services/AdditionServiceSlow.AdditionServiceSlowHttpSoap11Endpoint/"/>
+			<soap:address location="http://localhost:8080/axis2-services/services/AdditionServiceSlow.AdditionServiceSlowHttpSoap11Endpoint/"/>
 		</wsdl:port>
 		<wsdl:port name="AdditionServiceSlowHttpSoap12Endpoint" binding="ns:AdditionServiceSlowSoap12Binding">
-			<soap12:address location="http://localhost:8080/TestServices/services/AdditionServiceSlow.AdditionServiceSlowHttpSoap12Endpoint/"/>
+			<soap12:address location="http://localhost:8080/axis2-services/services/AdditionServiceSlow.AdditionServiceSlowHttpSoap12Endpoint/"/>
 		</wsdl:port>
 		<wsdl:port name="AdditionServiceSlowHttpEndpoint" binding="ns:AdditionServiceSlowHttpBinding">
-			<http:address location="http://localhost:8080/TestServices/services/AdditionServiceSlow.AdditionServiceSlowHttpEndpoint/"/>
+			<http:address location="http://localhost:8080/axis2-services/services/AdditionServiceSlow.AdditionServiceSlowHttpEndpoint/"/>
 		</wsdl:port>
 	</wsdl:service>
 </wsdl:definitions>
