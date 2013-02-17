@@ -1,1 +1,0 @@
-INDEX VERSION 1.126+E:\Lectures\Master ST\Semester 3\DWSC_Project\trunk\BpelExtensions\.metadata\.plugins\org.eclipse.jdt.core
