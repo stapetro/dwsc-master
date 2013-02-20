@@ -11,6 +11,7 @@ import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.jws.WebMethod;
 import javax.jws.WebService;
+import javax.persistence.EntityManager;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,7 +29,6 @@ import bg.unisofia.fmi.dwsc.qosmodel.uddi.UddiInquiryApi;
 public class QoSDataProvidingServiceImpl implements QoSDataProvidingService {
 
 	private Logger logger;
-	private ServiceDAO serviceDao;
 	private UddiInquiryApi uddiApi;
 
 	public QoSDataProvidingServiceImpl() {
@@ -46,17 +46,6 @@ public class QoSDataProvidingServiceImpl implements QoSDataProvidingService {
 		this.uddiApi = null;
 	}
 
-	private ServiceDAO getServiceDAO() {
-		if (this.serviceDao == null) {
-			this.serviceDao = new ServiceDAO();
-		}
-		return this.serviceDao;
-	}
-
-	private void setServiceDAO(ServiceDAO serviceDAO) {
-		this.serviceDao = serviceDAO;
-	}
-
 	@Override
 	@WebMethod
 	public boolean registerService(String serviceKey, String serviceName)
@@ -65,7 +54,7 @@ public class QoSDataProvidingServiceImpl implements QoSDataProvidingService {
 				|| (serviceName == null || serviceName.equals(""))) {
 			return false;
 		}
-		ServiceDAO serviceDAO = this.getServiceDAO();
+		ServiceDAO serviceDAO = new ServiceDAO();
 		Service service = serviceDAO.getServiceByKey(serviceKey);
 		if (service == null) {
 			service = new Service();
@@ -81,7 +70,6 @@ public class QoSDataProvidingServiceImpl implements QoSDataProvidingService {
 			}
 		} finally {
 			serviceDAO.destroy();
-			setServiceDAO(null);
 		}
 	}
 
@@ -124,9 +112,11 @@ public class QoSDataProvidingServiceImpl implements QoSDataProvidingService {
 	private ServiceQoSData createServiceQoSData(String serviceKey,
 			String categoryName, String serviceEndpointUrl) {
 		ServiceQoSData serviceQosData = null;
-		ServiceDAO serviceDao = this.getServiceDAO();
+		ServiceDAO serviceDao = new ServiceDAO();
+		EntityManager entityMgr = serviceDao.getEntityMgr();
 		Service foundService = serviceDao.getServiceByKey(serviceKey);
 		if (foundService != null) {
+			entityMgr.refresh(foundService);
 			serviceQosData = new ServiceQoSData();
 			serviceQosData.setKey(serviceKey);
 			serviceQosData.setName(foundService.getName());
@@ -146,7 +136,6 @@ public class QoSDataProvidingServiceImpl implements QoSDataProvidingService {
 			}
 		}
 		serviceDao.destroy();
-		this.setServiceDAO(null);
 		return serviceQosData;
 	}
 
