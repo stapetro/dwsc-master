@@ -17,12 +17,12 @@
     <extensionObject xsi:type="org.eclipse.bpel.ui.uiextensionmodel:ActivityExtension"/>
   </extensions>
   <extensions>
-    <extendedObject href="ServiceComposition.bpel#//@activity/@activities.6"/>
+    <extendedObject href="ServiceComposition.bpel#//@activity/@activities.8"/>
     <extensionObject xsi:type="org.eclipse.bpel.ui.uiextensionmodel:ActivityExtension"/>
   </extensions>
   <extensions>
     <extendedObject href="ServiceComposition.bpel#/"/>
-    <extensionObject xsi:type="org.eclipse.bpel.ui.uiextensionmodel:ProcessExtension" modificationStamp="1360400598996"/>
+    <extensionObject xsi:type="org.eclipse.bpel.ui.uiextensionmodel:ProcessExtension" modificationStamp="1361471893303"/>
   </extensions>
   <extensions>
     <extendedObject href="ServiceComposition.bpel#//@activity/@activities.1"/>
@@ -61,35 +61,67 @@
     <extensionObject xsi:type="org.eclipse.bpel.ui.uiextensionmodel:VariableExtension"/>
   </extensions>
   <extensions>
-    <extendedObject href="ServiceComposition.bpel#//@activity/@activities.1/@copy.1"/>
+    <extendedObject href="ServiceComposition.bpel#//@activity/@activities.2/@copy.0"/>
     <extensionObject xsi:type="org.eclipse.bpel.ui.uiextensionmodel:CopyExtension"/>
   </extensions>
   <extensions>
-    <extendedObject href="ServiceComposition.bpel#//@activity/@activities.1/@copy.0"/>
+    <extendedObject href="ServiceComposition.bpel#//@activity/@activities.2/@copy.1"/>
     <extensionObject xsi:type="org.eclipse.bpel.ui.uiextensionmodel:CopyExtension"/>
   </extensions>
   <extensions>
-    <extendedObject href="ServiceComposition.bpel#//@activity/@activities.1/@copy.2"/>
+    <extendedObject href="ServiceComposition.bpel#//@activity/@activities.2/@copy.2"/>
     <extensionObject xsi:type="org.eclipse.bpel.ui.uiextensionmodel:CopyExtension"/>
   </extensions>
   <extensions>
-    <extendedObject href="ServiceComposition.bpel#//@activity/@activities.3/@copy.1"/>
+    <extendedObject href="ServiceComposition.bpel#//@activity/@activities.4/@copy.0"/>
     <extensionObject xsi:type="org.eclipse.bpel.ui.uiextensionmodel:CopyExtension"/>
   </extensions>
   <extensions>
-    <extendedObject href="ServiceComposition.bpel#//@activity/@activities.3/@copy.0"/>
+    <extendedObject href="ServiceComposition.bpel#//@activity/@activities.4/@copy.1"/>
     <extensionObject xsi:type="org.eclipse.bpel.ui.uiextensionmodel:CopyExtension"/>
   </extensions>
   <extensions>
-    <extendedObject href="ServiceComposition.bpel#//@activity/@activities.3/@copy.2"/>
+    <extendedObject href="ServiceComposition.bpel#//@activity/@activities.4/@copy.2"/>
     <extensionObject xsi:type="org.eclipse.bpel.ui.uiextensionmodel:CopyExtension"/>
   </extensions>
   <extensions>
-    <extendedObject href="ServiceComposition.bpel#//@activity/@activities.5/@copy.1"/>
+    <extendedObject href="ServiceComposition.bpel#//@activity/@activities.8/@copy.0"/>
     <extensionObject xsi:type="org.eclipse.bpel.ui.uiextensionmodel:CopyExtension"/>
   </extensions>
   <extensions>
-    <extendedObject href="ServiceComposition.bpel#//@activity/@activities.5/@copy.0"/>
+    <extendedObject href="ServiceComposition.bpel#//@activity/@activities.8/@copy.1"/>
+    <extensionObject xsi:type="org.eclipse.bpel.ui.uiextensionmodel:CopyExtension"/>
+  </extensions>
+  <extensions>
+    <extendedObject href="ServiceComposition.bpel#//@activity/@activities.9"/>
+    <extensionObject xsi:type="org.eclipse.bpel.ui.uiextensionmodel:ActivityExtension"/>
+  </extensions>
+  <extensions>
+    <extendedObject href="ServiceComposition.bpel#//@activity/@activities.7"/>
+    <extensionObject xsi:type="org.eclipse.bpel.ui.uiextensionmodel:ActivityExtension"/>
+  </extensions>
+  <extensions>
+    <extendedObject href="ServiceComposition.bpel#//@activity/@activities.6"/>
+    <extensionObject xsi:type="org.eclipse.bpel.ui.uiextensionmodel:ActivityExtension"/>
+  </extensions>
+  <extensions>
+    <extendedObject href="ServiceComposition.bpel#//@activity/@activities.6/@copy.1"/>
+    <extensionObject xsi:type="org.eclipse.bpel.ui.uiextensionmodel:CopyExtension"/>
+  </extensions>
+  <extensions>
+    <extendedObject href="ServiceComposition.bpel#//@variables/@children.6"/>
+    <extensionObject xsi:type="org.eclipse.bpel.ui.uiextensionmodel:VariableExtension"/>
+  </extensions>
+  <extensions>
+    <extendedObject href="ServiceComposition.bpel#//@variables/@children.7"/>
+    <extensionObject xsi:type="org.eclipse.bpel.ui.uiextensionmodel:VariableExtension"/>
+  </extensions>
+  <extensions>
+    <extendedObject href="ServiceComposition.bpel#//@activity/@activities.6/@copy.0"/>
+    <extensionObject xsi:type="org.eclipse.bpel.ui.uiextensionmodel:CopyExtension"/>
+  </extensions>
+  <extensions>
+    <extendedObject href="ServiceComposition.bpel#//@activity/@activities.6/@copy.2"/>
     <extensionObject xsi:type="org.eclipse.bpel.ui.uiextensionmodel:CopyExtension"/>
   </extensions>
 </extensionmodel:ExtensionMap>

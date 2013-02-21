@@ -4,7 +4,7 @@
 	suppressJoinFailure="yes" xmlns:tns="http://wso2.org/bps/sample"
 	xmlns:bpel="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
 	xmlns:addition="http://addition.ws.fmi.unisofia.bg" xmlns:pow="http://pow.ws.fmi.unisofia.bg"
-	xmlns:yani="http://yaniwscomposer.com/YaniWsComposer">
+	xmlns:yani="http://yaniwscomposer.com/YaniWsComposer" xmlns:multiply="http://multiplicity.ws.fmi.unisofia.bg">
 
 	<!-- Register the BPEL extensions -->
 	<bpel:extensions>
@@ -13,7 +13,8 @@
 	</bpel:extensions>
 
 	<!-- Import the client WSDL -->
-	<bpel:import namespace="http://pow.ws.fmi.unisofia.bg"
+    <bpel:import namespace="http://multiplicity.ws.fmi.unisofia.bg" location="MultiplicityServiceSlow.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"></bpel:import>
+    <bpel:import namespace="http://pow.ws.fmi.unisofia.bg"
 		location="PowServiceSlow.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"></bpel:import>
 	<bpel:import namespace="http://addition.ws.fmi.unisofia.bg"
 		location="AddtionServiceSlow.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"></bpel:import>
@@ -32,7 +33,8 @@
 			partnerRole="AdditionServiceProvider"></bpel:partnerLink>
 		<bpel:partnerLink name="PowPL" partnerLinkType="pow:PowService"
 			partnerRole="PowServiceProvider"></bpel:partnerLink>
-	</bpel:partnerLinks>
+        <bpel:partnerLink name="MultiplicityPL" partnerLinkType="multiply:MultiplicityService" partnerRole="MultiplicityServiceProvider"></bpel:partnerLink>
+    </bpel:partnerLinks>
 
 	<!-- ================================================================= -->
 	<!-- VARIABLES -->
@@ -50,7 +52,9 @@
 		<bpel:variable name="AdditionPLRequest" messageType="addition:addRequest"></bpel:variable>
 		<bpel:variable name="PowPLResponse" messageType="pow:powResponse"></bpel:variable>
 		<bpel:variable name="PowPLRequest" messageType="pow:powRequest"></bpel:variable>
-	</bpel:variables>
+        <bpel:variable name="MultiplicityPLResponse" messageType="multiply:multiplyResponse"></bpel:variable>
+        <bpel:variable name="MultiplicityPLRequest" messageType="multiply:multiplyRequest"></bpel:variable>
+    </bpel:variables>
 
 	<!-- ================================================================= -->
 	<!-- ORCHESTRATION LOGIC -->
@@ -80,6 +84,8 @@
 						category="addition" />
 					<yani:partnerLinkCategory partnerLinkName="PowPL"
 						category="pow" />
+					<yani:partnerLinkCategory partnerLinkName="MultiplicityPL"
+						category="multiplicity" />
 				</yani:partnerLinkCategories>
 			</yani:ComposeQoS>
 		</bpel:extensionActivity>
@@ -116,7 +122,7 @@
 				</bpel:to>
 			</bpel:copy>
 		</bpel:assign>
-		<bpel:invoke name="Invoke" partnerLink="AdditionPL"
+		<bpel:invoke name="InvokeAdditionService" partnerLink="AdditionPL"
 			operation="add" portType="addition:AdditionServiceSlowPortType"
 			inputVariable="AdditionPLRequest" outputVariable="AdditionPLResponse"></bpel:invoke>
 		<bpel:assign validate="no" name="Assign1">
@@ -150,10 +156,40 @@
 				</bpel:to>
 			</bpel:copy>
 		</bpel:assign>
-		<bpel:invoke name="Invoke1" partnerLink="PowPL" operation="pow"
+		<bpel:invoke name="InvokePowService" partnerLink="PowPL" operation="pow"
 			portType="pow:PowServiceSlowPortType" inputVariable="PowPLRequest"
 			outputVariable="PowPLResponse"></bpel:invoke>
-		<bpel:assign validate="no" name="Assign2">
+        <bpel:assign validate="no" name="Assign3">
+            <bpel:copy>
+                <bpel:from>
+                    <bpel:literal>
+                        <ns:multiply xmlns:ns="http://multiplicity.ws.fmi.unisofia.bg" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><ns:a>0.0</ns:a>
+  <ns:b>0.0</ns:b>
+
+                        </ns:multiply>
+                    </bpel:literal>
+                </bpel:from>
+                <bpel:to variable="MultiplicityPLRequest" part="parameters"></bpel:to>
+            </bpel:copy>
+            <bpel:copy>
+                <bpel:from>
+                    <bpel:literal xml:space="preserve">10</bpel:literal>
+                </bpel:from>
+                <bpel:to part="parameters" variable="MultiplicityPLRequest">
+                    <bpel:query queryLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xpath1.0"><![CDATA[multiply:a]]></bpel:query>
+                </bpel:to>
+            </bpel:copy>
+            <bpel:copy>
+                <bpel:from>
+                    <bpel:literal xml:space="preserve">3</bpel:literal>
+                </bpel:from>
+                <bpel:to part="parameters" variable="MultiplicityPLRequest">
+                    <bpel:query queryLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xpath1.0"><![CDATA[multiply:b]]></bpel:query>
+                </bpel:to>
+            </bpel:copy>
+        </bpel:assign>
+        <bpel:invoke name="InvokeMultiplicityService" partnerLink="MultiplicityPL" operation="multiply" portType="multiply:MultiplicityServiceSlowPortType" inputVariable="MultiplicityPLRequest" outputVariable="MultiplicityPLResponse"></bpel:invoke>
+        <bpel:assign validate="no" name="Assign2">
 			<bpel:copy>
 				<bpel:from>
 					<bpel:literal>
@@ -167,9 +203,10 @@
 				<bpel:to variable="output" part="payload"></bpel:to>
 			</bpel:copy>
 			<bpel:copy>
-				<bpel:from part="parameters" variable="PowPLResponse">
-					<bpel:query queryLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xpath1.0"><![CDATA[pow:return]]></bpel:query>
-				</bpel:from>
+				<bpel:from>
+                    <bpel:literal xml:space="preserve">7
+</bpel:literal>
+                </bpel:from>
 				<bpel:to part="payload" variable="output">
 					<bpel:query queryLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xpath1.0"><![CDATA[tns:result]]></bpel:query>
 				</bpel:to>

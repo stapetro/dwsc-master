@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<deploy xmlns="http://www.apache.org/ode/schemas/dd/2007/03" xmlns:addition.ws.fmi.unisofia.bg="http://addition.ws.fmi.unisofia.bg" xmlns:pow.ws.fmi.unisofia.bg="http://pow.ws.fmi.unisofia.bg" xmlns:sample="http://wso2.org/bps/sample">
+<deploy xmlns="http://www.apache.org/ode/schemas/dd/2007/03" xmlns:addition.ws.fmi.unisofia.bg="http://addition.ws.fmi.unisofia.bg" xmlns:multiplicity.ws.fmi.unisofia.bg="http://multiplicity.ws.fmi.unisofia.bg" xmlns:pow.ws.fmi.unisofia.bg="http://pow.ws.fmi.unisofia.bg" xmlns:sample="http://wso2.org/bps/sample">
   <process name="sample:ServiceComposition">
     <active>true</active>
     <retired>false</retired>
@@ -12,6 +12,9 @@
     </invoke>
     <invoke partnerLink="PowPL">
       <service name="pow.ws.fmi.unisofia.bg:PowServiceSlow" port="PowServiceSlowHttpSoap12Endpoint"/>
+    </invoke>
+    <invoke partnerLink="MultiplicityPL">
+      <service name="multiplicity.ws.fmi.unisofia.bg:MultiplicityServiceSlow" port="MultiplicityServiceSlowHttpSoap12Endpoint"/>
     </invoke>
   </process>
 </deploy>
