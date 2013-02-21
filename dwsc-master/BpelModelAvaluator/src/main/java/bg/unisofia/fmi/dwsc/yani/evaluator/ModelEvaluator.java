@@ -38,9 +38,6 @@ public class ModelEvaluator implements IModelEvaluator {
 			PartnerLinkDefinition plDefinition = plDefinitionList.get(i);
 			String endpointAddress = wsList.get(i).getEndPoint();
 			plDefinition.setEndpointReference(endpointAddress);
-			
-			//TODO delete the prints
-			System.out.println(":::::::> " + endpointAddress);
 		}
 	}
 
