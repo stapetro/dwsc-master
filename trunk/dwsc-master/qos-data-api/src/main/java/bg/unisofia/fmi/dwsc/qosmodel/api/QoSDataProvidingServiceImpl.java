@@ -4,7 +4,6 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collection;
-import java.util.Iterator;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -18,6 +17,7 @@ import org.slf4j.LoggerFactory;
 
 import bg.unisofia.fmi.dwsc.qosmodel.api.exceptions.RegisterServiceException;
 import bg.unisofia.fmi.dwsc.qosmodel.dao.OperationInvocationDAO;
+import bg.unisofia.fmi.dwsc.qosmodel.dao.OperationMessageDAO;
 import bg.unisofia.fmi.dwsc.qosmodel.dao.ServiceDAO;
 import bg.unisofia.fmi.dwsc.qosmodel.domain.Operation;
 import bg.unisofia.fmi.dwsc.qosmodel.domain.OperationInvocation;
@@ -109,36 +109,6 @@ public class QoSDataProvidingServiceImpl implements QoSDataProvidingService {
 		return null;
 	}
 
-	private ServiceQoSData createServiceQoSData(String serviceKey,
-			String categoryName, String serviceEndpointUrl) {
-		ServiceQoSData serviceQosData = null;
-		ServiceDAO serviceDao = new ServiceDAO();
-		EntityManager entityMgr = serviceDao.getEntityMgr();
-		Service foundService = serviceDao.getServiceByKey(serviceKey);
-		if (foundService != null) {
-			entityMgr.refresh(foundService);
-			serviceQosData = new ServiceQoSData();
-			serviceQosData.setKey(serviceKey);
-			serviceQosData.setName(foundService.getName());
-			serviceQosData.setCategory(categoryName);
-			serviceQosData.setEndPointUrl(serviceEndpointUrl);
-			Collection<Operation> serviceOps = foundService.getOperation();
-			if (serviceOps != null) {
-				OperationInvocationDAO opInvDao = new OperationInvocationDAO(
-						serviceDao.getEntityMgr());
-				Iterator<Operation> serviceOpsIterator = serviceOps.iterator();
-				while (serviceOpsIterator.hasNext()) {
-					Operation currOp = serviceOpsIterator.next();
-					populateOperationData(serviceQosData, currOp, opInvDao);
-				}
-				opInvDao.destroy();
-				opInvDao = null;
-			}
-		}
-		serviceDao.destroy();
-		return serviceQosData;
-	}
-
 	@Override
 	@WebMethod
 	public ServiceQoSData getServiceQoSData(String serviceKey,
@@ -167,25 +137,51 @@ public class QoSDataProvidingServiceImpl implements QoSDataProvidingService {
 		return null;
 	}
 
+	private ServiceQoSData createServiceQoSData(String serviceKey,
+			String categoryName, String serviceEndpointUrl) {
+		ServiceQoSData serviceQosData = null;
+		ServiceDAO serviceDao = new ServiceDAO();
+		EntityManager entityMgr = serviceDao.getEntityMgr();
+		Service foundService = serviceDao.getServiceByKey(serviceKey);
+		if (foundService != null) {
+			entityMgr.refresh(foundService);
+			serviceQosData = new ServiceQoSData();
+			serviceQosData.setKey(serviceKey);
+			serviceQosData.setName(foundService.getName());
+			serviceQosData.setCategory(categoryName);
+			serviceQosData.setEndPointUrl(serviceEndpointUrl);
+			Collection<Operation> serviceOps = foundService.getOperation();
+			if (serviceOps != null) {
+				OperationInvocationDAO opInvDao = new OperationInvocationDAO(
+						serviceDao.getEntityMgr());
+				OperationMessageDAO opMsgDao = new OperationMessageDAO(
+						serviceDao.getEntityMgr());
+				for (Operation currOp : serviceOps) {
+					populateOperationData(serviceQosData, currOp, opInvDao,
+							opMsgDao);
+				}
+				opInvDao.destroy();
+				opInvDao = null;
+			}
+		}
+		serviceDao.destroy();
+		return serviceQosData;
+	}
+
 	private void populateOperationData(ServiceQoSData serviceQosData,
-			Operation operation, OperationInvocationDAO opInvDao) {
+			Operation operation, OperationInvocationDAO opInvDao,
+			OperationMessageDAO opMsgDao) {
 		Collection<OperationInvocation> currOpInvs = opInvDao
 				.getOperationInvocationsLimited(operation.getId(), 50);
 		if (currOpInvs != null) {
 			OperationData opData = new OperationData();
 			opData.setName(operation.getName());
-			Iterator<OperationInvocation> opInvsIterator = currOpInvs
-					.iterator();
-			while (opInvsIterator.hasNext()) {
-				OperationInvocation currOpInv = opInvsIterator.next();
-				Collection<OperationMessage> opMsgs = currOpInv
-						.getOperationMessage();
+			for (OperationInvocation currOpInv : currOpInvs) {
+				Collection<OperationMessage> opMsgs = opMsgDao
+						.getOperationMessages(currOpInv.getCorrelationId());
 				if (opMsgs != null) {
 					OperationInvocationData opInvDataItem = new OperationInvocationData();
-					Iterator<OperationMessage> opMsgsIterator = opMsgs
-							.iterator();
-					while (opMsgsIterator.hasNext()) {
-						OperationMessage opMsg = opMsgsIterator.next();
+					for (OperationMessage opMsg : opMsgs) {
 						populateOperationInvocation(opInvDataItem, opMsg);
 					}
 					if (opInvDataItem.getRequestReceived() != null
