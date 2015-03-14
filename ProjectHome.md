@@ -1,0 +1,1 @@
+A framework for web services composition based on QoS data. This framework collects, stores, and composes web services dynamically based on certain quality requirements provided.
